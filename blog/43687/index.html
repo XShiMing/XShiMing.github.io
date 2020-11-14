@@ -1,0 +1,624 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Python | 失铭的学习笔记</title><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="本文由学习所作思维导图转换而来 思维导图下载链接 密码：vhm66n   基本语法元素格式框架 缩进表达程序的格式框架  严格明确，缩进是语言的一部分，缩进不正确程序运行错误 所属关系，表达代码间包含和层次关系的唯一手段 长度一致，程序内一致即可，一般用4个空格或1个tab   注释  #开头，单行注释 &#39;&#39;&#39;多行注释    命名与保留字 变量  用于保存和表示数据的占">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python">
+<meta property="og:url" content="https://shiming.best/blog/43687/index.html">
+<meta property="og:site_name" content="失铭的学习笔记">
+<meta property="og:description" content="本文由学习所作思维导图转换而来 思维导图下载链接 密码：vhm66n   基本语法元素格式框架 缩进表达程序的格式框架  严格明确，缩进是语言的一部分，缩进不正确程序运行错误 所属关系，表达代码间包含和层次关系的唯一手段 长度一致，程序内一致即可，一般用4个空格或1个tab   注释  #开头，单行注释 &#39;&#39;&#39;多行注释    命名与保留字 变量  用于保存和表示数据的占">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808180401.png">
+<meta property="article:published_time" content="2020-08-05T01:48:30.000Z">
+<meta property="article:modified_time" content="2020-08-05T01:48:30.000Z">
+<meta property="article:author" content="失铭">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808180401.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shiming.best/blog/43687/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-08-05 09:48:30'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的学习笔记" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808180401.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的学习笔记</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Python</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-05T01:48:30.000Z" title="发表于 2020-08-05 09:48:30">2020-08-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-08-05T01:48:30.000Z" title="更新于 2020-08-05 09:48:30">2020-08-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Python/">Python</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<ul>
+<li>本文由学习所作思维导图转换而来</li>
+<li><a target="_blank" rel="noopener" href="https://share.weiyun.com/ljwIcZPk">思维导图下载链接</a> 密码：vhm66n</li>
+</ul>
+</blockquote>
+<h2 id="基本语法元素"><a href="#基本语法元素" class="headerlink" title="基本语法元素"></a>基本语法元素</h2><h3 id="格式框架"><a href="#格式框架" class="headerlink" title="格式框架"></a>格式框架</h3><ul>
+<li><p>缩进表达程序的格式框架</p>
+<ul>
+<li>严格明确，缩进是语言的一部分，缩进不正确程序运行错误</li>
+<li>所属关系，表达代码间包含和层次关系的唯一手段</li>
+<li>长度一致，程序内一致即可，一般用4个空格或1个tab</li>
+</ul>
+</li>
+<li><p>注释</p>
+<ul>
+<li><code>#</code>开头，单行注释</li>
+<li><code>&#39;&#39;&#39;</code>多行注释</li>
+</ul>
+</li>
+</ul>
+<h3 id="命名与保留字"><a href="#命名与保留字" class="headerlink" title="命名与保留字"></a>命名与保留字</h3><ul>
+<li><p>变量</p>
+<ul>
+<li>用于保存和表示数据的占位符号</li>
+</ul>
+</li>
+<li><p>命名</p>
+<ul>
+<li><p>关联标识符的过程</p>
+<ul>
+<li>命名规则，大小写字母，数字，下划线和汉字等字符及组合</li>
+<li>注意事项：大小写敏感，首字符不能是数字，不与保留字相同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>保留字</p>
+<ul>
+<li>被编程语言内部定义并保留使用的标识符（33个）</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><ul>
+<li>供计算机程序理解的数据形式</li>
+</ul>
+<h3 id="语句与函数"><a href="#语句与函数" class="headerlink" title="语句与函数"></a>语句与函数</h3><ul>
+<li><p>赋值语句</p>
+<ul>
+<li>由赋值符号构成的一行代码</li>
+</ul>
+</li>
+<li><p>分支语句</p>
+<ul>
+<li>由判断方向运行程序运行方向的语句</li>
+</ul>
+</li>
+<li><p>函数</p>
+<ul>
+<li>根据输入参数产生不同输出的功能过程</li>
+</ul>
+</li>
+</ul>
+<h3 id="输入与输出"><a href="#输入与输出" class="headerlink" title="输入与输出"></a>输入与输出</h3><ul>
+<li><p>输入函数input()</p>
+<ul>
+<li><code>&lt;变量&gt;=input(&lt;提示信息字符串&gt;)</code></li>
+</ul>
+</li>
+<li><p>输出函数print()</p>
+<ul>
+<li><code>print</code>(&lt;拟输出字符串和字符串变量&gt;)</li>
+<li><code>&#123;&#125;</code>-&gt;槽，<code>&#123;:.2f&#125;</code>表示填充时取小数后两位</li>
+</ul>
+</li>
+<li><p>评估函数eval()</p>
+<ul>
+<li>去掉参数最外侧引号并执行余下语句的函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本图形绘制"><a href="#基本图形绘制" class="headerlink" title="基本图形绘制"></a>基本图形绘制</h2><h3 id="turtle的使用"><a href="#turtle的使用" class="headerlink" title="turtle的使用"></a>turtle的使用</h3><ul>
+<li><p>turtle的绘图窗体</p>
+<ul>
+<li><code>turtle.setup(width,height,startx,starty)</code></li>
+</ul>
+</li>
+<li><p>turtle空间坐标体系</p>
+<ul>
+<li><p>绝对坐标</p>
+<ul>
+<li><code>turtle.goto(x,y)</code></li>
+</ul>
+</li>
+<li><p>海龟坐标</p>
+<ul>
+<li><code>turtle.circle(r,angle)</code></li>
+<li><code>turtle.fd(d)</code></li>
+<li><code>turtle.bk(d)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>turtle角度坐标体系</p>
+<ul>
+<li><p>绝对角度</p>
+<ul>
+<li><p><code>turtle.seth(angle)</code></p>
+<ul>
+<li>seth()改变海龟行进方向</li>
+<li>seth()只改变方向但不行进</li>
+<li>angle为角度</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>海龟角度</p>
+<ul>
+<li><code>turtle.left(angle)</code></li>
+<li><code>turtle.right(angle)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>turtle的RGB色彩模式</p>
+<ul>
+<li><p>默认采用小数值，可切换为整数值</p>
+<ul>
+<li><p><code>turtle.colormode(mode)</code></p>
+<ul>
+<li>1.0小数值模式</li>
+<li>255整数值模式</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>导入</p>
+<ul>
+<li><p>import&lt;函数名&gt;</p>
+<ul>
+<li><p>&lt;库名&gt;.&lt;函数名&gt;(&lt;函数参数&gt;)</p>
+<ul>
+<li>不会出现函数重名问题</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>from&lt;库名&gt;import&lt;函数名&gt;/from&lt;库名&gt;import *</p>
+<ul>
+<li>&lt;函数名&gt;(&lt;函数参数&gt;)</li>
+</ul>
+</li>
+<li><p>import&lt;库名&gt; as &lt;库别名&gt;</p>
+<ul>
+<li>&lt;库别名&gt;.&lt;函数名&gt;(&lt;函数参数&gt;)</li>
+</ul>
+</li>
+<li><p>turtle画笔控制函数</p>
+<ul>
+<li><code>turtle.penup()</code>别名<code>turtle.pu()</code>画笔抬起，不形成图案</li>
+<li><code>turtle.pendown()</code>别名<code>turtle.pd()</code>画笔落下，形成图案</li>
+<li><code>turtle.pensize(width)</code>别名<code>turtle.width(width)</code>画笔宽度</li>
+<li><code>turtle.pencolor(color)</code>画笔颜色</li>
+</ul>
+</li>
+<li><p>turtle运动控制函数</p>
+<ul>
+<li><code>turtle.forward(d)</code> 别名 turtle.fd(d)直线</li>
+<li><code>turtle.circle(r,extent=None)</code>曲线</li>
+</ul>
+</li>
+<li><p>turtle方向控制函数</p>
+<ul>
+<li><code>turtle.setheading(angle)</code>别名<code>turtle.seth(angle)</code>绝对角度</li>
+<li><code>turtle.left(angle)</code>左转</li>
+<li><code>turtle.right(angle)</code>右转</li>
+</ul>
+</li>
+</ul>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><h3 id="整数类型"><a href="#整数类型" class="headerlink" title="整数类型"></a>整数类型</h3><ul>
+<li>十进制</li>
+<li>二进制：以0b或0B开头</li>
+<li>八进制：以0o或0O开头</li>
+<li>十六进制：以0x或0X开头</li>
+</ul>
+<h3 id="浮点数类型"><a href="#浮点数类型" class="headerlink" title="浮点数类型"></a>浮点数类型</h3><ul>
+<li>-10^308-10^308</li>
+<li>不确定尾数，round()函数辅助比较大小</li>
+<li><code>&lt;a&gt;e&lt;b&gt;</code>，表示a*10^b</li>
+</ul>
+<h3 id="复数类型"><a href="#复数类型" class="headerlink" title="复数类型"></a>复数类型</h3><ul>
+<li>a+bj</li>
+</ul>
+<h3 id="数值运算操作符"><a href="#数值运算操作符" class="headerlink" title="数值运算操作符"></a>数值运算操作符</h3><ul>
+<li><p>+,-,*,/(产生浮点数结果),//(整数除)</p>
+</li>
+<li><p>+x(x本身），-y（y负值），x%y（余数），x**y（幂运算）</p>
+</li>
+<li><p>x op = y</p>
+</li>
+<li><p>数据类型逐渐变宽</p>
+</li>
+<li><p>数值运算函数</p>
+<ul>
+<li>abs(x)绝对值</li>
+<li>divmod(x,y)商余操作，输出商和余数</li>
+<li>pow(x,y[,z])幂余</li>
+<li>round(x[,d])四舍五入，d是保留小数位数</li>
+<li>max(x1,x2…,xn)最大值</li>
+<li>min(x1,x2,…xn)最小值</li>
+<li>int(x)变整</li>
+<li>float(x)变为小数</li>
+</ul>
+</li>
+</ul>
+<h3 id="字符串类型及操作"><a href="#字符串类型及操作" class="headerlink" title="字符串类型及操作"></a>字符串类型及操作</h3><ul>
+<li><p>2类共四种表达方式</p>
+<ul>
+<li><code>&#39;,&#39;&#39;,&#39;&#39;&#39;</code></li>
+<li>多行</li>
+<li>单行</li>
+</ul>
+</li>
+<li><p>序号</p>
+<ul>
+<li>正向递增序号，0开始</li>
+<li>方向递减序号，-1开始</li>
+</ul>
+</li>
+<li><p>切片高级用法</p>
+<ul>
+<li><p>&lt;字符串&gt;[M:N]，m缺失表示至开头，n缺失表示至表尾</p>
+</li>
+<li><p>&lt;字符串&gt;[M:N:K],根据步长对字符串切片</p>
+<ul>
+<li>[::-1]字符串取反</li>
+</ul>
+</li>
+<li><p>转义符\</p>
+<ul>
+<li>表达特定字符的本意</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串操作符</p>
+<ul>
+<li><p>x+y</p>
+<ul>
+<li>连接字符串x和y</li>
+</ul>
+</li>
+<li><p>n<em>x或x</em>n</p>
+<ul>
+<li>复制n次字符串x</li>
+</ul>
+</li>
+<li><p>x in s</p>
+<ul>
+<li>如果x是s的字串，返回True，否则返回False</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串处理函数</p>
+<ul>
+<li><p>len(x)</p>
+<ul>
+<li>返回字符串的长度</li>
+</ul>
+</li>
+<li><p>str(x)</p>
+<ul>
+<li>任意类型x所对应的字符串形式</li>
+</ul>
+</li>
+<li><p>hex(x)或oct(x)</p>
+<ul>
+<li>十六进制或八进制形式字符串</li>
+</ul>
+</li>
+<li><p>chr(u)</p>
+<ul>
+<li>u为Unicode编码，返回其对应的字符</li>
+</ul>
+</li>
+<li><p>ord(x)</p>
+<ul>
+<li>x为字符，返回其对应的Unicode编码</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串处理方法</p>
+<ul>
+<li><p>str.lower()或str.upper()</p>
+<ul>
+<li>返回字符串的副本，全小写/大写</li>
+</ul>
+</li>
+<li><p>str.split(sep=None)</p>
+<ul>
+<li>返回一个列表，有sep分割</li>
+</ul>
+</li>
+<li><p>str.count(sub)</p>
+<ul>
+<li>返回子串sub在str中出现的次数</li>
+</ul>
+</li>
+<li><p>str.replace(old,new)</p>
+<ul>
+<li>返回副本，所有old被替换为new</li>
+</ul>
+</li>
+<li><p>str.center(width,[.fillchar])</p>
+<ul>
+<li>根据宽度居中，fillchar可选</li>
+</ul>
+</li>
+<li><p>str.strip(chars)</p>
+<ul>
+<li>从str中去掉在其左侧和右侧chars中列出的字符</li>
+</ul>
+</li>
+<li><p>str.join(iter)</p>
+<ul>
+<li>在iter变量除最后元素外每个元素后增加一个str</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>字符串类型的格式化</p>
+<ul>
+<li><p>{}槽</p>
+<ul>
+<li><p>{&lt;参数序号&gt;:&lt;格式控制标记&gt;}</p>
+<ul>
+<li>填充，对齐（&lt;左对齐，&gt;右对齐，^居中对齐），宽度</li>
+<li>&lt;,&gt;（数字的千位分隔符）,&lt;.精度&gt;,&lt;类型&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="time库的使用"><a href="#time库的使用" class="headerlink" title="time库的使用"></a>time库的使用</h3><ul>
+<li><p>获取时间</p>
+<ul>
+<li><p>time()</p>
+<ul>
+<li>获取当前时间的时间戳，浮点数形式</li>
+</ul>
+</li>
+<li><p>ctime()</p>
+<ul>
+<li>获取当前时间的易读方式</li>
+</ul>
+</li>
+<li><p>gmtime()</p>
+<ul>
+<li>获取当前时间，表示为计算机可处理的时间格式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>时间格式化</p>
+<ul>
+<li><p>strftime(tpl,ts)</p>
+<ul>
+<li>tpl是格式化模板字符串，用来定义输出效果，ts是计算机内部时间类型变量</li>
+</ul>
+</li>
+<li><p>strptime(str,tpl)</p>
+<ul>
+<li>字符串转为为可以处理的时间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>程序计时</p>
+<ul>
+<li><p>测量时间</p>
+<ul>
+<li>perf_counter()</li>
+</ul>
+</li>
+<li><p>产生时间</p>
+<ul>
+<li><p>sleep(s)</p>
+<ul>
+<li>休眠时间，s可以是浮点数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="程序的控制结构"><a href="#程序的控制结构" class="headerlink" title="程序的控制结构"></a>程序的控制结构</h2><h3 id="程序的分支结构"><a href="#程序的分支结构" class="headerlink" title="程序的分支结构"></a>程序的分支结构</h3><ul>
+<li><p>单分支结构</p>
+<ul>
+<li>if:</li>
+</ul>
+</li>
+<li><p>二分支结构</p>
+<ul>
+<li>if：else:</li>
+<li>紧凑形式：适用于简单表达式的二分之结构</li>
+<li>&lt;表达式1&gt;if&lt;条件&gt;else&lt;表达式2&gt;</li>
+</ul>
+</li>
+<li><p>多分支结构</p>
+<ul>
+<li>if:elif:else:</li>
+</ul>
+</li>
+<li><p>条件判断及组合</p>
+<ul>
+<li>and(逻辑与),or(逻辑或),not(逻辑非)</li>
+</ul>
+</li>
+<li><p>异常处理</p>
+<ul>
+<li>try:  except:</li>
+<li>try: except: else: finally:</li>
+</ul>
+</li>
+</ul>
+<h3 id="程序的循环结构"><a href="#程序的循环结构" class="headerlink" title="程序的循环结构"></a>程序的循环结构</h3><ul>
+<li><p>遍历循环</p>
+<ul>
+<li><p>for &lt;循环变量&gt; in &lt;遍历结构&gt;:  &lt;语句块&gt;</p>
+<ul>
+<li>计数循环</li>
+<li>字符串遍历循环</li>
+<li>列表遍历循环</li>
+<li>文件遍历循环</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>无限循环</p>
+<ul>
+<li>while &lt;条件&gt;:  &lt;语句块&gt;</li>
+</ul>
+</li>
+<li><p>循环控制保留字</p>
+<ul>
+<li>break,continue</li>
+</ul>
+</li>
+<li><p>循环的扩展</p>
+<ul>
+<li><p>循环语句后加else：</p>
+<ul>
+<li>没有退出即执行else语句块</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="random库的使用"><a href="#random库的使用" class="headerlink" title="random库的使用"></a>random库的使用</h3><ul>
+<li>seed(a=None)初始化给定的随机数种子，默认为系统时间</li>
+<li>random()生成一个（0.0，1.0）之间的随机小数</li>
+<li>randint(a,b)生成a,b之间的整数</li>
+<li>randrange(m,n[,k])生成一个[m,n]之间以k为步长的随机整数</li>
+<li>getrandbits(k)生成一个k比特长的随机整数</li>
+<li>uniform(a,b)生成一个[a,b]之间的随机小数</li>
+<li>choice(seq)从序列seq中随机选择一个元素</li>
+<li>shuffle(seq)将序列seq中元素随机排序，并返回打乱后的序列</li>
+</ul>
+<h2 id="组合数据类型"><a href="#组合数据类型" class="headerlink" title="组合数据类型"></a>组合数据类型</h2><h3 id="集合类型"><a href="#集合类型" class="headerlink" title="集合类型"></a>集合类型</h3></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/43687/">https://shiming.best/blog/43687/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的学习笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808180401.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/9977/"><img class="prev-cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808175918.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">MySQL</div></div></a></div><div class="next-post pull-right"><a href="/blog/6541/"><img class="next-cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808180152.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">CSS</div></div></a></div></nav></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%85%83%E7%B4%A0"><span class="toc-number">1.</span> <span class="toc-text">基本语法元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.</span> <span class="toc-text">格式框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E5%90%8D%E4%B8%8E%E4%BF%9D%E7%95%99%E5%AD%97"><span class="toc-number">1.2.</span> <span class="toc-text">命名与保留字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E5%8F%A5%E4%B8%8E%E5%87%BD%E6%95%B0"><span class="toc-number">1.4.</span> <span class="toc-text">语句与函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E4%B8%8E%E8%BE%93%E5%87%BA"><span class="toc-number">1.5.</span> <span class="toc-text">输入与输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">基本图形绘制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#turtle%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">turtle的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.</span> <span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">整数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.2.</span> <span class="toc-text">浮点数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.3.</span> <span class="toc-text">复数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%BF%90%E7%AE%97%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="toc-number">3.4.</span> <span class="toc-text">数值运算操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%93%8D%E4%BD%9C"><span class="toc-number">3.5.</span> <span class="toc-text">字符串类型及操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#time%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">time库的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="toc-number">4.</span> <span class="toc-text">程序的控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%88%86%E6%94%AF%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">程序的分支结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-number">4.2.</span> <span class="toc-text">程序的循环结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#random%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-number">4.3.</span> <span class="toc-text">random库的使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.</span> <span class="toc-text">组合数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E7%B1%BB%E5%9E%8B"><span class="toc-number">5.1.</span> <span class="toc-text">集合类型</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/f37f1f3f/" title="MySQL练习"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808175918.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL练习"/></a><div class="content"><a class="title" href="/blog/f37f1f3f/" title="MySQL练习">MySQL练习</a><time datetime="2020-09-18T16:00:00.000Z" title="发表于 2020-09-19 00:00:00">2020-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/e55dcfb0/" title="行为型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="行为型模式"/></a><div class="content"><a class="title" href="/blog/e55dcfb0/" title="行为型模式">行为型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/8f9f2030/" title="创造型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创造型模式"/></a><div class="content"><a class="title" href="/blog/8f9f2030/" title="创造型模式">创造型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/620ff0b5/" title="结构型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="结构型模式"/></a><div class="content"><a class="title" href="/blog/620ff0b5/" title="结构型模式">结构型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/4c5df410/" title="HTTP和HTTPS的区别"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200828171626.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTP和HTTPS的区别"/></a><div class="content"><a class="title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

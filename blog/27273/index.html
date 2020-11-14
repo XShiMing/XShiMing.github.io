@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Redis | 失铭的学习笔记</title><meta name="keywords" content="NoSQL,Redis"><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="NoSQL介绍 NoSQL &#x3D; Not Only SQL  为什么使用NoSQL关系型数据库：表格，行，列随着互联网的高速发展，传统的关系型数据库在应付超大规模，超大流量以及高并发的时候力不从心 大数据时代的3V和3高 大数据3V(问题) 海量Volume 多样Variety 实时Velocity   互联网3高(性能) 高并发 高可拓 高性能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="https://shiming.best/blog/27273/index.html">
+<meta property="og:site_name" content="失铭的学习笔记">
+<meta property="og:description" content="NoSQL介绍 NoSQL &#x3D; Not Only SQL  为什么使用NoSQL关系型数据库：表格，行，列随着互联网的高速发展，传统的关系型数据库在应付超大规模，超大流量以及高并发的时候力不从心 大数据时代的3V和3高 大数据3V(问题) 海量Volume 多样Variety 实时Velocity   互联网3高(性能) 高并发 高可拓 高性能">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png">
+<meta property="article:published_time" content="2020-07-28T03:33:25.000Z">
+<meta property="article:modified_time" content="2020-07-28T03:33:25.000Z">
+<meta property="article:author" content="失铭">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="Redis">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://shiming.best/blog/27273/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-07-28 11:33:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的学习笔记" type="application/atom+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的学习笔记</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><h1 class="post-title">Redis</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-28T03:33:25.000Z" title="发表于 2020-07-28 11:33:25">2020-07-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-07-28T03:33:25.000Z" title="更新于 2020-07-28 11:33:25">2020-07-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E7%94%A8/Redis/">Redis</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="NoSQL介绍"><a href="#NoSQL介绍" class="headerlink" title="NoSQL介绍"></a>NoSQL介绍</h2><blockquote>
+<p>NoSQL = Not Only SQL</p>
+</blockquote>
+<h3 id="为什么使用NoSQL"><a href="#为什么使用NoSQL" class="headerlink" title="为什么使用NoSQL"></a>为什么使用NoSQL</h3><p>关系型数据库：表格，行，列<br>随着互联网的高速发展，传统的关系型数据库在应付超大规模，超大流量以及高并发的时候力不从心</p>
+<h4 id="大数据时代的3V和3高"><a href="#大数据时代的3V和3高" class="headerlink" title="大数据时代的3V和3高"></a>大数据时代的3V和3高</h4><ul>
+<li>大数据3V(问题)<ul>
+<li>海量Volume</li>
+<li>多样Variety</li>
+<li>实时Velocity</li>
+</ul>
+</li>
+<li>互联网3高(性能)<ul>
+<li>高并发</li>
+<li>高可拓</li>
+<li>高性能</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+
+<h3 id="NoSQL特点"><a href="#NoSQL特点" class="headerlink" title="NoSQL特点"></a>NoSQL特点</h3><ol>
+<li>方便扩展（数据之间没有关系）</li>
+<li>快速读写（Redis一秒写8万次，读取11万次）</li>
+<li>成本低廉（大部分分布式数据库都是开源）</li>
+<li>数据类型是多样型的（不需要事先设计数据库）</li>
+<li>传统的RDBMS和NoSQL<ul>
+<li>传统的 RDBMS（关系型数据库管理系统）<ul>
+<li>结构化组织</li>
+<li>SQL</li>
+<li>数据和关系都在单独的表中</li>
+<li>严格的一致性</li>
+<li>基础的事务</li>
+<li>。。。。。。</li>
+</ul>
+</li>
+<li>NoSQL<ul>
+<li>不仅仅是数据</li>
+<li>没有固定的查询语言</li>
+<li>键值对存储，列存储，文档存储，图形数据库（社交关系）</li>
+<li>最终一致性</li>
+<li>CAP定理和BASE（异地多活）</li>
+<li>高性能，高可用，高可扩</li>
+<li>。。。。。。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="NoSQL类型"><a href="#NoSQL类型" class="headerlink" title="NoSQL类型"></a>NoSQL类型</h3><h4 id="KV键值对"><a href="#KV键值对" class="headerlink" title="KV键值对"></a>KV键值对</h4><ul>
+<li>新浪：Redis</li>
+<li>美团：Redis+Tair</li>
+<li>阿里，百度：Redis+memecache</li>
+</ul>
+<h4 id="文档型数据库"><a href="#文档型数据库" class="headerlink" title="文档型数据库"></a>文档型数据库</h4><ul>
+<li>MongoDB<ul>
+<li>MongoDB是一个基于分布式文件存储的数据库，C++编写，主要用来处理大量的文档</li>
+<li>MongoDB是一个介于关系型数据库和非关系型数据库中中间的产品，MongoDB是非关系型数据库中功能最丰富，最像关系型数据库</li>
+</ul>
+</li>
+<li>ConthDB</li>
+</ul>
+<h4 id="列存储数据库"><a href="#列存储数据库" class="headerlink" title="列存储数据库"></a>列存储数据库</h4><ul>
+<li>HBase</li>
+<li>分布式文件系统</li>
+</ul>
+<h4 id="图形关系数据"><a href="#图形关系数据" class="headerlink" title="图形关系数据"></a>图形关系数据</h4><p>社交关系，拓扑图</p>
+<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存就是数据交换的缓冲区(又称作Cache)，当某一硬件要读取数据时，会首先从缓存中查找需要的数据，找到了则直接执行，找不到的话则从内存中查找。由于缓存的运行速度比内存快得多，故缓存的作用就是帮助硬件更快地运行。</p>
+<p>因为缓存往往使用的是RAM(断电即掉的非永久性储存)，所以在用完后还是会把文件送到硬盘等存储器里永久存储。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Redis(REmote DIctionary Server) 远程字典服务是一个由Salvatore Sanfilippo写的key-value存储系统。<br>Redis是一个开源的使用ANSI C语言编写、遵守BSD协议、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。<br>Redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave（主从同步）。<br>它通常也被称为数据结构服务器</p>
+<h4 id="Redis能做什么"><a href="#Redis能做什么" class="headerlink" title="Redis能做什么"></a>Redis能做什么</h4><ol>
+<li>内存存储，持久化，内存中是断电即失，所以持久化很重要（rdb，aof）</li>
+<li>效率高，可以用于告诉缓存</li>
+<li>发布订阅系统</li>
+<li>地图信息分析</li>
+<li>计时器，计数器（浏览量）</li>
+<li>。。。。。。</li>
+</ol>
+<h3 id="Redis基础知识"><a href="#Redis基础知识" class="headerlink" title="Redis基础知识"></a>Redis基础知识</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换数据库（Redis默认有16个数据库）</span></span><br><span class="line">127.0.0.1:6379&gt; select 3</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379[3]&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有key</span></span><br><span class="line">127.0.0.1:6379[3]&gt; keys *</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清空数据库</span></span><br><span class="line">127.0.0.1:6379[3]&gt; flushdb</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清空全部数据库</span></span><br><span class="line">127.0.0.1:6379[3]&gt; flushall</span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+
+<p>Redis是单线程的<br>官方表示，Redis是基于内存操作，CPU不是Redis性能瓶颈，Redis的瓶颈是机器的内存和网络带宽。既然可以使用单线程，就是用单线程了。</p>
+<h4 id="误区"><a href="#误区" class="headerlink" title="误区"></a>误区</h4><ol>
+<li>高性能的服务器一定是多线程的</li>
+<li>多线程（CPU上下文会切换）一定会比单线程快</li>
+</ol>
+<p>核心：Redis是将所有的数据全部存放在内存中，所以使用单线程去操作效率就是最高的，多线程（CPU会上下文切换：耗时），对于内存系统来说，如果没有上下文切换效率就是最高。</p>
+<h3 id="Redis-Key命令"><a href="#Redis-Key命令" class="headerlink" title="Redis-Key命令"></a>Redis-Key命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置键值对</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> 1 test1</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> 2 test2</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 查询所有key</span></span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;2&quot;</span></span><br><span class="line">2) <span class="string">&quot;1&quot;</span></span><br><span class="line"><span class="comment"># 判断key是否存在</span></span><br><span class="line">127.0.0.1:6379&gt; exists 1</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">127.0.0.1:6379&gt; exists 3</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"><span class="comment"># 移动key到指定数据库</span></span><br><span class="line">127.0.0.1:6379&gt; move 1 1</span><br><span class="line">127.0.0.1:6379&gt; keys *</span><br><span class="line">1) <span class="string">&quot;2&quot;</span></span><br><span class="line"><span class="comment"># 设置key过期时间</span></span><br><span class="line">127.0.0.1:6379&gt; expire 2 10</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"><span class="comment"># 查询key剩余时间</span></span><br><span class="line">127.0.0.1:6379&gt; ttl 2</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">127.0.0.1:6379&gt; ttl 2</span><br><span class="line">(<span class="built_in">integer</span>) -2</span><br><span class="line"><span class="comment"># 查看key的类型</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">type</span> 1</span><br><span class="line">string</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.redis.net.cn/order/">Redis中文网文档</a></p>
+<h3 id="Redis事务"><a href="#Redis事务" class="headerlink" title="Redis事务"></a>Redis事务</h3><p>Redis事务本质：一组命令的集合。一个事务中的所有命令都会被序列化，在事务执行过程中，会按照顺序执行。<br>一次性，顺序性，排他性</p>
+<p><strong>Redis事务没有隔离级别的概念。</strong><br>所有的命令在事务中，并没有被直接执行。只有发起执行命令的时候才会执行。</p>
+<p><strong>Redis单条命令保证原子性，但是事务不保证原子性。</strong></p>
+<p>Redis事务：</p>
+<ul>
+<li>开启事务(multi)</li>
+<li>命令入队()</li>
+<li>执行事务(exec)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">MULTI</td>
+<td align="left">标记一个事务块的开始</td>
+</tr>
+<tr>
+<td align="center">EXEC</td>
+<td align="left">执行所有事务块内的命令</td>
+</tr>
+<tr>
+<td align="center">DISCARD</td>
+<td align="left">取消事务，放弃执行事务块内的所有命令</td>
+</tr>
+<tr>
+<td align="center">WATCH key [key …]</td>
+<td align="left">监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断(<strong>乐观锁</strong>)</td>
+</tr>
+<tr>
+<td align="center">UNWATCH</td>
+<td align="left">取消 WATCH 命令对所有 key 的监视</td>
+</tr>
+</tbody></table>
+<h4 id="正常执行事务"><a href="#正常执行事务" class="headerlink" title="正常执行事务"></a>正常执行事务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启事务</span></span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 命令入队</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 执行事务</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) <span class="string">&quot;v1&quot;</span></span><br><span class="line">3) OK</span><br></pre></td></tr></table></figure>
+
+<h4 id="放弃事务"><a href="#放弃事务" class="headerlink" title="放弃事务"></a>放弃事务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 开启事务</span></span><br><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 命令入队</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k4 v4</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 放弃事务</span></span><br><span class="line">127.0.0.1:6379&gt; discard</span><br><span class="line">OK</span><br><span class="line"><span class="comment"># 事务中的命令都不执行</span></span><br><span class="line">127.0.0.1:6379&gt; get k4</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<h4 id="执行事务出错"><a href="#执行事务出错" class="headerlink" title="执行事务出错"></a>执行事务出错</h4><h5 id="编译型异常"><a href="#编译型异常" class="headerlink" title="编译型异常"></a>编译型异常</h5><p><strong>代码错误,事务中所有命令都不执行。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 v1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 错误命令</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k3</span><br><span class="line">(error) ERR wrong number of arguments <span class="keyword">for</span> <span class="string">&#x27;set&#x27;</span> <span class="built_in">command</span></span><br><span class="line"><span class="comment"># 执行事务报错</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">(error) EXECABORT Transaction discarded because of previous errors.</span><br><span class="line"><span class="comment"># 事务中所有命令都不执行</span></span><br><span class="line">127.0.0.1:6379&gt; get k1</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+
+<h5 id="运行时异常"><a href="#运行时异常" class="headerlink" title="运行时异常"></a>运行时异常</h5><p><strong>如果事务队列中存在语法性错误,那么执行命令的时候,其他命令都是可以正常执行的,错误命令抛出。</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1:6379&gt; multi</span><br><span class="line">OK</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k1 <span class="string">&quot;v1&quot;</span></span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 错误命令</span></span><br><span class="line">127.0.0.1:6379&gt; incr k1</span><br><span class="line">QUEUED</span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">set</span> k2 v2</span><br><span class="line">QUEUED</span><br><span class="line"><span class="comment"># 错误命令抛出，其余命令正常执行</span></span><br><span class="line">127.0.0.1:6379&gt; <span class="built_in">exec</span></span><br><span class="line">1) OK</span><br><span class="line">2) (error) ERR value is not an <span class="built_in">integer</span> or out of range</span><br><span class="line">3) OK</span><br><span class="line">127.0.0.1:6379&gt; get k2</span><br><span class="line"><span class="string">&quot;v2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><p>Redis可以用watch代替java中的乐观锁</p>
+<h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">redis-benchmark [option] [option value]</span><br></pre></td></tr></table></figure>
+
+<p>可选参数：</p>
+<blockquote>
+<p>来自Redis中文网</p>
+</blockquote>
+<p><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200807222751.png" alt="参数"></p>
+<h3 id="整合SpringBoot"><a href="#整合SpringBoot" class="headerlink" title="整合SpringBoot"></a>整合SpringBoot</h3><p>SpringBoot操作数据：Spring-data jpa jdbc mongodb redis</p>
+<p>说明：在SpringBoot2.x之后，原来使用的jedis被替换为了lettuce<br>jdis：采用直连，多个线程操作的话是不安全的，可使用jdis pool连接池避免安全问题。更像BIO模式<br>lettuce：采用netty，实例可以在多个线程中进行共享，不存在线程不安全的情况。可以减少线程数据，更像NIO模式</p>
+<h4 id="RedisTemplate系统配置"><a href="#RedisTemplate系统配置" class="headerlink" title="RedisTemplate系统配置"></a>RedisTemplate系统配置</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="comment">// 可用自定义配置类替换</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean(</span></span><br><span class="line"><span class="meta">    name = &#123;&quot;redisTemplate&quot;&#125;</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> RedisTemplate&lt;Object, Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> <span class="keyword">throws</span> UnknownHostException </span>&#123;</span><br><span class="line">  <span class="comment">// 默认的RedisTemplate没有过多配置，redis对象都需要序列化</span></span><br><span class="line">  <span class="comment">// 两个泛型都是ObjecT类型，使用时需要前置转换</span></span><br><span class="line">    RedisTemplate&lt;Object, Object&gt; template = <span class="keyword">new</span> RedisTemplate();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="meta">@ConditionalOnMissingBean</span></span><br><span class="line"><span class="keyword">public</span> StringRedisTemplate stringRedisTemplate</span><br><span class="line"><span class="comment">// 单独提出来的String类型Bean</span></span><br><span class="line">(RedisConnectionFactory redisConnectionFactory) <span class="keyword">throws</span> UnknownHostException &#123;</span><br><span class="line">    StringRedisTemplate template = <span class="keyword">new</span> StringRedisTemplate();</span><br><span class="line">    template.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">    <span class="keyword">return</span> template;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><p>导入依赖</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 支持lettuce --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改配置文件</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#redis 配置</span></span><br><span class="line"><span class="meta">spring.redis.database</span>=<span class="string">0</span></span><br><span class="line"><span class="comment"># Redis服务器地址</span></span><br><span class="line"><span class="meta">spring.redis.host</span>=<span class="string">localhost</span></span><br><span class="line"><span class="comment"># Redis服务器连接端口</span></span><br><span class="line"><span class="meta">spring.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="comment"># Redis服务器连接密码（默认为空）</span></span><br><span class="line"><span class="comment">#spring.redis.password=123456</span></span><br><span class="line"><span class="comment"># 连接池最大连接数（使用负值表示没有限制） 默认 8</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-active</span>=<span class="string">10</span></span><br><span class="line"><span class="comment"># 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-wait</span>=<span class="string">-1</span></span><br><span class="line"><span class="comment"># 连接池中的最大空闲连接 默认 8</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.max-idle</span>=<span class="string">5</span></span><br><span class="line"><span class="comment"># 连接池中的最小空闲连接 默认 0</span></span><br><span class="line"><span class="meta">spring.redis.lettuce.pool.min-idle</span>=<span class="string">1</span></span><br><span class="line"><span class="comment"># 连接超时时间（毫秒）</span></span><br><span class="line"><span class="meta">spring.redis.timeout</span>=<span class="string">3000</span></span><br></pre></td></tr></table></figure>
+
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redisTemplate.opsForValue();<span class="comment">//操作字符串</span></span><br><span class="line">redisTemplate.opsForHash();<span class="comment">//操作hash</span></span><br><span class="line">redisTemplate.opsForList();<span class="comment">//操作list</span></span><br><span class="line">redisTemplate.opsForSet();<span class="comment">//操作set</span></span><br><span class="line">redisTemplate.opsForZSet();<span class="comment">//操作有序set</span></span><br></pre></td></tr></table></figure>
+
+<p>操作与命令行操作一致</p>
+<h5 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h5><blockquote>
+<ul>
+<li>来自<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB?p=28">【狂神说Java】Redis最新超详细版教程通俗易懂</a></li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Bean</span></span><br><span class="line">  <span class="meta">@SuppressWarnings(&quot;all&quot;)</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span> </span>&#123;</span><br><span class="line">      RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> RedisTemplate&lt;String, Object&gt;();</span><br><span class="line">      template.setConnectionFactory(factory);</span><br><span class="line">      Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = <span class="keyword">new</span> Jackson2JsonRedisSerializer(Object.class);</span><br><span class="line">      ObjectMapper om = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">      om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">      om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">      jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">      StringRedisSerializer stringRedisSerializer = <span class="keyword">new</span> StringRedisSerializer();</span><br><span class="line"></span><br><span class="line">      <span class="comment">// key采用String的序列化方式</span></span><br><span class="line">      template.setKeySerializer(stringRedisSerializer);</span><br><span class="line">      <span class="comment">// hash的key也采用String的序列化方式</span></span><br><span class="line">      template.setHashKeySerializer(stringRedisSerializer);</span><br><span class="line">      <span class="comment">// value序列化方式采用jackson</span></span><br><span class="line">      template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">      <span class="comment">// hash的value序列化方式采用jackson</span></span><br><span class="line">      template.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">      template.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> template;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1S54y1R7SB">【狂神说Java】Redis最新超详细版教程通俗易懂</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.redis.net.cn/">redis中文网</a></li>
+</ul>
+</blockquote>
+<a class="btn-beautify button--animated block blue right" target="_blank" rel="noopener" href="https://www.shiming.online/blog/6834/" 
+  title="Redis数据类型"><i class="far fa-hand-point-right fa-fw"></i><span>Redis数据类型</span></a>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/27273/">https://shiming.best/blog/27273/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的学习笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/NoSQL/">NoSQL</a><a class="post-meta__tags" href="/tags/Redis/">Redis</a></div><div class="post_share"><div class="social-share" data-image="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/62112/"><img class="prev-cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Redis持久化</div></div></a></div><div class="next-post pull-right"><a href="/blog/4876/"><img class="next-cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200809235523.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">异常</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/62112/" title="Redis持久化"><img class="cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-29</div><div class="title">Redis持久化</div></div></a></div><div><a href="/blog/48573/" title="Redis缓存穿透，缓存击穿和雪崩"><img class="cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-29</div><div class="title">Redis缓存穿透，缓存击穿和雪崩</div></div></a></div><div><a href="/blog/6834/" title="Redis数据类型"><img class="cover" src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808181149.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-29</div><div class="title">Redis数据类型</div></div></a></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" src="/null" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">39</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NoSQL%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">NoSQL介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8NoSQL"><span class="toc-number">1.1.</span> <span class="toc-text">为什么使用NoSQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%97%B6%E4%BB%A3%E7%9A%843V%E5%92%8C3%E9%AB%98"><span class="toc-number">1.1.1.</span> <span class="toc-text">大数据时代的3V和3高</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSQL%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.</span> <span class="toc-text">NoSQL特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NoSQL%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.3.</span> <span class="toc-text">NoSQL类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#KV%E9%94%AE%E5%80%BC%E5%AF%B9"><span class="toc-number">1.3.1.</span> <span class="toc-text">KV键值对</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%A1%A3%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.2.</span> <span class="toc-text">文档型数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%97%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.3.3.</span> <span class="toc-text">列存储数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%BE%E5%BD%A2%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE"><span class="toc-number">1.3.4.</span> <span class="toc-text">图形关系数据</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis"><span class="toc-number">2.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">2.1.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">2.2.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-number">2.2.1.</span> <span class="toc-text">Redis能做什么</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">2.3.</span> <span class="toc-text">Redis基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AF%AF%E5%8C%BA"><span class="toc-number">2.3.1.</span> <span class="toc-text">误区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis-Key%E5%91%BD%E4%BB%A4"><span class="toc-number">2.4.</span> <span class="toc-text">Redis-Key命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis%E4%BA%8B%E5%8A%A1"><span class="toc-number">2.5.</span> <span class="toc-text">Redis事务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A3%E5%B8%B8%E6%89%A7%E8%A1%8C%E4%BA%8B%E5%8A%A1"><span class="toc-number">2.5.1.</span> <span class="toc-text">正常执行事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%94%BE%E5%BC%83%E4%BA%8B%E5%8A%A1"><span class="toc-number">2.5.2.</span> <span class="toc-text">放弃事务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E4%BA%8B%E5%8A%A1%E5%87%BA%E9%94%99"><span class="toc-number">2.5.3.</span> <span class="toc-text">执行事务出错</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E5%BC%82%E5%B8%B8"><span class="toc-number">2.5.3.1.</span> <span class="toc-text">编译型异常</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E5%BC%82%E5%B8%B8"><span class="toc-number">2.5.3.2.</span> <span class="toc-text">运行时异常</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">2.5.4.</span> <span class="toc-text">乐观锁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-number">2.6.</span> <span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88SpringBoot"><span class="toc-number">2.7.</span> <span class="toc-text">整合SpringBoot</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RedisTemplate%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE"><span class="toc-number">2.7.1.</span> <span class="toc-text">RedisTemplate系统配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.7.2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E9%85%8D%E7%BD%AE"><span class="toc-number">2.7.2.1.</span> <span class="toc-text">自定义配置</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/f37f1f3f/" title="MySQL练习"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200808175918.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL练习"/></a><div class="content"><a class="title" href="/blog/f37f1f3f/" title="MySQL练习">MySQL练习</a><time datetime="2020-09-18T16:00:00.000Z" title="发表于 2020-09-19 00:00:00">2020-09-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/e55dcfb0/" title="行为型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="行为型模式"/></a><div class="content"><a class="title" href="/blog/e55dcfb0/" title="行为型模式">行为型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/8f9f2030/" title="创造型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="创造型模式"/></a><div class="content"><a class="title" href="/blog/8f9f2030/" title="创造型模式">创造型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/620ff0b5/" title="结构型模式"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/background/background-10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="结构型模式"/></a><div class="content"><a class="title" href="/blog/620ff0b5/" title="结构型模式">结构型模式</a><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/4c5df410/" title="HTTP和HTTPS的区别"><img src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200828171626.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="HTTP和HTTPS的区别"/></a><div class="content"><a class="title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
