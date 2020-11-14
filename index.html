@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: true,
   isToc: false,
-  postUpdate: '2020-11-14 15:19:23'
+  postUpdate: '2020-11-14 22:56:17'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -183,22 +183,24 @@ JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运�
 12345678String str1 = &quo ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/4530c0eb/" title="Hexo进阶">Hexo进阶</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-13T16:00:00.000Z" title="发表于 2020-11-14 00:00:00">2020-11-14</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="content">主题: ButterFly
 ButterFly博客
 
-hexo-abbrlink
+唯一文章链接：hexo-abbrlink
 Hexo-abbrlink
 
+hexo默认的链接中，会将中文链接转换为一长串字符，而abbrlink可以为每一篇文章生成唯一的uri链接
+安装
+1npm install hexo-abbrlink --save
+
+修改hexo配置文件config.yml
+1234permalink: posts/:abbrlink.html  # 此处可以自己设置，也可以直接使用 :/abbrlinkabbrlink:    alg: crc32   #算法： crc16(default) and crc32    rep: hex     #进制： dec(default) and hex
+
+本地搜索：hexo-generator-search
 hexo-generator-search
-hexo-generator-search
 
-hexo-tag-aplayer
-hexo-tag-aplayer
+安装
+1npm install hexo-generator-search --save
 
-hexo-generator-feed
-hexo-generator-feed
-
-Hexo-WordCount
-Hexo-WordCount
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f37f1f3f/" title="MySQL练习">MySQL练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-18T16:00:00.000Z" title="发表于 2020-09-19 00:00:00">2020-09-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MySQL/">MySQL</a></span></div><div class="content">题目1 查询” 01 “课程比 “ 02 “课程成绩高的学生的信息及课程分数
+修改配置文件
+1234search:  path: search.xml  field: post  content: tru ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f37f1f3f/" title="MySQL练习">MySQL练习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-18T16:00:00.000Z" title="发表于 2020-09-19 00:00:00">2020-09-19</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MySQL/">MySQL</a></span></div><div class="content">题目1 查询” 01 “课程比 “ 02 “课程成绩高的学生的信息及课程分数
 123456789SELECT  A.*,  B.cid,  B.scoreFROM  ( SELECT sid, cid, score FROM sc WHERE cid = &quot;01&quot; ) A  LEFT JOIN ( SELECT sid, cid, score FROM sc WHERE cid = &quot;02&quot; ) B ON A.sid = B.sidWHERE  A.score &gt; B.score
 
 1.1 查询同时存在” 01 “课程和” 02 “课程的情况
