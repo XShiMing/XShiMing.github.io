@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-11-14T04:42:08.908Z</updated>
+  <updated>2020-11-13T16:00:00.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://shiming.best/blog/0/"/>
-    <id>https://shiming.best/blog/0/</id>
-    <published>2020-11-14T04:42:08.908Z</published>
-    <updated>2020-11-14T04:42:08.908Z</updated>
+    <title>Hexo进阶</title>
+    <link href="https://shiming.best/blog/4530c0eb/"/>
+    <id>https://shiming.best/blog/4530c0eb/</id>
+    <published>2020-11-13T16:00:00.000Z</published>
+    <updated>2020-11-13T16:00:00.000Z</updated>
     
     
       
@@ -34,6 +34,10 @@
     
     
     
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="工具" scheme="https://shiming.best/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
