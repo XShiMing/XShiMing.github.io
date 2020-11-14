@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>失铭的学习笔记</title>
   
   
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="https://shiming.best/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
-  <updated>2020-11-14T03:37:05.838Z</updated>
-  <id>http://example.com/</id>
+  <link href="https://shiming.best/"/>
+  <updated>2020-11-14T03:33:57.550Z</updated>
+  <id>https://shiming.best/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>失铭</name>
     
   </author>
   
@@ -18,10 +18,10 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://example.com/2020/11/14/hello-world/"/>
-    <id>http://example.com/2020/11/14/hello-world/</id>
+    <link href="https://shiming.best/blog/16107/"/>
+    <id>https://shiming.best/blog/16107/</id>
     <published>2020-11-14T03:33:57.550Z</published>
-    <updated>2020-11-14T03:37:05.838Z</updated>
+    <updated>2020-11-14T03:33:57.550Z</updated>
     
     
       
