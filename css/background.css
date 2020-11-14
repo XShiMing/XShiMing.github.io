@@ -1,0 +1,88 @@
+.layout_page {
+  opacity: 0.9;
+}
+
+#post {
+  opacity: 0.9;
+}
+
+.post-bg {
+  background: -webkit-linear-gradient(0deg,
+      rgba(247, 149, 51, 0.4) 0,
+      rgba(243, 112, 85, 0.4) 15%,
+      rgba(239, 78, 123, 0.4) 30%,
+      rgba(161, 102, 171, 0.4) 44%,
+      rgba(80, 115, 184, 0.4) 58%,
+      rgba(16, 152, 173, 0.4) 72%,
+      rgba(7, 179, 155, 0.4) 86%,
+      rgba(109, 186, 130, 0.4) 100%);
+  background: -moz-linear-gradient(0deg,
+      rgba(247, 149, 51, 0.4) 0,
+      rgba(243, 112, 85, 0.4) 15%,
+      rgba(239, 78, 123, 0.4) 30%,
+      rgba(161, 102, 171, 0.4) 44%,
+      rgba(80, 115, 184, 0.4) 58%,
+      rgba(16, 152, 173, 0.4) 72%,
+      rgba(7, 179, 155, 0.4) 86%,
+      rgba(109, 186, 130, 0.4) 100%);
+  background: -o-linear-gradient(0deg,
+      rgba(247, 149, 51, 0.4) 0,
+      rgba(243, 112, 85, 0.4) 15%,
+      rgba(239, 78, 123, 0.4) 30%,
+      rgba(161, 102, 171, 0.4) 44%,
+      rgba(80, 115, 184, 0.4) 58%,
+      rgba(16, 152, 173, 0.4) 72%,
+      rgba(7, 179, 155, 0.4) 86%,
+      rgba(109, 186, 130, 0.4) 100%);
+  background: -ms-linear-gradient(0deg,
+      rgba(247, 149, 51, 0.4) 0,
+      rgba(243, 112, 85, 0.4) 15%,
+      rgba(239, 78, 123, 0.4) 30%,
+      rgba(161, 102, 171, 0.4) 44%,
+      rgba(80, 115, 184, 0.4) 58%,
+      rgba(16, 152, 173, 0.4) 72%,
+      rgba(7, 179, 155, 0.4) 86%,
+      rgba(109, 186, 130, 0.4) 100%);
+  background: linear-gradient(90deg,
+      rgba(247, 149, 51, 0.4) 0,
+      rgba(243, 112, 85, 0.4) 15%,
+      rgba(239, 78, 123, 0.4) 30%,
+      rgba(161, 102, 171, 0.4) 44%,
+      rgba(80, 115, 184, 0.4) 58%,
+      rgba(16, 152, 173, 0.4) 72%,
+      rgba(7, 179, 155, 0.4) 86%,
+      rgba(109, 186, 130, 0.4) 100%);
+}
+
+#page-header {
+  background-color: white;
+}
+
+#page-header.post-bg:before {
+  background-color: rgba(0, 0, 0, 0.3)
+}
+
+.sidebar-toc__content {
+  overflow: hidden;
+}
+
+.full_page {
+  background: transparent;
+}
+
+#sidebar .sidebar-toc__content {
+  overflow-y: auto;
+}
+
+@font-face {
+  /* font-family: "GoogleSans"; */
+  /* src: url(https://cdn.jsdelivr.net/gh/XShiMing/XShiMing.github.io/font/GoogleSans.ttf); */
+  font-family: "FiraCode";
+  src: url(https://cdn.jsdelivr.net/gh/XShiMing/XShiMing.github.io/font/FiraCode.ttf);
+  font-family: "hyqh";
+  src: url(https://cdn.jsdelivr.net/gh/XShiMing/XShiMing.github.io/font/qh55.ttf);
+}
+
+body {
+  font-size: 16px;
+}
