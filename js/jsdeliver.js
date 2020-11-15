@@ -1,3 +1,5 @@
+// xshiming
+
 var name = "XShiMing";
 var repository = "XShiMing.github.io";
 if (document.domain != 'localhost') {
