@@ -80,9 +80,9 @@
   /* font-family: "GoogleSans"; */
   /* src: url(https://www.shiming.online/font/GoogleSans.ttf); */
   font-family: "FiraCode";
-  src: url(https://www.shiming.online/font/FiraCode.ttf);
+  src: url(/font/FiraCode.ttf);
   font-family: "hyqh";
-  src: url(https://www.shiming.online/font/qh55.ttf);
+  src: url(/font/qh55.ttf);
 }
 
 body {
