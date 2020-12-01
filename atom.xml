@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-11-20T05:43:00.000Z</updated>
+  <updated>2020-11-30T16:00:00.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,438 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>单例模式</title>
+    <link href="https://shiming.best/blog/f1601c3e/"/>
+    <id>https://shiming.best/blog/f1601c3e/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>原型模式</title>
+    <link href="https://shiming.best/blog/91ad9ce3/"/>
+    <id>https://shiming.best/blog/91ad9ce3/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>工厂方法模式</title>
+    <link href="https://shiming.best/blog/48598499/"/>
+    <id>https://shiming.best/blog/48598499/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>建造者模式</title>
+    <link href="https://shiming.best/blog/fe816c3c/"/>
+    <id>https://shiming.best/blog/fe816c3c/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>抽象工厂模式</title>
+    <link href="https://shiming.best/blog/9b7d6e62/"/>
+    <id>https://shiming.best/blog/9b7d6e62/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>享元模式</title>
+    <link href="https://shiming.best/blog/e19da94a/"/>
+    <id>https://shiming.best/blog/e19da94a/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代理模式</title>
+    <link href="https://shiming.best/blog/7b510e10/"/>
+    <id>https://shiming.best/blog/7b510e10/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>桥接模式</title>
+    <link href="https://shiming.best/blog/563268dc/"/>
+    <id>https://shiming.best/blog/563268dc/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>外观模式</title>
+    <link href="https://shiming.best/blog/f7de8aa8/"/>
+    <id>https://shiming.best/blog/f7de8aa8/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>组合模式</title>
+    <link href="https://shiming.best/blog/df879792/"/>
+    <id>https://shiming.best/blog/df879792/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>装饰模式</title>
+    <link href="https://shiming.best/blog/e671036b/"/>
+    <id>https://shiming.best/blog/e671036b/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>适配器模式</title>
+    <link href="https://shiming.best/blog/f5c535ea/"/>
+    <id>https://shiming.best/blog/f5c535ea/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>命令模式</title>
+    <link href="https://shiming.best/blog/78134e07/"/>
+    <id>https://shiming.best/blog/78134e07/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>观察者模式</title>
+    <link href="https://shiming.best/blog/9a246216/"/>
+    <id>https://shiming.best/blog/9a246216/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>责任链模式</title>
+    <link href="https://shiming.best/blog/6208627e/"/>
+    <id>https://shiming.best/blog/6208627e/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>迭代器模式</title>
+    <link href="https://shiming.best/blog/9055d217/"/>
+    <id>https://shiming.best/blog/9055d217/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>URI和URL的区别</title>
@@ -113,433 +545,6 @@
     
     <category term="nginx" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/nginx/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo进阶</title>
-    <link href="https://shiming.best/blog/4530c0eb/"/>
-    <id>https://shiming.best/blog/4530c0eb/</id>
-    <published>2020-11-13T16:00:00.000Z</published>
-    <updated>2020-11-13T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
-    
-    
-    <category term="工具" scheme="https://shiming.best/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL练习</title>
-    <link href="https://shiming.best/blog/f37f1f3f/"/>
-    <id>https://shiming.best/blog/f37f1f3f/</id>
-    <published>2020-09-18T16:00:00.000Z</published>
-    <updated>2020-09-18T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
-    <category term="MySQL" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/MySQL/"/>
-    
-    
-    <category term="MySQL" scheme="https://shiming.best/tags/MySQL/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>创造型模式</title>
-    <link href="https://shiming.best/blog/8f9f2030/"/>
-    <id>https://shiming.best/blog/8f9f2030/</id>
-    <published>2020-08-30T09:48:18.000Z</published>
-    <updated>2020-08-30T09:48:18.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>行为型模式</title>
-    <link href="https://shiming.best/blog/e55dcfb0/"/>
-    <id>https://shiming.best/blog/e55dcfb0/</id>
-    <published>2020-08-30T09:48:18.000Z</published>
-    <updated>2020-11-27T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>结构型模式</title>
-    <link href="https://shiming.best/blog/620ff0b5/"/>
-    <id>https://shiming.best/blog/620ff0b5/</id>
-    <published>2020-08-30T09:48:18.000Z</published>
-    <updated>2020-09-01T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HTTP和HTTPS的区别</title>
-    <link href="https://shiming.best/blog/4c5df410/"/>
-    <id>https://shiming.best/blog/4c5df410/</id>
-    <published>2020-08-27T16:00:00.000Z</published>
-    <updated>2020-08-27T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="计算机网络" scheme="https://shiming.best/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-    <category term="计算机网络" scheme="https://shiming.best/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>打开一个网站发生了什么？</title>
-    <link href="https://shiming.best/blog/84a7ac10/"/>
-    <id>https://shiming.best/blog/84a7ac10/</id>
-    <published>2020-08-27T16:00:00.000Z</published>
-    <updated>2020-08-27T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="计算机网络" scheme="https://shiming.best/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-    
-    <category term="计算机网络" scheme="https://shiming.best/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>HashMap和Hashtable的区别</title>
-    <link href="https://shiming.best/blog/425444d1/"/>
-    <id>https://shiming.best/blog/425444d1/</id>
-    <published>2020-08-24T14:23:53.000Z</published>
-    <updated>2020-08-24T14:23:53.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Java基础" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/"/>
-    
-    <category term="集合" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/%E9%9B%86%E5%90%88/"/>
-    
-    
-    <category term="Java" scheme="https://shiming.best/tags/Java/"/>
-    
-    <category term="集合" scheme="https://shiming.best/tags/%E9%9B%86%E5%90%88/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis-Plus</title>
-    <link href="https://shiming.best/blog/1276cc28/"/>
-    <id>https://shiming.best/blog/1276cc28/</id>
-    <published>2020-08-23T16:00:00.000Z</published>
-    <updated>2020-08-23T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
-    <category term="MyBatis-Plus" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/MyBatis-Plus/"/>
-    
-    
-    <category term="MyBatis-Plus" scheme="https://shiming.best/tags/MyBatis-Plus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式</title>
-    <link href="https://shiming.best/blog/41682/"/>
-    <id>https://shiming.best/blog/41682/</id>
-    <published>2020-08-23T09:48:18.000Z</published>
-    <updated>2020-08-29T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>POI和EasyExcel</title>
-    <link href="https://shiming.best/blog/88650203/"/>
-    <id>https://shiming.best/blog/88650203/</id>
-    <published>2020-08-23T03:51:44.000Z</published>
-    <updated>2020-08-23T03:51:44.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
-    <category term="POI" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/POI/"/>
-    
-    
-    <category term="POI" scheme="https://shiming.best/tags/POI/"/>
-    
-    <category term="EasyExcel" scheme="https://shiming.best/tags/EasyExcel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringCloud</title>
-    <link href="https://shiming.best/blog/96a41905/"/>
-    <id>https://shiming.best/blog/96a41905/</id>
-    <published>2020-08-20T08:46:56.000Z</published>
-    <updated>2020-08-22T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://shiming.best/categories/Spring/"/>
-    
-    <category term="SpringCloud" scheme="https://shiming.best/categories/Spring/SpringCloud/"/>
-    
-    
-    <category term="Spring" scheme="https://shiming.best/tags/Spring/"/>
-    
-    <category term="SpringCloud" scheme="https://shiming.best/tags/SpringCloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring+Mybatis+Druid</title>
-    <link href="https://shiming.best/blog/20547/"/>
-    <id>https://shiming.best/blog/20547/</id>
-    <published>2020-08-19T16:00:00.000Z</published>
-    <updated>2020-08-19T16:00:00.000Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Spring-Mybatis-Druid&quot;&gt;&lt;a href=&quot;#Spring-Mybatis-Druid&quot; class=&quot;headerlink&quot; title=&quot;Spring+Mybatis+Druid&quot;&gt;&lt;/a&gt;Spring+Mybatis+Druid&lt;/h2&gt;&lt;h3 id=&quot;创建项目&quot;&gt;&lt;a href=&quot;#创建项目&quot; class=&quot;headerlink&quot; title=&quot;创建项目&quot;&gt;&lt;/a&gt;创建项目&lt;/h3&gt;&lt;p&gt;选择Spring Initializr创建项目，选择jdk版本和默认的Service URL&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200807222127.png&quot; alt=&quot;创建项目&quot;&gt;&lt;br&gt;填写项目的Group，Artifact信息&lt;br&gt;&lt;img src=&quot;https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200807222145.png&quot; alt=&quot;填写信息&quot;&gt;&lt;br&gt;选择Web中的Spring Web和Sql中的Spring Data JDBC，Mybatis，MySQL四个依赖&lt;br&gt;&lt;img src=&quot;https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200807222201.png&quot; alt=&quot;添加依赖&quot;&gt;&lt;br&gt;然后填写项目信息点击Finish&lt;br&gt;&lt;img src=&quot;https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200807222217.png&quot; alt=&quot;结束&quot;&gt;&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="Spring" scheme="https://shiming.best/categories/Spring/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/categories/Spring/SpringBoot/"/>
-    
-    
-    <category term="Spring" scheme="https://shiming.best/tags/Spring/"/>
-    
-    <category term="开发" scheme="https://shiming.best/tags/%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>日志</title>
-    <link href="https://shiming.best/blog/32353/"/>
-    <id>https://shiming.best/blog/32353/</id>
-    <published>2020-08-19T12:44:21.000Z</published>
-    <updated>2020-08-19T12:44:21.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
-    
-    <category term="工具" scheme="https://shiming.best/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot自动配置</title>
-    <link href="https://shiming.best/blog/2bea20dc/"/>
-    <id>https://shiming.best/blog/2bea20dc/</id>
-    <published>2020-08-19T02:08:06.000Z</published>
-    <updated>2020-08-19T02:08:06.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://shiming.best/categories/Spring/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/categories/Spring/SpringBoot/"/>
-    
-    
-    <category term="Spring" scheme="https://shiming.best/tags/Spring/"/>
-    
-    <category term="开发" scheme="https://shiming.best/tags/%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot基础</title>
-    <link href="https://shiming.best/blog/a8fdf5f8/"/>
-    <id>https://shiming.best/blog/a8fdf5f8/</id>
-    <published>2020-08-18T10:43:07.000Z</published>
-    <updated>2020-08-18T10:43:07.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="Spring" scheme="https://shiming.best/categories/Spring/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/categories/Spring/SpringBoot/"/>
-    
-    
-    <category term="Spring" scheme="https://shiming.best/tags/Spring/"/>
-    
-    <category term="SpringBoot" scheme="https://shiming.best/tags/SpringBoot/"/>
     
   </entry>
   
