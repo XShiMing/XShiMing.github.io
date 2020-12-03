@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-11-30T16:00:00.000Z</updated>
+  <updated>2020-12-03T06:41:55.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>中介者模式</title>
+    <link href="https://shiming.best/blog/d036071c/"/>
+    <id>https://shiming.best/blog/d036071c/</id>
+    <published>2020-12-03T06:41:55.000Z</published>
+    <updated>2020-12-03T06:41:55.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式·" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%C2%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>单例模式</title>
@@ -36,7 +63,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -63,7 +90,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -90,7 +117,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -117,7 +144,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -144,7 +171,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="创造型模式" scheme="https://shiming.best/categories/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创造型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E9%80%A0%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -171,7 +198,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -198,34 +225,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>桥接模式</title>
-    <link href="https://shiming.best/blog/563268dc/"/>
-    <id>https://shiming.best/blog/563268dc/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -252,7 +252,34 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>桥接模式</title>
+    <link href="https://shiming.best/blog/563268dc/"/>
+    <id>https://shiming.best/blog/563268dc/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-11-30T16:00:00.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -279,7 +306,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -306,7 +333,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -333,7 +360,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -360,7 +387,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -387,7 +414,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -414,7 +441,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -441,7 +468,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -520,31 +547,6 @@
     
     
     <category term="工具" scheme="https://shiming.best/tags/%E5%B7%A5%E5%85%B7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx配置SSL</title>
-    <link href="https://shiming.best/blog/1d917cf3/"/>
-    <id>https://shiming.best/blog/1d917cf3/</id>
-    <published>2020-11-14T01:15:03.000Z</published>
-    <updated>2020-11-14T01:15:03.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
-    <category term="nginx" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/nginx/"/>
-    
     
   </entry>
   
