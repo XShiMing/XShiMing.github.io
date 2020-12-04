@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-12-03T06:41:55.000Z</updated>
+  <updated>2020-12-04T01:48:38.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>备忘录模式</title>
+    <link href="https://shiming.best/blog/c3176455/"/>
+    <id>https://shiming.best/blog/c3176455/</id>
+    <published>2020-12-04T01:48:38.000Z</published>
+    <updated>2020-12-04T01:48:38.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>中介者模式</title>
@@ -522,31 +549,6 @@
     
     
     <category term="OSS" scheme="https://shiming.best/tags/OSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo+阿里云ECS服务器</title>
-    <link href="https://shiming.best/blog/e1316ade/"/>
-    <id>https://shiming.best/blog/e1316ade/</id>
-    <published>2020-11-14T16:00:00.000Z</published>
-    <updated>2020-11-14T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
-    
-    
-    <category term="工具" scheme="https://shiming.best/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
