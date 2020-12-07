@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: true,
   isToc: false,
-  postUpdate: '2020-12-07 22:51:40'
+  postUpdate: '2020-12-07 23:07:49'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -216,12 +216,13 @@ hexo-generator-search
 123456789SELECT  A.*,  B.cid,  B.scoreFROM  ( SELECT sid, cid, score FROM sc WHERE cid = &quot;01&quot; ) A  LEFT JOIN ( SELECT sid, cid, score FROM sc WHERE cid = &quot;02&quot; ) B ON A.sid = B.sidWHE ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/8f9f2030/" title="创建型模式">创建型模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
+创建型模式提供了创建对象的机制， 能够提升已有代码的灵活性和可复用性。
 
-工厂方法模式
-抽象工厂模式
-建造者模式
-原型模式
-单例模式
+工厂方法模式工厂方法模式是一种创建型设计模式，其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型。
+抽象工厂模式抽象工厂（AbstractFactory）模式是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。
+建造者模式建造者模式是一种创建型设计模式，使你能够分步骤创建复杂对象。该模式允许你使用相同的创建代码生成不同类型和形式的对象。
+原型模式原型模式是一种创建型设计模式，使你能够复制已有对象，而又无需使代码依赖它们所属的类。
+单例模式单例模式是一种创建型设计模式，让你能够保证一个类只有一个实例，并提供一个访问该实例的全局节点。
 
 参考
 
@@ -233,32 +234,26 @@ C语言中文网-设计模式
 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/620ff0b5/" title="结构型模式">结构型模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
+结构型模式介绍如何将对象和类组装成较大的结构， 并同时保持结构的灵活和高效。
 
-适配器模式
-桥接模式
-组合模式
-装饰模式
-外观模式
-享元模式
-代理模式
-
-参考
-
-免费在线学习设计模式
-C语言中文网-设计模式
+适配器模式适配器模式是一种结构型设计模式，它能使接口不兼容的对象能够相互合作。它结合了两个独立接口的功能。
+桥接模式桥接模式是一种结构型设计模式， 可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构， 从而能在开发时分别使用。
+组合模式组合模式是一种结构型设计模式，又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象，你可以使用它将对象组合成树状结构，并且能像使用独立对象一样使用它们。
+装饰模式装饰模式是一种结构型设计模式，允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。即在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）。
+外观模式外观模式是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。
+享元模式享元模式是一种结构型设计模式， 它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。
+代理模式代理模式是一种结 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e55dcfb0/" title="行为型模式">行为型模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
-设计模式-行为型模式
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e55dcfb0/" title="行为型模式">行为型模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-30T09:48:18.000Z" title="发表于 2020-08-30 17:48:18">2020-08-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+行为模式负责对象间的高效沟通和职责委派。
 
-
-参考
-
-免费在线学习设计模式
-C语言中文网-设计模式
-
-
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">简介
+责任链模式责任链模式是一种行为设计模式，允许你将请求沿着处理者链进行发送。收到请求后，每个处理者均可对请求进行处理，或将其传递给链上的下个处理者。
+命令模式命令模式是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。
+迭代器模式迭代器模式是一种行为设计模式， 让你能在不暴露集合底层表现形式（列表、栈和树等）的情况下遍历集合中所有的元素。
+中介者模式中介者模式是一种行为设计模式，能让你减少对象之间混乱无序的依赖关系。该模式会限制对象之间的直接交互，迫使它们通过一个中介者对象进行合作。
+备忘录模式备忘录模式是一种行为设计模式， 允许在不暴露对象实现细节的情况下保存和恢复对象之前的状态。
+观察者模式观察者模式是一种行为设计模式，允许你定义一种订阅机制，可在对象事件发生时通知多个“观察”该对象的其他对象。
+状态模式状态模式是一种行为设计模式，让你能在一个对象的内部状态变化时改变其行为， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">简介
 HTTP是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。请求和响应消息的头以ASCII码形式给出；而消息内容则具有一个类似MIME的格式。这个简单模型是早期Web成功的有功之臣，因为它使得开发和部署是那么的直截了当。
 
 HTTP（超文本传输协议）被用于在Web浏览器和网站服务器之间，以明文方式传递信息，不提供任何方式的数据加密，因此使用HTTP协议传输隐私信息（如：银行卡号、密码等支付信息）非常不安全。
