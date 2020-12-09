@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-12-07T01:39:27.000Z</updated>
+  <updated>2020-12-09T01:34:39.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模板方法模式</title>
+    <link href="https://shiming.best/blog/ecc6414b/"/>
+    <id>https://shiming.best/blog/ecc6414b/</id>
+    <published>2020-12-09T01:34:39.000Z</published>
+    <updated>2020-12-09T01:34:39.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>策略模式</title>
+    <link href="https://shiming.best/blog/72e3b671/"/>
+    <id>https://shiming.best/blog/72e3b671/</id>
+    <published>2020-12-08T02:06:43.000Z</published>
+    <updated>2020-12-08T02:06:43.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>状态模式</title>
@@ -125,9 +179,9 @@
   </entry>
   
   <entry>
-    <title>工厂方法模式</title>
-    <link href="https://shiming.best/blog/48598499/"/>
-    <id>https://shiming.best/blog/48598499/</id>
+    <title>原型模式</title>
+    <link href="https://shiming.best/blog/91ad9ce3/"/>
+    <id>https://shiming.best/blog/91ad9ce3/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
@@ -152,9 +206,9 @@
   </entry>
   
   <entry>
-    <title>原型模式</title>
-    <link href="https://shiming.best/blog/91ad9ce3/"/>
-    <id>https://shiming.best/blog/91ad9ce3/</id>
+    <title>工厂方法模式</title>
+    <link href="https://shiming.best/blog/48598499/"/>
+    <id>https://shiming.best/blog/48598499/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
@@ -449,33 +503,6 @@
   </entry>
   
   <entry>
-    <title>责任链模式</title>
-    <link href="https://shiming.best/blog/6208627e/"/>
-    <id>https://shiming.best/blog/6208627e/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="行为型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>观察者模式</title>
     <link href="https://shiming.best/blog/9a246216/"/>
     <id>https://shiming.best/blog/9a246216/</id>
@@ -503,9 +530,9 @@
   </entry>
   
   <entry>
-    <title>迭代器模式</title>
-    <link href="https://shiming.best/blog/9055d217/"/>
-    <id>https://shiming.best/blog/9055d217/</id>
+    <title>责任链模式</title>
+    <link href="https://shiming.best/blog/6208627e/"/>
+    <id>https://shiming.best/blog/6208627e/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
@@ -526,29 +553,6 @@
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>URI和URL的区别</title>
-    <link href="https://shiming.best/blog/ba45b1bd/"/>
-    <id>https://shiming.best/blog/ba45b1bd/</id>
-    <published>2020-11-20T05:43:00.000Z</published>
-    <updated>2020-11-20T05:43:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
-    
     
   </entry>
   
