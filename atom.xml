@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>访问型模式</title>
+    <title>访问者模式</title>
     <link href="https://shiming.best/blog/acf4a1ca/"/>
     <id>https://shiming.best/blog/acf4a1ca/</id>
     <published>2020-12-10T02:19:09.000Z</published>
@@ -183,7 +183,7 @@
     <link href="https://shiming.best/blog/f1601c3e/"/>
     <id>https://shiming.best/blog/f1601c3e/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
+    <updated>2020-12-14T08:25:19.000Z</updated>
     
     
       
@@ -210,7 +210,7 @@
     <link href="https://shiming.best/blog/91ad9ce3/"/>
     <id>https://shiming.best/blog/91ad9ce3/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
+    <updated>2020-12-14T08:26:00.000Z</updated>
     
     
       
@@ -237,34 +237,7 @@
     <link href="https://shiming.best/blog/48598499/"/>
     <id>https://shiming.best/blog/48598499/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="创建型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>建造者模式</title>
-    <link href="https://shiming.best/blog/fe816c3c/"/>
-    <id>https://shiming.best/blog/fe816c3c/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
+    <updated>2020-12-14T08:25:37.000Z</updated>
     
     
       
@@ -291,7 +264,34 @@
     <link href="https://shiming.best/blog/9b7d6e62/"/>
     <id>https://shiming.best/blog/9b7d6e62/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
+    <updated>2020-12-14T08:25:29.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="创建型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>生成器模式</title>
+    <link href="https://shiming.best/blog/fe816c3c/"/>
+    <id>https://shiming.best/blog/fe816c3c/</id>
+    <published>2020-11-30T16:00:00.000Z</published>
+    <updated>2020-12-14T08:25:46.000Z</updated>
     
     
       
