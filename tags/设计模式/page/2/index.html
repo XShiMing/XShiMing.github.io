@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: true,
   isToc: false,
-  postUpdate: '2020-12-14 20:08:06'
+  postUpdate: '2020-12-15 20:20:06'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -204,8 +204,9 @@ if (asideStatus !== undefined) {
 
 适配器模式适配器模式是一种结构型设计模式，它能使接口不兼容的对象能够相互合作。它结合了两个独立接口的功能。
 这种模式涉及到一个单一的类，该类负责加入独立的或不兼容的接口功能。
-适配器模式问题例如你开发了一个程序，能从不同来源获取xml格式信息。在开发过程中，你决定整合一个第三方分析库，但是第三方分析库只兼容json格式。你可以修改程序库来支持json，但是这需要修改很多代码，甚至你无法修改程序库。
-适配器模式解决方案你创建一个适配器。这是一个特殊的对象，能够转换对象接口，使其能与其他对象进行交互。
+适配器模式问题例如你开发了一个程序，能从不同来源获取xml格式信息。在开发过程中，你决定整合一个第三方分析库，但是第三方分析库只兼容json格式。也许你可以修改第三方库来支持json，但是这需要修改很多代码，甚至你可能无法修改第三方库。
+该如何导出数据呢？
+适配器模式解决方案适配器是一个特殊的对象，能够转换对象接口，使其能与其他对象进行交互。
 适配器模式通过封装对象将复杂的转换过程隐藏于幕后。被封装的对象甚至察觉不到适配器的存在。
 适配器不仅可以转换不同格式的数据，其还有助于采用不同接口的对象之间的合作。它的运作方式如下：
 
@@ -214,7 +215,7 @@ if (asideStatus !== undefined) {
 适配器方法被调用后将以另一个对象兼容的格式和顺序将请求传递给该对象。
 
 有时候你还可以写一个双向适配器来实现双向转换调用
-例：出国旅行时，不同国家的电源插头和插座标准不同。同时 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+例：出国旅行时，不同国家的电源插头和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 命令模式命令模式是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。
