@@ -179,11 +179,11 @@
   </entry>
   
   <entry>
-    <title>原型模式</title>
-    <link href="https://shiming.best/blog/91ad9ce3/"/>
-    <id>https://shiming.best/blog/91ad9ce3/</id>
+    <title>单例模式</title>
+    <link href="https://shiming.best/blog/f1601c3e/"/>
+    <id>https://shiming.best/blog/f1601c3e/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:26:00.000Z</updated>
+    <updated>2020-12-14T08:25:19.000Z</updated>
     
     
       
@@ -206,11 +206,11 @@
   </entry>
   
   <entry>
-    <title>单例模式</title>
-    <link href="https://shiming.best/blog/f1601c3e/"/>
-    <id>https://shiming.best/blog/f1601c3e/</id>
+    <title>原型模式</title>
+    <link href="https://shiming.best/blog/91ad9ce3/"/>
+    <id>https://shiming.best/blog/91ad9ce3/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:25:19.000Z</updated>
+    <updated>2020-12-14T08:26:00.000Z</updated>
     
     
       
@@ -341,9 +341,9 @@
   </entry>
   
   <entry>
-    <title>代理模式</title>
-    <link href="https://shiming.best/blog/7b510e10/"/>
-    <id>https://shiming.best/blog/7b510e10/</id>
+    <title>外观模式</title>
+    <link href="https://shiming.best/blog/f7de8aa8/"/>
+    <id>https://shiming.best/blog/f7de8aa8/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
@@ -368,9 +368,9 @@
   </entry>
   
   <entry>
-    <title>外观模式</title>
-    <link href="https://shiming.best/blog/f7de8aa8/"/>
-    <id>https://shiming.best/blog/f7de8aa8/</id>
+    <title>代理模式</title>
+    <link href="https://shiming.best/blog/7b510e10/"/>
+    <id>https://shiming.best/blog/7b510e10/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
