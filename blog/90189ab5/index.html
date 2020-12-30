@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Java CAS和ABA问题 | 失铭的学习笔记</title><meta name="keywords" content="并发编程"><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="本文转自Java CAS 和 ABA 问题  Java CAS和ABA问题  独占锁：是一种悲观锁，synchronized 就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：每次不加锁，假设没有冲突去完成某项操作，如果因为冲突失败就重试，直到成功为止。   CAS 操作乐观锁用到的机制就是 CAS，Compare and Swap。 CAS 有 3 个操作数，内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java CAS和ABA问题">
+<meta property="og:url" content="https://shiming.best/blog/90189ab5/index.html">
+<meta property="og:site_name" content="失铭的学习笔记">
+<meta property="og:description" content="本文转自Java CAS 和 ABA 问题  Java CAS和ABA问题  独占锁：是一种悲观锁，synchronized 就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。 乐观锁：每次不加锁，假设没有冲突去完成某项操作，如果因为冲突失败就重试，直到成功为止。   CAS 操作乐观锁用到的机制就是 CAS，Compare and Swap。 CAS 有 3 个操作数，内">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.shiming.online/guidao/pic-88.jpg">
+<meta property="article:published_time" content="2020-12-30T06:09:45.000Z">
+<meta property="article:modified_time" content="2020-12-30T06:09:45.000Z">
+<meta property="article:author" content="失铭">
+<meta property="article:tag" content="并发编程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.shiming.online/guidao/pic-88.jpg"><link rel="shortcut icon" href="https://image.shiming.online/background/favicon.ico"><link rel="canonical" href="https://shiming.best/blog/90189ab5/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2020-12-30 14:09:45'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/gdt.css"><link rel="stylesheet" href="/css/foot.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1995009_krak2073t6f.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的学习笔记" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="no-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的学习笔记</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Java CAS和ABA问题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-30T06:09:45.000Z" title="发表于 2020-12-30 14:09:45">2020-12-30</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-30T06:09:45.000Z" title="更新于 2020-12-30 14:09:45">2020-12-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%9F%BA%E7%A1%80/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>本文转自<a target="_blank" rel="noopener" href="https://www.cnblogs.com/549294286/p/3766717.html">Java CAS 和 ABA 问题</a></p>
+</blockquote>
+<h2 id="Java-CAS和ABA问题"><a href="#Java-CAS和ABA问题" class="headerlink" title="Java CAS和ABA问题"></a>Java CAS和ABA问题</h2><blockquote>
+<ul>
+<li>独占锁：是一种悲观锁，synchronized 就是一种独占锁，会导致其它所有需要锁的线程挂起，等待持有锁的线程释放锁。</li>
+<li>乐观锁：每次不加锁，假设没有冲突去完成某项操作，如果因为冲突失败就重试，直到成功为止。</li>
+</ul>
+</blockquote>
+<h3 id="CAS-操作"><a href="#CAS-操作" class="headerlink" title="CAS 操作"></a>CAS 操作</h3><p>乐观锁用到的机制就是 CAS，Compare and Swap。</p>
+<p>CAS 有 3 个操作数，内存值 V，旧的预期值 A，要修改的新值 B。当且仅当预期值 A 和内存值 V 相同时，将内存值 V 修改为 B，否则什么都不做。</p>
+<h4 id="非阻塞算法-（nonblocking-algorithms）"><a href="#非阻塞算法-（nonblocking-algorithms）" class="headerlink" title="非阻塞算法 （nonblocking algorithms）"></a>非阻塞算法 （nonblocking algorithms）</h4><blockquote>
+<p>一个线程的失败或者挂起不应该影响其他线程的失败或挂起的算法。</p>
+</blockquote>
+<p>现代的 CPU 提供了特殊的指令，可以自动更新共享数据，而且能够检测到其他线程的干扰，而 compareAndSet() 就用这些代替了锁定。</p>
+<h4 id="AtomicInteger-示例"><a href="#AtomicInteger-示例" class="headerlink" title="AtomicInteger 示例"></a>AtomicInteger 示例</h4><p>拿 AtomicInteger 来研究在没有锁的情况下是如何做到数据正确性的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> value;</span><br></pre></td></tr></table></figure>
+
+<p>在没有锁的机制下需要借助 volatile 原语，保证线程间的数据是可见的（共享的）。</p>
+<p>这样才获取变量的值的时候才能直接读取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后来看看 ++i 是怎么做到的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (;;) &#123;</span><br><span class="line">        <span class="keyword">int</span> current = get();</span><br><span class="line">        <span class="keyword">int</span> next = current + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (compareAndSet(current, next))</span><br><span class="line">            <span class="keyword">return</span> next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这里采用了 CAS 操作，每次从内存中读取数据然后将此数据和 + 1 后的结果进行 CAS 操作，如果成功就返回结果，否则重试直到成功为止。</p>
+<p>而 compareAndSet 利用 JNI 来完成 CPU 指令的操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">compareAndSet</span><span class="params">(<span class="keyword">int</span> expect, <span class="keyword">int</span> update)</span> </span>&#123;   </span><br><span class="line">    <span class="keyword">return</span> unsafe.compareAndSwapInt(<span class="keyword">this</span>, valueOffset, expect, update);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>整体的过程就是这样子的，利用 CPU 的 CAS 指令，同时借助 JNI 来完成 Java 的非阻塞算法。其它原子操作都是利用类似的特性完成的。</p>
+<p>而整个 J.U.C 都是建立在 CAS 之上的，因此对于 synchronized 阻塞算法，J.U.C 在性能上有了很大的提升。参考资料的文章中介绍了如果利用 CAS 构建非阻塞计数器、队列等数据结构。</p>
+<h3 id="ABA-问题"><a href="#ABA-问题" class="headerlink" title="ABA 问题"></a>ABA 问题</h3><p>CAS 看起来很爽，但是会导致 “ABA 问题”。</p>
+<p>CAS 算法实现一个重要前提是需要取出内存中某时刻的数据，而在下一时刻比较并替换，那么在这个时间差内类会忽略数据的变化。</p>
+<p>比如说一个线程 one 从内存位置 V 中取出 A，这时候另一个线程 two 也从内存中取出 A，并且 two 进行了一些操作变成了 B，然后 two 又将 V 位置的数据变成 A，这时候线程 one 进行 CAS 操作发现内存中仍然是 A，然后 one 操作成功。<br>尽管线程 one 的 CAS 操作成功，但是不代表这个过程就是没有问题的。如果链表的头在变化了两次后恢复了原值，但是不代表链表就没有变化。因此前面提到的原子操作 <code>AtomicStampedReference/AtomicMarkableReference</code> 就很有用了。这允许一对变化的元素进行原子操作。</p>
+<p>在运用 CAS 做 Lock-Free 操作中有一个经典的 ABA 问题：</p>
+<p>线程 1 准备用 CAS 将变量的值由 A 替换为 B，在此之前，线程 2 将变量的值由 A 替换为 C，又由 C 替换为 A，然后线程 1 执行 CAS 时发现变量的值仍然为 A，所以 CAS 成功。但实际上这时的现场已经和最初不同了，尽管 CAS 成功，但可能存在潜藏的问题，例如下面的例子：<br><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2020-12-30/20201230142455.png!img" alt="20201230142455"><br>现有一个用单向链表实现的堆栈，栈顶为 A，这时线程 T1 已经知道 A.next 为 B，然后希望用 CAS 将栈顶替换为 B：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head.compareAndSet(A,B);</span><br></pre></td></tr></table></figure>
+
+<p>在 T1 执行上面这条指令之前，线程 T2 介入，将 A、B 出栈，再 pushD、C、A，此时堆栈结构如下图，而对象 B 此时处于游离状态：<br><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2020-12-30/20201230142512.png!img" alt="20201230142512"><br>此时轮到线程 T1 执行 CAS 操作，检测发现栈顶仍为 A，所以 CAS 成功，栈顶变为 B，但实际上 B.next 为 null，所以此时的情况变为：<br><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2020-12-30/20201230142545.png!img" alt="20201230142545"><br>其中堆栈中只有 B 一个元素，C 和 D 组成的链表不再存在于堆栈中，平白无故就把 C、D 丢掉了。</p>
+<p>以上就是由于 ABA 问题带来的隐患，各种乐观锁的实现中通常都会用版本戳 version 来对记录或对象标记，避免并发操作带来的问题，在 Java 中，AtomicStampedReference<E> 也实现了这个作用，它通过包装 [E,Integer] 的元组来对对象标记版本戳 stamp，从而避免 ABA 问题，例如下面的代码分别用 AtomicInteger 和 AtomicStampedReference 来对初始值为 100 的原子整型变量进行更新，AtomicInteger 会成功执行 CAS 操作，而加上版本戳的 AtomicStampedReference 对于 ABA 问题会执行 CAS 失败：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> concur.lock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicInteger;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.atomic.AtomicStampedReference;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ABA</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicInteger atomicInt = <span class="keyword">new</span> AtomicInteger(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> AtomicStampedReference&lt;Integer&gt; atomicStampedRef = </span><br><span class="line">            <span class="keyword">new</span> AtomicStampedReference&lt;Integer&gt;(<span class="number">100</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        Thread intT1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                atomicInt.compareAndSet(<span class="number">100</span>, <span class="number">101</span>);</span><br><span class="line">                atomicInt.compareAndSet(<span class="number">101</span>, <span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        Thread intT2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">boolean</span> c3 = atomicInt.compareAndSet(<span class="number">100</span>, <span class="number">101</span>);</span><br><span class="line">                System.out.println(c3);        <span class="comment">//true</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        intT1.start();</span><br><span class="line">        intT2.start();</span><br><span class="line">        intT1.join();</span><br><span class="line">        intT2.join();</span><br><span class="line">        </span><br><span class="line">        Thread refT1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                atomicStampedRef.compareAndSet(<span class="number">100</span>, <span class="number">101</span>, </span><br><span class="line">                        atomicStampedRef.getStamp(), atomicStampedRef.getStamp()+<span class="number">1</span>);</span><br><span class="line">                atomicStampedRef.compareAndSet(<span class="number">101</span>, <span class="number">100</span>, </span><br><span class="line">                        atomicStampedRef.getStamp(), atomicStampedRef.getStamp()+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        Thread refT2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                <span class="keyword">int</span> stamp = atomicStampedRef.getStamp();</span><br><span class="line">                System.out.println(<span class="string">&quot;before sleep : stamp = &quot;</span> + stamp);    <span class="comment">// stamp = 0</span></span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    TimeUnit.SECONDS.sleep(<span class="number">2</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(<span class="string">&quot;after sleep : stamp = &quot;</span> + atomicStampedRef.getStamp());<span class="comment">//stamp = 2</span></span><br><span class="line">                <span class="keyword">boolean</span> c3 = atomicStampedRef.compareAndSet(<span class="number">100</span>, <span class="number">101</span>, stamp, stamp+<span class="number">1</span>);</span><br><span class="line">                System.out.println(c3);        <span class="comment">//false</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        refT1.start();</span><br><span class="line">        refT2.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Reference：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.ibm.com/developerworks/cn/java/j-jtp04186/">非阻塞算法简介</a><br><a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-jtp11234/">流行的原子</a><br><a target="_blank" rel="noopener" href="http://www.blogjava.net/xylz/archive/2010/07/04/325206.html">深入浅出 Java Concurrency (5): 原子操作 part 4</a><br><a target="_blank" rel="noopener" href="http://blog.hesey.net/2011/09/resolve-aba-by-atomicstampedreference.html">用 AtomicStampedReference 解决 ABA 问题</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/90189ab5/">https://shiming.best/blog/90189ab5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的学习笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">并发编程</a></div><div class="post_share"><div class="social-share" data-image="https://image.shiming.online/guidao/pic-88.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/blog/f9bc2b72/"><img class="next-cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">多级缓存和一致性协议</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/f9bc2b72/" title="多级缓存和一致性协议"><img class="cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-29</div><div class="title">多级缓存和一致性协议</div></div></a></div><div><a href="/blog/24227/" title="多线程"><img class="cover" data-lazy-src="https://xqm-oss.oss-cn-beijing.aliyuncs.com/blog/20200809235523.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-28</div><div class="title">多线程</div></div></a></div><div><a href="/blog/895e9db/" title="线程同步"><img class="cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-18</div><div class="title">线程同步</div></div></a></div><div><a href="/blog/de7c53fe/" title="线程池"><img class="cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-28</div><div class="title">线程池</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description">El Psy Congroo</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">91</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">46</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">30</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XShiMing"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎阅读我的笔记。笔记中可能存在遗漏或简单的错误，请见谅。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-CAS%E5%92%8CABA%E9%97%AE%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">Java CAS和ABA问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CAS-%E6%93%8D%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">CAS 操作</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E9%98%BB%E5%A1%9E%E7%AE%97%E6%B3%95-%EF%BC%88nonblocking-algorithms%EF%BC%89"><span class="toc-number">1.1.1.</span> <span class="toc-text">非阻塞算法 （nonblocking algorithms）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AtomicInteger-%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">AtomicInteger 示例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ABA-%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">ABA 问题</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/90189ab5/" title="Java CAS和ABA问题">Java CAS和ABA问题</a><time datetime="2020-12-30T06:09:45.000Z" title="发表于 2020-12-30 14:09:45">2020-12-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/f9bc2b72/" title="多级缓存和一致性协议">多级缓存和一致性协议</a><time datetime="2020-12-29T03:31:36.000Z" title="发表于 2020-12-29 11:31:36">2020-12-29</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/de7c53fe/" title="线程池">线程池</a><time datetime="2020-12-28T07:04:27.000Z" title="发表于 2020-12-28 15:04:27">2020-12-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/5a768a1b/" title="Java中类加载顺序">Java中类加载顺序</a><time datetime="2020-12-18T02:20:59.000Z" title="发表于 2020-12-18 10:20:59">2020-12-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/acf4a1ca/" title="访问者模式">访问者模式</a><time datetime="2020-12-10T02:19:09.000Z" title="发表于 2020-12-10 10:19:09">2020-12-10</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>渝ICP备2020010262号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js', () => {
+      pangu.spacingElementById('content-inner')
+    })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguFn)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '8AI4XAeM1WByt61C1hTs3U7f-MdYXbMMI',
+      appKey: 'TxTEH6NbG1UeKnrlAFuRIcDH',
+      placeholder: '给我的文章加点评论吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div></body></html>

@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2020-12-18T02:20:59.000Z</updated>
+  <updated>2020-12-30T06:09:45.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,89 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java CAS和ABA问题</title>
+    <link href="https://shiming.best/blog/90189ab5/"/>
+    <id>https://shiming.best/blog/90189ab5/</id>
+    <published>2020-12-30T06:09:45.000Z</published>
+    <updated>2020-12-30T06:09:45.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java基础" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="并发编程" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="并发编程" scheme="https://shiming.best/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>多级缓存和一致性协议</title>
+    <link href="https://shiming.best/blog/f9bc2b72/"/>
+    <id>https://shiming.best/blog/f9bc2b72/</id>
+    <published>2020-12-29T03:31:36.000Z</published>
+    <updated>2020-12-29T03:31:36.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java基础" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="并发编程" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="并发编程" scheme="https://shiming.best/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程池</title>
+    <link href="https://shiming.best/blog/de7c53fe/"/>
+    <id>https://shiming.best/blog/de7c53fe/</id>
+    <published>2020-12-28T07:04:27.000Z</published>
+    <updated>2020-12-28T07:04:27.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java基础" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="并发编程" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="Java" scheme="https://shiming.best/tags/Java/"/>
+    
+    <category term="并发编程" scheme="https://shiming.best/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>Java中类加载顺序</title>
@@ -231,11 +314,11 @@
   </entry>
   
   <entry>
-    <title>原型模式</title>
-    <link href="https://shiming.best/blog/91ad9ce3/"/>
-    <id>https://shiming.best/blog/91ad9ce3/</id>
+    <title>工厂方法模式</title>
+    <link href="https://shiming.best/blog/48598499/"/>
+    <id>https://shiming.best/blog/48598499/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:26:00.000Z</updated>
+    <updated>2020-12-14T08:25:37.000Z</updated>
     
     
       
@@ -258,11 +341,11 @@
   </entry>
   
   <entry>
-    <title>工厂方法模式</title>
-    <link href="https://shiming.best/blog/48598499/"/>
-    <id>https://shiming.best/blog/48598499/</id>
+    <title>原型模式</title>
+    <link href="https://shiming.best/blog/91ad9ce3/"/>
+    <id>https://shiming.best/blog/91ad9ce3/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:25:37.000Z</updated>
+    <updated>2020-12-14T08:26:00.000Z</updated>
     
     
       
@@ -339,90 +422,9 @@
   </entry>
   
   <entry>
-    <title>享元模式</title>
-    <link href="https://shiming.best/blog/e19da94a/"/>
-    <id>https://shiming.best/blog/e19da94a/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>代理模式</title>
     <link href="https://shiming.best/blog/7b510e10/"/>
     <id>https://shiming.best/blog/7b510e10/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>外观模式</title>
-    <link href="https://shiming.best/blog/f7de8aa8/"/>
-    <id>https://shiming.best/blog/f7de8aa8/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>桥接模式</title>
-    <link href="https://shiming.best/blog/563268dc/"/>
-    <id>https://shiming.best/blog/563268dc/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
