@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-01-23 21:56:50'
+  postUpdate: '2021-01-23 22:26:52'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -181,7 +181,7 @@ Hutool
 设计模式
 MarkDown语法总结
 Linux安装JDK+Tomca ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/3687a9cf/" title="Nacos + Spring Cloud Gateway">Nacos + Spring Cloud Gateway</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-01-23T13:04:10.000Z" title="发表于 2021-01-23 21:04:10">2021-01-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/">应用服务</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/Spring-Cloud/">Spring Cloud</a></span></div><div class="content">
-Nacos: 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。–&gt;NacosSpring Cloud Gateway: 该项目提供了一个用于在Spring WebFlux之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/度量和弹性–&gt;Srping Cloud Gateway
+Nacos: 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。–&gt;NacosSpring Cloud Gateway: 该项目提供了一个用于在Spring WebFlux之上构建API网关的库。Spring Cloud Gateway旨在提供一种简单而有效的方法来路由到API，并为它们提供跨领域的关注，例如：安全性，监视/度量和弹性–&gt;Srping Cloud Gateway其次，这一片文章不讲理论，只讲实战。
 
 NacosNacos配置见–&gt;Nacos-server，可以参考阿里官方文档–&gt;Nacos手册。这里我在本地使用单机模式启动并连接本地数据库。
 在nacos中，与gateway相关的文件有三个：
@@ -190,8 +190,7 @@ Application-dev.properties
 Gateway-dev.properties
 gateway-router
 
-第一个文件是所有服务通用的配置，例如：redis,knife4j等等可以通用的配置。第二个文件作为有Gateway特有的配置文件，例如：端口号，数据库地址等等。第三个文件是Gateway路由文件，通过这个文件可以实现动态路由的功能。
-前两个文件的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/9f7c395d/" title="Nacos-sever">Nacos-sever</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-01-10T08:27:11.000Z" title="发表于 2021-01-10 16:27:11">2021-01-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/">应用服务</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/Spring-Cloud/">Spring Cloud</a></span></div><div class="content">Nacos-sever
+第一个文件是所有服务通用的配置，例如：redis,knife4j等等可以通用的配置。第二个文件作为有Gateway特有的配置文件，例如：端口号，数据库地址等等。第三个文件是Gateway路由文件，通过这个文件可 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/9f7c395d/" title="Nacos-sever">Nacos-sever</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-01-10T08:27:11.000Z" title="发表于 2021-01-10 16:27:11">2021-01-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/">应用服务</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/Spring-Cloud/">Spring Cloud</a></span></div><div class="content">Nacos-sever
 Nacos官网介绍中说明：Nacos: 一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。 Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
 
 我所在的公司所用的也是nacos，我的毕业设计我也准备使用nacos来作为注册中心。今天便研究了一下Nacos-server，总结了一下Nacos-server如何启动和部署。
