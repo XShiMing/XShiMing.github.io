@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2021-01-10T08:27:11.000Z</updated>
+  <updated>2021-01-12T03:36:36.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mybatis返回对象</title>
+    <link href="https://shiming.best/blog/d04985b5/"/>
+    <id>https://shiming.best/blog/d04985b5/</id>
+    <published>2021-01-12T03:36:36.000Z</published>
+    <updated>2021-01-12T03:36:36.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="应用" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/"/>
+    
+    <category term="Mybatis" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8/Mybatis/"/>
+    
+    
+    <category term="Mybatis" scheme="https://shiming.best/tags/Mybatis/"/>
+    
+  </entry>
   
   <entry>
     <title>Nacos-sever</title>
@@ -341,33 +368,6 @@
   </entry>
   
   <entry>
-    <title>原型模式</title>
-    <link href="https://shiming.best/blog/91ad9ce3/"/>
-    <id>https://shiming.best/blog/91ad9ce3/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:26:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="创建型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
     <title>工厂方法模式</title>
     <link href="https://shiming.best/blog/48598499/"/>
     <id>https://shiming.best/blog/48598499/</id>
@@ -449,9 +449,9 @@
   </entry>
   
   <entry>
-    <title>享元模式</title>
-    <link href="https://shiming.best/blog/e19da94a/"/>
-    <id>https://shiming.best/blog/e19da94a/</id>
+    <title>代理模式</title>
+    <link href="https://shiming.best/blog/7b510e10/"/>
+    <id>https://shiming.best/blog/7b510e10/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
@@ -476,9 +476,9 @@
   </entry>
   
   <entry>
-    <title>代理模式</title>
-    <link href="https://shiming.best/blog/7b510e10/"/>
-    <id>https://shiming.best/blog/7b510e10/</id>
+    <title>享元模式</title>
+    <link href="https://shiming.best/blog/e19da94a/"/>
+    <id>https://shiming.best/blog/e19da94a/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
