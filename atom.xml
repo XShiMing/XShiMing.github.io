@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2021-01-24T04:07:08.032Z</updated>
+  <updated>2021-01-24T04:13:41.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="https://shiming.best/blog/0/"/>
-    <id>https://shiming.best/blog/0/</id>
-    <published>2021-01-24T04:07:08.032Z</published>
-    <updated>2021-01-24T04:07:08.032Z</updated>
+    <title>Nacos + Gateway + OAuth2</title>
+    <link href="https://shiming.best/blog/fc97a532/"/>
+    <id>https://shiming.best/blog/fc97a532/</id>
+    <published>2021-01-24T04:13:41.000Z</published>
+    <updated>2021-01-24T04:13:41.000Z</updated>
     
     
       
@@ -34,6 +34,12 @@
     
     
     
+    <category term="应用服务" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/"/>
+    
+    <category term="Spring Cloud" scheme="https://shiming.best/categories/%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1/Spring-Cloud/"/>
+    
+    
+    <category term="应用" scheme="https://shiming.best/tags/%E5%BA%94%E7%94%A8/"/>
     
   </entry>
   
@@ -443,11 +449,11 @@
   </entry>
   
   <entry>
-    <title>享元模式</title>
-    <link href="https://shiming.best/blog/e19da94a/"/>
-    <id>https://shiming.best/blog/e19da94a/</id>
+    <title>抽象工厂模式</title>
+    <link href="https://shiming.best/blog/9b7d6e62/"/>
+    <id>https://shiming.best/blog/9b7d6e62/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
+    <updated>2020-12-14T08:25:29.000Z</updated>
     
     
       
@@ -462,7 +468,7 @@
     
     <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    <category term="创建型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
     
     
     <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
@@ -470,11 +476,11 @@
   </entry>
   
   <entry>
-    <title>抽象工厂模式</title>
-    <link href="https://shiming.best/blog/9b7d6e62/"/>
-    <id>https://shiming.best/blog/9b7d6e62/</id>
+    <title>生成器模式</title>
+    <link href="https://shiming.best/blog/fe816c3c/"/>
+    <id>https://shiming.best/blog/fe816c3c/</id>
     <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:25:29.000Z</updated>
+    <updated>2020-12-14T08:25:46.000Z</updated>
     
     
       
