@@ -1,0 +1,279 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>为什么HashMap的hash值要右移16位? | 失铭的日记</title><meta name="keywords" content="HashMap"><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="前言  一时兴起，去看了看HashMap的源码，越过大段的注释后，第一个方法就给我难住了。为什么这么计算出的hash值可以更加分散呢？ 1234static final int hash(Object key) &amp;#123;    int h;    return (key &#x3D;&#x3D; null) ? 0 : (h &#x3D; key.hashCode()) ^ (h &gt;&gt;&gt; 16);&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么HashMap的hash值要右移16位?">
+<meta property="og:url" content="https://shiming.best/blog/a314776c/index.html">
+<meta property="og:site_name" content="失铭的日记">
+<meta property="og:description" content="前言  一时兴起，去看了看HashMap的源码，越过大段的注释后，第一个方法就给我难住了。为什么这么计算出的hash值可以更加分散呢？ 1234static final int hash(Object key) &amp;#123;    int h;    return (key &#x3D;&#x3D; null) ? 0 : (h &#x3D; key.hashCode()) ^ (h &gt;&gt;&gt; 16);&amp;#1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.shiming.online/guidao/pic-88.jpg">
+<meta property="article:published_time" content="2021-02-22T09:02:09.000Z">
+<meta property="article:modified_time" content="2021-02-22T09:02:09.000Z">
+<meta property="article:author" content="失铭">
+<meta property="article:tag" content="HashMap">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.shiming.online/guidao/pic-88.jpg"><link rel="shortcut icon" href="https://image.shiming.online/background/favicon.ico"><link rel="canonical" href="https://shiming.best/blog/a314776c/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-02-22 17:02:09'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/gdt.css"><link rel="stylesheet" href="/css/foot.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1995009_krak2073t6f.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的日记" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="no-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的日记</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">为什么HashMap的hash值要右移16位?</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-22T09:02:09.000Z" title="发表于 2021-02-22 17:02:09">2021-02-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-22T09:02:09.000Z" title="更新于 2021-02-22 17:02:09">2021-02-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div><article class="post-content" id="article-container"><blockquote>
+<p>前言</p>
+</blockquote>
+<p>一时兴起，去看了看HashMap的源码，越过大段的注释后，第一个方法就给我难住了。为什么这么计算出的hash值可以更加分散呢？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="keyword">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h2><ul>
+<li><p><code>&lt;&lt;</code>: 左移运算符，num &lt;&lt; 1,相当于num乘以2 低位补0<br>  举例：3 &lt;&lt; 2<br>  将数字3左移2位，将3转换为二进制数字:<code>0000 0000 0000 0000 0000 0000 0000 0011</code>，然后把该数字高位(左侧)的两个零移出，其他的数字都朝左平移2位，最后在低位(右侧)的两个空位补零。则得到的最终结果是<code>0000 0000 0000 0000 0000 0000 0000 1100</code>，则转换为十进制是12。</p>
+</li>
+<li><p><code>&gt;&gt;</code>: 右移运算符<br>  举例：11 &gt;&gt; 2<br>  则是将数字11右移2位，11 的二进制形式为:<code>0000 0000 0000 0000 0000 0000 0000 1011</code>，然后把低位的最后两个数字移出，因为该数字是正数，所以在高位补零。则得到的最终结果是<code>0000 0000 0000 0000 0000 0000 0000 0010</code>。转换为十进制是3。</p>
+</li>
+<li><p><code>&gt;&gt;&gt;</code>: 无符号右移，忽略符号位，空位都以0补齐<br>按二进制形式把所有的数字向右移动对应位数，低位移出(舍弃)，高位的空位补零。对于正数来说和带符号右移相同，对于负数来说不同。 其他结构和&gt;&gt;相似。</p>
+</li>
+<li><p><code>%</code> : 模运算 取余<br>简单的求余运算</p>
+</li>
+<li><p><code>^</code> : 位异或 第一个操作数的的第n位于第二个操作数的第n位相反，那么结果的第n为也为1，否则为0</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0^0&#x3D;0， 1^0&#x3D;1， 0^1&#x3D;1， 1^1&#x3D;0</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>&amp;</code> : 与运算 第一个操作数的的第n位于第二个操作数的第n位如果都是1，那么结果的第n为也为1，否则为0</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0&amp;0&#x3D;0， 0&amp;1&#x3D;0， 1&amp;0&#x3D;0， 1&amp;1&#x3D;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>|</code> : 或运算 第一个操作数的的第n位于第二个操作数的第n位 只要有一个是1，那么结果的第n为也为1，否则为0</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0|0&#x3D;0， 0|1&#x3D;1， 1|0&#x3D;1， 1|1&#x3D;1</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>~</code> : 非运算 操作数的第n位为1，那么结果的第n位为0，反之，也就是取反运算（一元操作符：只操作一个数）</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~1&#x3D;0， ~0&#x3D;1</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="HashMap中元素的位置"><a href="#HashMap中元素的位置" class="headerlink" title="HashMap中元素的位置"></a>HashMap中元素的位置</h2><p>HashMap中<code>put()</code>方法源码如下，可以看到是调用<code>putVal()</code>方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> putVal(hash(key), key, value, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在<code>putVal()</code>方法中，HashMap中定位到桶的位置是根据Key的hash值与数组的长度取模来计算的。即<code>i = (n - 1) &amp; hash</code>;</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">final</span> V <span class="title">putVal</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">boolean</span> onlyIfAbsent,<span class="keyword">boolean</span> evict)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; p; <span class="keyword">int</span> n, i;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">if</span> ((p = tab[i = (n - <span class="number">1</span>) &amp; hash]) == <span class="keyword">null</span>)</span><br><span class="line">        tab[i] = newNode(hash, key, value, <span class="keyword">null</span>);</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>在绝大多数情况下，<strong>length一般都小于2^16即小于65536</strong>。所以<code>i</code>始终是 <code>hash的低16位</code> 与<code>(length-1)</code>进行<code>&amp;</code>运算的结果。</p>
+<p>例：假设length为8。HashMap的默认初始容量为16</p>
+<p>length = 8;  （length-1） = 7；转换二进制为111；</p>
+<p>假设一个key的 hashCode = 78897121 转换二进制为：<code>100101100111101111111100001</code>，</p>
+<p><code>（length-1）&amp; 78897121</code>运算如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0000 0100 1011 0011 1101 1111 1110 0001 </span><br><span class="line">&amp;运算</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0111</span><br><span class="line">&#x3D;</span><br><span class="line">0000 0000 0000 0000 0000 0000 0000 0001 （就是十进制1，所以下标为1）</span><br></pre></td></tr></table></figure>
+
+<p>推导得出：</p>
+<ul>
+<li>当length=8时，下标运算结果取决于哈希值的低三位</li>
+<li>当length=16时，下标运算结果取决于哈希值的低四位</li>
+<li>当length=32时，下标运算结果取决于哈希值的低五位</li>
+<li>当length=2的N次方，下标运算结果取决于哈希值的低N位</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>综上所诉：在大部分情况下：因为<code>length &lt; 2^16</code>，所以只有hashCode的低十六位（或者更低）参与运算。</p>
+<p>假设有一种情况，对象 A 的 hashCode 为 <code>1000010001110001000001111000000</code>，对象 B 的 hashCode 为 <code>0111011100111000101000010100000</code>。</p>
+<p>如果数组长度是16，也就是 15 与运算 这两个数（前面说的hashCode &amp; （length - 1））， 你会发现结果都是0。这样的散列算法明显不能达到要求。</p>
+<p>所以在<code>hash(Object key)</code>方法中对key的hashCode进行扰动计算，防止不同hashCode的高位不同但低位相同导致的hash冲突。即将key的hashCode 与 所得hashCode的高十六位进行<code>^</code>运算，让hashCode高十六位也加入到了运算中，把高位的特征和低位的特征组合起来，降低哈希冲突的概率，也就是说，尽量做到任何一位的变化都能对最终得到的结果产生影响。</p>
+<blockquote>
+<p>为什么用<code>^</code>而不用<code>&amp;</code>和<code>|</code>:<br>因为<code>&amp;</code>和<code>|</code>都会使得结果偏向0或者1，并不是均匀的概念，所以用<code>^</code>。</p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wang-meng/p/9b6c35c4b2ef7e5b398db9211733292d.html">HashMap中的hash算法总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42034205/article/details/90384772">HashMap中hash(Object key)原理，为什么(hashcode ＞＞＞ 16)。</a></li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/a314776c/">https://shiming.best/blog/a314776c/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HashMap/">HashMap</a></div><div class="post_share"><div class="social-share" data-image="https://image.shiming.online/guidao/pic-88.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/blog/fc97a532/"><img class="next-cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Nacos + Gateway + OAuth2</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description">El Psy Congroo</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">95</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">48</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XShiMing"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎阅读我的笔记。笔记中可能存在遗漏或简单的错误，请见谅。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">概念介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap%E4%B8%AD%E5%85%83%E7%B4%A0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">2.</span> <span class="toc-text">HashMap中元素的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">参考</span></a></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/a314776c/" title="为什么HashMap的hash值要右移16位?">为什么HashMap的hash值要右移16位?</a><time datetime="2021-02-22T09:02:09.000Z" title="发表于 2021-02-22 17:02:09">2021-02-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/fc97a532/" title="Nacos + Gateway + OAuth2">Nacos + Gateway + OAuth2</a><time datetime="2021-01-24T04:13:41.000Z" title="发表于 2021-01-24 12:13:41">2021-01-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/3687a9cf/" title="Nacos + Spring Cloud Gateway">Nacos + Spring Cloud Gateway</a><time datetime="2021-01-23T13:04:10.000Z" title="发表于 2021-01-23 21:04:10">2021-01-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/9f7c395d/" title="Nacos-sever">Nacos-sever</a><time datetime="2021-01-10T08:27:11.000Z" title="发表于 2021-01-10 16:27:11">2021-01-10</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/90189ab5/" title="Java CAS和ABA问题">Java CAS和ABA问题</a><time datetime="2020-12-30T06:09:45.000Z" title="发表于 2020-12-30 14:09:45">2020-12-30</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>渝ICP备2020010262号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js', () => {
+      pangu.spacingElementById('content-inner')
+    })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguFn)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '8AI4XAeM1WByt61C1hTs3U7f-MdYXbMMI',
+      appKey: 'TxTEH6NbG1UeKnrlAFuRIcDH',
+      placeholder: '给我的文章加点评论吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div></body></html>

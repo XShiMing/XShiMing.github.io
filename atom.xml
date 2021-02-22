@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2021-01-24T04:13:41.000Z</updated>
+  <updated>2021-02-22T09:02:09.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么HashMap的hash值要右移16位?</title>
+    <link href="https://shiming.best/blog/a314776c/"/>
+    <id>https://shiming.best/blog/a314776c/</id>
+    <published>2021-02-22T09:02:09.000Z</published>
+    <updated>2021-02-22T09:02:09.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Java基础" scheme="https://shiming.best/categories/Java%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="HashMap" scheme="https://shiming.best/tags/HashMap/"/>
+    
+  </entry>
   
   <entry>
     <title>Nacos + Gateway + OAuth2</title>
@@ -506,33 +531,6 @@
     <title>享元模式</title>
     <link href="https://shiming.best/blog/e19da94a/"/>
     <id>https://shiming.best/blog/e19da94a/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-11-30T16:00:00.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="结构型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>代理模式</title>
-    <link href="https://shiming.best/blog/7b510e10/"/>
-    <id>https://shiming.best/blog/7b510e10/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-11-30T16:00:00.000Z</updated>
     
