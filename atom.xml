@@ -6,7 +6,7 @@
   <link href="https://shiming.best/atom.xml" rel="self"/>
   
   <link href="https://shiming.best/"/>
-  <updated>2021-02-25T05:43:24.000Z</updated>
+  <updated>2021-02-26T05:37:39.000Z</updated>
   <id>https://shiming.best/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java面试题</title>
+    <link href="https://shiming.best/blog/a7ef9c4d/"/>
+    <id>https://shiming.best/blog/a7ef9c4d/</id>
+    <published>2021-02-26T05:37:39.000Z</published>
+    <updated>2021-02-26T05:37:39.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+    <category term="面试" scheme="https://shiming.best/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>常量池</title>
@@ -510,33 +537,6 @@
     <id>https://shiming.best/blog/48598499/</id>
     <published>2020-11-30T16:00:00.000Z</published>
     <updated>2020-12-14T08:25:37.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;\assets\css\APlayer.min.css&quot;&gt;&lt;script src=&quot;\assets\js\APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    <category term="创建型模式" scheme="https://shiming.best/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-    <category term="设计模式" scheme="https://shiming.best/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>抽象工厂模式</title>
-    <link href="https://shiming.best/blog/9b7d6e62/"/>
-    <id>https://shiming.best/blog/9b7d6e62/</id>
-    <published>2020-11-30T16:00:00.000Z</published>
-    <updated>2020-12-14T08:25:29.000Z</updated>
     
     
       
