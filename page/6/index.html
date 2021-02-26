@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-02-26 17:36:59'
+  postUpdate: '2021-02-26 17:41:00'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -217,7 +217,18 @@ SpringBoot优缺点优点：
 starters自动依赖和版本控制
 大量的自动配置，简化开发，也可修改默认值
 无需配置xml，无代码生成
-准生 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/1491d7b8/" title="Java208道面试题">Java208道面试题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-18T08:44:51.000Z" title="发表于 2020-08-18 16:44:51">2020-08-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content"></div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/43a71ae4/" title="MySQL索引">MySQL索引</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-18T05:40:22.000Z" title="发表于 2020-08-18 13:40:22">2020-08-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MySQL/">MySQL</a></span></div><div class="content">概念索引是一种特殊的数据库结构，由数据表中的一列或多列组合而成，可以用来快速查询数据表中有某一特定值的记录。
+准生 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/1491d7b8/" title="Java208道面试题">Java208道面试题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-18T08:44:51.000Z" title="发表于 2020-08-18 16:44:51">2020-08-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">
+题目来自Java 面试收到offer必备 208 道面试题答案整合自原文和个人学习总结
+
+第一模块：Java基础Java基础
+JDK 和 JRE 有什么区别？
+JDK：Java Development Kit 的简称，java 开发工具包，提供了 java 的开发环境和运行环境。
+JRE：Java Runtime Environment 的简称，java 运行环境，为 java 的运行提供了所需环境。
+
+具体来说 JDK 其实包含了 JRE，同时还包含了编译 java 源码的编译器 javac，还包含了很多 java 程序调试和分析的工具。简单来说：如果你需要运行 java 程序，只需安装 JRE 就可以了，如果你需要编写 java 程序，需要安装 JDK。
+== 和 equals 的区别是什么?参考博客
+两个对象的 hashCode()相同，则 equals()也一定为 true，对吗？不对，两个对象的 hashCode()相同，equals()不一定 true。代码示例：
+12345678String str1 = &quot;通话&quot;;String str2 = &qu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/43a71ae4/" title="MySQL索引">MySQL索引</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-18T05:40:22.000Z" title="发表于 2020-08-18 13:40:22">2020-08-18</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MySQL/">MySQL</a></span></div><div class="content">概念索引是一种特殊的数据库结构，由数据表中的一列或多列组合而成，可以用来快速查询数据表中有某一特定值的记录。
 打个比方，如果合理的设计且使用索引的MySQL是一辆兰博基尼的话，那么没有设计和使用索引的MySQL就是一个人力三轮车。
 通过索引，查询数据时不用读完记录的所有信息，而只是查询索引列。否则，数据库系统将读取每条记录的所有信息进行匹配。拿汉语字典的目录页（索引）打比方，我们可以按拼音、笔画、偏旁部首等排序的目录（索引）快速查找到需要的字。
 因此，使用索引可以很大程度上提高数据库的查询速度，还有效的提高了数据库系统的性能。
