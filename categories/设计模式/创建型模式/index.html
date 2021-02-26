@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-02-26 17:41:00'
+  postUpdate: '2021-02-26 17:45:14'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -172,15 +172,7 @@ if (asideStatus !== undefined) {
 原型模式解决方案
 
 原型 （Prototype） 接口将对克隆方法进行声明。 在绝大多数情况下， 其中只会有一个名为 clone克隆的方法。
-具体原型 （Concrete Prototype） 类将实现克隆方法。 除了将原始对象的数据复制到克隆 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/9b7d6e62/" title="抽象工厂模式">抽象工厂模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-抽象工厂模式抽象工厂（AbstractFactory）模式是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。
-抽象工厂模式问题工厂方法模式考虑的是一类产品的生产，如畜牧场只养动物、电视机厂只生产电视机、计算机软件学院只培养计算机软件专业的学生等。
-但是在现实生活中许多工厂是综合型的工厂，能生产多等级（种类） 的产品，如农场里既养动物又种植物，电器厂既生产电视机又生产洗衣机或空调，大学既有软件专业又有生物专业等。
-而抽象工厂模式将考虑多等级产品的生产。将同一个具体工厂所生产的位于不同等级的一组产品称为一个产品族，
-抽象工厂模式解决方案首先，抽象工厂模式建议为系列中的每件产品明确声明接口。然后确保所有产品变体都继承这些接口，例如（所有品牌的电视机都继承电视机接口，所有品牌的空调都继承空调接口）
-然后声明抽象工厂–包含系列中所有产品构造方法的接口。例如：createWasher(创建洗衣机)，createTV(创建电视机)…这些方法必须返回抽象产品类型，即我们之前抽取的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48598499/" title="工厂方法模式">工厂方法模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+具体原型 （Concrete Prototype） 类将实现克隆方法。 除了将原始对象的数据复制到克隆 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48598499/" title="工厂方法模式">工厂方法模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 工厂方法模式工厂方法模式是一种创建型设计模式，其在父类中提供一个创建对象的方法，允许子类决定实例化对象的类型。
@@ -188,7 +180,15 @@ if (asideStatus !== undefined) {
 再举一个例子：
 如果你开发了一款物流管理应用。假设每一种运输方法类的构建都很复杂，需要编写大量代码。在初始版本只支持一种运输方案：卡车，于是你选择直接调用多个方法来创建卡车类。后来你需要增加另一个方式：轮船。代码部分该如何处理呢?继续直接创建一个轮船类吗。那么创建轮船类的大量代码将到处都是。更糟糕的是，如果你以后需要在程序中支持另外一种运输方式，很可能需要再次对这些代码进行大幅修改。
 最后，你将不得不编写繁复的代码，根据不同的运输对象类，在应用中进行不同的处理。
-工厂方法模式解决方案工厂方法模式建议使用特殊的工厂方法代替对于对象构造函数的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/fe816c3c/" title="生成器模式">生成器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+工厂方法模式解决方案工厂方法模式建议使用特殊的工厂方法代替对于对象构造函数的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/9b7d6e62/" title="抽象工厂模式">抽象工厂模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+抽象工厂模式抽象工厂（AbstractFactory）模式是一种为访问类提供一个创建一组相关或相互依赖对象的接口，且访问类无须指定所要产品的具体类就能得到同族的不同等级的产品的模式结构。
+抽象工厂模式问题工厂方法模式考虑的是一类产品的生产，如畜牧场只养动物、电视机厂只生产电视机、计算机软件学院只培养计算机软件专业的学生等。
+但是在现实生活中许多工厂是综合型的工厂，能生产多等级（种类） 的产品，如农场里既养动物又种植物，电器厂既生产电视机又生产洗衣机或空调，大学既有软件专业又有生物专业等。
+而抽象工厂模式将考虑多等级产品的生产。将同一个具体工厂所生产的位于不同等级的一组产品称为一个产品族，
+抽象工厂模式解决方案首先，抽象工厂模式建议为系列中的每件产品明确声明接口。然后确保所有产品变体都继承这些接口，例如（所有品牌的电视机都继承电视机接口，所有品牌的空调都继承空调接口）
+然后声明抽象工厂–包含系列中所有产品构造方法的接口。例如：createWasher(创建洗衣机)，createTV(创建电视机)…这些方法必须返回抽象产品类型，即我们之前抽取的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/fe816c3c/" title="生成器模式">生成器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">创建型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 生成器模式生成器模式是一种创建型设计模式，使你能够分步骤创建复杂对象。该模式允许你使用相同的创建代码生成不同类型和形式的对象。
