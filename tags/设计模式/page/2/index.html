@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-03-02 19:44:07'
+  postUpdate: '2021-03-02 22:31:16'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -147,7 +147,22 @@ if (asideStatus !== undefined) {
 享元模式问题在面向对象程序设计过程中，有时会面临要创建大量相同或相似对象实例的问题。创建那么多的对象将会耗费很多的系统资源，它是系统性能提高的一个瓶颈。例如，围棋和五子棋中的黑白棋子，图像中的坐标点或颜色，局域网中的路由器、交换机和集线器，教室里的桌子和凳子等。这些对象有很多相似的地方，如果能把它们相同的部分提取出来共享，则能节省大量的系统资源，这就是享元模式的产生背景。
 享元模式解决方案在黑白棋子，坐标点这些类中，你会发现一些成员变量储存的值是相同的，而每个粒子的另一些状态（坐标，颜色等）是不同的。
 对象的常量数据通常被称为内在状态（即不会随着环境的改变而改变的可共享部分）， 其位于对象中，其他对象只能读取但不能修改其数值。而对象的其他状态常常能被其他对象 “从外部” 改变，因此被称为外在状态（随环境改变而改变的不可以共享的部分）。
-享元模式建议不在对象中存储外在状态，而是将其传递给 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+享元模式建议不在对象中存储外在状态，而是将其传递给 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/7b510e10/" title="代理模式">代理模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+代理模式(Proxy)代理模式是一种结构型设计模式，让你能够提供对象的替代品或其占位符。代理控制着对于目标对象的访问，并允许在将请求提交给对象前后进行一些处理。
+代理模式问题为什么要控制对于某个对象的访问呢？举个例子：有这样一个消耗大量系统资源的巨型对象，你只是偶尔需要使用它，并非总是需要。
+
+或者给对象添加功能：在理想情况下，我们希望将代码直接放入对象的类中进行修改，但这并非总是能实现：比如类可能是第三方封闭库的一部分。所以我们也需要代理对象来添加功能
+代理模式解决方案代理模式建议新建一个与原目标对象接口相同的代理类，然后更新应用以将代理对象传递给所有原始对象客户端。代理类接收到客户端请求后会创建实际的目标对象，并将所有工作委派给它。
+
+这有什么好处呢？
+
+如果需要在类的主要业务逻辑前后执行一些工作，你无需修改类就能完成这项工作。
+由于代理实现的接口与原类相同，因此你可将其传递给任何一个使用实际服务对象的客户端。
+
+例：
+信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用卡操作银行帐 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 外观模式外观模式是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。
@@ -176,7 +191,15 @@ if (asideStatus !== undefined) {
 在这些类的基础上你需要开发一个订单系统。订单中可以包含无包装的简单产品，也可以包含装满产品的盒子……以及其他盒子。如何计算订单的总价呢？
 
 在现实生活中，可以直接拆开盒子，直接计算每个产品的价格。而在程序中，你必须知道所有产品和盒子的细节，知道盒子的嵌套层数以及其他详细信息，才能计算出总价。因此直接计算是不可行。
-在现实生活中，存在很多“部分-整体”的关系，例如，大学中的部门与学院、总公司中的部门与分公司、学习用品中的书与书包、生活用品中的衣服与衣柜以及厨房中的锅碗瓢盆等。在软件开发中也是这样，例如，文件系统中的文件与文件夹、窗体程序中的简单控件与容器控件等。对这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f5c535ea/" title="适配器模式">适配器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+在现实生活中，存在很多“部分-整体”的关系，例如，大学中的部门与学院、总公司中的部门与分公司、学习用品中的书与书包、生活用品中的衣服与衣柜以及厨房中的锅碗瓢盆等。在软件开发中也是这样，例如，文件系统中的文件与文件夹、窗体程序中的简单控件与容器控件等。对这 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e671036b/" title="装饰模式">装饰模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+装饰模式装饰模式是一种结构型设计模式，允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。即在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）。
+装饰模式问题假设你正在开发一个提供通知功能的库，其他程序可使用它向用户发送关于重要事件的通知。
+库的最初版本基于通知器(Notifier)类，其中只有很少的几个成员变量，一个构造函数和一个send发送方法。该方法可以接收来自客户端的消息参数，并将该消息发送给一系列的邮箱，邮箱列表则是通过构造函数传递给通知器的。作为客户端的第三方程序仅会创建和配置通知器对象一次，然后在有重要事件发生时对其进行调用。
+在不断发展后，有些用户希望使用微信通知，使用QQ通知，又或者使用短信通知。最简单的方法是： 扩展通知器类，然后在新的子类中加入额外的通知方法。现在客户端要对所需通知形式的对应类进行初始化，然后使用该类发送后续所有的通知消息。
+但如果用户希望组合不同的方式，如果创建特殊子类来整合的话，代码量会迅速膨胀。而且不仅是程序库，客户端也是如此。
+装饰模式解决方案使用扩展当 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f5c535ea/" title="适配器模式">适配器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 适配器模式适配器模式是一种结构型设计模式，它能使接口不兼容的对象能够相互合作。它结合了两个独立接口的功能。
@@ -192,30 +215,7 @@ if (asideStatus !== undefined) {
 适配器方法被调用后将以另一个对象兼容的格式和顺序将请求传递给该对象。
 
 有时候你还可以写一个双向适配器来实现双向转换调用
-例：出国旅行时，不同国家的电源插头和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e671036b/" title="装饰模式">装饰模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-装饰模式装饰模式是一种结构型设计模式，允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。即在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）。
-装饰模式问题假设你正在开发一个提供通知功能的库，其他程序可使用它向用户发送关于重要事件的通知。
-库的最初版本基于通知器(Notifier)类，其中只有很少的几个成员变量，一个构造函数和一个send发送方法。该方法可以接收来自客户端的消息参数，并将该消息发送给一系列的邮箱，邮箱列表则是通过构造函数传递给通知器的。作为客户端的第三方程序仅会创建和配置通知器对象一次，然后在有重要事件发生时对其进行调用。
-在不断发展后，有些用户希望使用微信通知，使用QQ通知，又或者使用短信通知。最简单的方法是： 扩展通知器类，然后在新的子类中加入额外的通知方法。现在客户端要对所需通知形式的对应类进行初始化，然后使用该类发送后续所有的通知消息。
-但如果用户希望组合不同的方式，如果创建特殊子类来整合的话，代码量会迅速膨胀。而且不仅是程序库，客户端也是如此。
-装饰模式解决方案使用扩展当 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/7b510e10/" title="代理模式">代理模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-代理模式(Proxy)代理模式是一种结构型设计模式，让你能够提供对象的替代品或其占位符。代理控制着对于目标对象的访问，并允许在将请求提交给对象前后进行一些处理。
-代理模式问题为什么要控制对于某个对象的访问呢？举个例子：有这样一个消耗大量系统资源的巨型对象，你只是偶尔需要使用它，并非总是需要。
-
-或者给对象添加功能：在理想情况下，我们希望将代码直接放入对象的类中进行修改，但这并非总是能实现：比如类可能是第三方封闭库的一部分。所以我们也需要代理对象来添加功能
-代理模式解决方案代理模式建议新建一个与原目标对象接口相同的代理类，然后更新应用以将代理对象传递给所有原始对象客户端。代理类接收到客户端请求后会创建实际的目标对象，并将所有工作委派给它。
-
-这有什么好处呢？
-
-如果需要在类的主要业务逻辑前后执行一些工作，你无需修改类就能完成这项工作。
-由于代理实现的接口与原类相同，因此你可将其传递给任何一个使用实际服务对象的客户端。
-
-例：
-信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用卡操作银行帐 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+例：出国旅行时，不同国家的电源插头和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 命令模式命令模式是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。
