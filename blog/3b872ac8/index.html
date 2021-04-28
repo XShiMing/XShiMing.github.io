@@ -1,0 +1,599 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>面试题-并发篇 | 失铭的日记</title><meta name="keywords" content="并发"><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="1-1:进程1-1-1：什么是进程进程是程序的一次执行过程，进程是程序运行和资源分配的基本单位。 1-1-2：进程的状态多进程和多线程都分为五个阶段  创建 就绪 运行 阻塞 死亡  1-1-2-1：进程的状态变迁 1-1-3：什么是 PCB存放进程的管理和控制信息的数据结构称为进程控制块。它是进程管理和控制的最重要的数据结构，每一个进程均有一个 PCB，在创建进程时，建立 PCB，伴随进程运行的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题-并发篇">
+<meta property="og:url" content="https://shiming.best/blog/3b872ac8/index.html">
+<meta property="og:site_name" content="失铭的日记">
+<meta property="og:description" content="1-1:进程1-1-1：什么是进程进程是程序的一次执行过程，进程是程序运行和资源分配的基本单位。 1-1-2：进程的状态多进程和多线程都分为五个阶段  创建 就绪 运行 阻塞 死亡  1-1-2-1：进程的状态变迁 1-1-3：什么是 PCB存放进程的管理和控制信息的数据结构称为进程控制块。它是进程管理和控制的最重要的数据结构，每一个进程均有一个 PCB，在创建进程时，建立 PCB，伴随进程运行的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.shiming.online/guidao/pic-88.jpg">
+<meta property="article:published_time" content="2021-04-28T08:56:36.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:56:36.000Z">
+<meta property="article:author" content="失铭">
+<meta property="article:tag" content="并发">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.shiming.online/guidao/pic-88.jpg"><link rel="shortcut icon" href="https://image.shiming.online/background/favicon.ico"><link rel="canonical" href="https://shiming.best/blog/3b872ac8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-04-28 16:56:36'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/gdt.css"><link rel="stylesheet" href="/css/foot.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1995009_krak2073t6f.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的日记" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">116</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">38</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="no-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的日记</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-lianjie"></i><span> 链接库</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/link/"><i class="fa-fw iconfont icon-shoucang"></i><span> 收藏</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-qita1"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw iconfont icon-GoogleMaterialicmusicnotepx"></i><span> 音乐</span></a></li><li><a class="site-page" href="/2020/about/"><i class="fa-fw fas fa-heart"></i><span> 关于我</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">面试题-并发篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-04-28T08:56:36.000Z" title="发表于 2021-04-28 16:56:36">2021-04-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-04-28T08:56:36.000Z" title="更新于 2021-04-28 16:56:36">2021-04-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">10.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>32分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="1-1-进程"><a href="#1-1-进程" class="headerlink" title="1-1:进程"></a>1-1:进程</h2><h3 id="1-1-1：什么是进程"><a href="#1-1-1：什么是进程" class="headerlink" title="1-1-1：什么是进程"></a>1-1-1：什么是进程</h3><p>进程是程序的一次执行过程，进程是程序运行和资源分配的基本单位。</p>
+<h3 id="1-1-2：进程的状态"><a href="#1-1-2：进程的状态" class="headerlink" title="1-1-2：进程的状态"></a>1-1-2：进程的状态</h3><p>多进程和多线程都分为五个阶段</p>
+<ol>
+<li>创建</li>
+<li>就绪</li>
+<li>运行</li>
+<li>阻塞</li>
+<li>死亡</li>
+</ol>
+<h4 id="1-1-2-1：进程的状态变迁"><a href="#1-1-2-1：进程的状态变迁" class="headerlink" title="1-1-2-1：进程的状态变迁"></a>1-1-2-1：进程的状态变迁</h4><p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-03-15/20210315170532.png!img" alt="20210315170532"></p>
+<h3 id="1-1-3：什么是-PCB"><a href="#1-1-3：什么是-PCB" class="headerlink" title="1-1-3：什么是 PCB"></a>1-1-3：什么是 PCB</h3><p>存放进程的管理和控制信息的数据结构称为进程控制块。它是进程管理和控制的最重要的数据结构，每一个进程均有一个 PCB，在创建进程时，建立 PCB，伴随进程运行的全过程，直到进程撤消而撤消。</p>
+<h4 id="1-1-3-1：PCB-具体包含什么信息呢？"><a href="#1-1-3-1：PCB-具体包含什么信息呢？" class="headerlink" title="1-1-3-1：PCB 具体包含什么信息呢？"></a>1-1-3-1：PCB 具体包含什么信息呢？</h4><ul>
+<li>进程标识符 name</li>
+<li>进程当前状态 status</li>
+<li>进程相应的程序和数据地址</li>
+<li>进程资源清单</li>
+<li>进程优先级 priority</li>
+<li>CPU 现场保护区 cpustatus</li>
+<li>进程同步与通信机制</li>
+<li>进程所在队列 PCB 的连接字</li>
+<li>与进程有关的其他信息</li>
+</ul>
+<h3 id="1-1-3-2：多个-PCB-是如何组织的呢？"><a href="#1-1-3-2：多个-PCB-是如何组织的呢？" class="headerlink" title="1-1-3-2：多个 PCB 是如何组织的呢？"></a>1-1-3-2：多个 PCB 是如何组织的呢？</h3><ol>
+<li>线性表方式<br>线性表方式将所有进程控制块的首地址连续存储在一整块内存空间中，操作系统每次查找目标进程时，只需要遍历这张表，就可以找到相应的进程控制块，进而控制目标进程。</li>
+<li>索引表方式<br>索引表方式可以看做是线性表方式的“改进版”，它根据当前各个进程不同的执行状态，分别建立就绪索引表、阻塞索引表等</li>
+<li>链接表方式<br>链接表方式会将处于相同执行状态的进程控制块通过指针串联成一个链表，从而分别组建成就绪链表、阻塞链表等</li>
+</ol>
+<h3 id="1-1-4：进程的控制"><a href="#1-1-4：进程的控制" class="headerlink" title="1-1-4：进程的控制"></a>1-1-4：进程的控制</h3><p>对进程在生命周期中各种状态之间的转换进行有效的控制，它具有创建新进程、撤销已有进程、实现进程状态转换等功能。在操作系统中，一般把进程控制用的程序段称为原语，原语的特点是执行期间不允许中断，它是一个不可分割的基本单位。</p>
+<ul>
+<li>创建原语：一个进程可以使用创建原语创建一个新的进程，前者称为父进程，后者称为子进程，子进程又可以创建新的子进程，构成新的子进程，构成新的父子关系。建立进程控制块 PCB：先申请一个空闲的 PCB 区域，将有关信息填入 PCB，置该进程为就绪状态，最后将它插入到就绪状态队列中去。</li>
+<li>撤销原语：找到要被撤销的进程 PCB，将它从所在队列中消去。</li>
+<li>阻塞原语：把进程运行状态转换为阻塞状态。首先应中断 CPU 执行，把 CPU 的当前状态保存到 PCB 的现场信息中，把它插入到该事件的等待队列中去。</li>
+<li>唤醒原语：进程因为等待时间的发生而处于等待状态，当等待事件完成后，就用唤醒原语将其转换为就绪状态。具体操作过程：在等待队列中找到该进程，置该进程的当前状态为就绪状态，然后将它从等待队列中撤去并插入到就绪队列中排队，等待调度执行。</li>
+</ul>
+<h3 id="1-1-5：进程间通信"><a href="#1-1-5：进程间通信" class="headerlink" title="1-1-5：进程间通信"></a>1-1-5：进程间通信</h3><ul>
+<li>管道/匿名管道(Pipes) ：用于具有亲缘关系的父子进程间或者兄弟进程之间的通信。</li>
+<li>有名管道(Names Pipes) : 匿名管道由于没有名字，只能用于亲缘关系的进程间通信。为了克服这个缺点，提出了有名管道。有名管道严格遵循先进先出(first in first out)。有名管道以磁盘文件的方式存在，可以实现本机任意两个进程通信。</li>
+<li>信号(Signal) ：信号是一种比较复杂的通信方式，用于通知接收进程某个事件已经发生；</li>
+<li>消息队列(Message Queuing) ：消息队列是消息的链表,具有特定的格式,存放在内存中并由消息队列标识符标识。管道和消息队列的通信数据都是先进先出的原则。与管道（无名管道：只存在于内存中的文件；命名管道：存在于实际的磁盘介质或者文件系统）不同的是消息队列存放在内核中，只有在内核重启(即，操作系统重启)或者显示地删除一个消息队列时，该消息队列才会被真正的删除。消息队列可以实现消息的随机查询,消息不一定要以先进先出的次序读取,也可以按消息的类型读取.比 FIFO 更有优势。消息队列克服了信号承载信息量少，管道只能承载无格式字 节流以及缓冲区大小受限等缺。</li>
+<li>信号量(Semaphores) ：信号量是一个计数器，用于多进程对共享数据的访问，信号量的意图在于进程间同步。这种通信方式主要用于解决与同步相关的问题并避免竞争条件。</li>
+<li>共享内存(Shared memory) ：使得多个进程可以访问同一块内存空间，不同进程可以及时看到对方进程中对共享内存中数据的更新。这种方式需要依靠某种同步操作，如互斥锁和信号量等。可以说这是最有用的进程间通信方式。</li>
+<li>套接字(Sockets) : 此方法主要用于在客户端和服务器之间通过网络进行通信。套接字是支持 TCP/IP 的网络通信的基本操作单元，可以看做是不同主机之间的进程进行双向通信的端点，简单的说就是通信的两方的一种约定，用套接字中的相关函数来完成通信过程。</li>
+</ul>
+<h3 id="1-1-6：进程的内存结构"><a href="#1-1-6：进程的内存结构" class="headerlink" title="1-1-6：进程的内存结构"></a>1-1-6：进程的内存结构</h3><ul>
+<li>文本段：包含了进程运行的程序机器语言指令。文本段具有只读属性，以防止进程通过错误指针意外修改自身指令。因为多个进程可同时运行同一程序，所以又将文本段设为可共享，这样，一份程序代码的拷贝可以映射到所有这些进程的虚拟地址空间中。</li>
+<li>初始化数据段：包含显示初始化的全局变量和静态变量。当程序加载到内存时，从可执行文件中读取这些变量的值。</li>
+<li>未初始化数据段：包含了未进行显示初始化的全局变量和静态变量。程序启动之前，系统将本段内所有内存初始化为 0。出于历史原因，此段常被称为 BSS 段，这源于老版本的汇编语言助记符“block started by symbol”。将经过初始化的全局变量和静态变量与未初始化的全局变量和静态变量分开存放，其主要原因在于程序在磁盘上存储时，没有必要为未经初始化的变量分配存储空间。相反，可执行文件只需记录未初始化数据段的位置及所需大小，直到运行时再由程序加载器来分配空间。</li>
+<li>栈（stack）：是一个动态增长和收缩的段，有栈帧（stack frames）组成。系统会为每个当前调用的函数分配一个栈帧。栈帧中存储了函数的局部变量（所谓自动变量）、实参和返回值。</li>
+<li>堆（heap）：是可在运行时（为变量）动态进行内存分配的一块区域。堆顶端称为 program break。</li>
+</ul>
+<h2 id="1-2：线程"><a href="#1-2：线程" class="headerlink" title="1-2：线程"></a>1-2：线程</h2><h3 id="1-2-1：线程概念"><a href="#1-2-1：线程概念" class="headerlink" title="1-2-1：线程概念"></a>1-2-1：线程概念</h3><p>多进程中每个进程拥有自己独立的代码和数据空间（进程上下文），而多线程共享代码和数据空间，每个线程有独立的运行栈和程序计数器 (PC)。共享变量使线程之间的通信比进程之间的通信更有效，更容易。此外，在某些操作系统中，线程更” 轻量级”, 创建，撤销一个线程比启动新线程开销更小。</p>
+<p>线程是进程的一个实体，是 CPU 调度和分派的基本单位，是比程序更小的能独立运行的基本单位。同一进程中的多个线程之间可以并发执行。</p>
+<h4 id="1-2-1-1：为什么使用线程"><a href="#1-2-1-1：为什么使用线程" class="headerlink" title="1-2-1-1：为什么使用线程"></a>1-2-1-1：为什么使用线程</h4><p>线程的创建和切换开销更小，因为线程共享代码段、数据段等内存空间。</p>
+<h4 id="1-2-1-2：线程的优缺点"><a href="#1-2-1-2：线程的优缺点" class="headerlink" title="1-2-1-2：线程的优缺点"></a>1-2-1-2：线程的优缺点</h4><p>优点：</p>
+<ul>
+<li>创建和切换开销更小</li>
+<li>线程间方便的通信机制</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>调度时, 要保存线程状态，频繁调度, 需要占用大量的机时；</li>
+<li>程序设计上容易出错（线程同步问题）。</li>
+</ul>
+<h3 id="1-2-2：三种线程的实现方式"><a href="#1-2-2：三种线程的实现方式" class="headerlink" title="1-2-2：三种线程的实现方式"></a>1-2-2：三种线程的实现方式</h3><ol>
+<li>实现 Runnable 接口</li>
+<li>继承 Thread 接口</li>
+<li>实现 Callable 接口</li>
+</ol>
+<h3 id="1-2-3：用户线程如何理解？"><a href="#1-2-3：用户线程如何理解？" class="headerlink" title="1-2-3：用户线程如何理解？"></a>1-2-3：用户线程如何理解？</h3><p>不需要内核支持而在用户程序中实现的线程，其不依赖于操作系统核心，应用进程利用线程库提供创建、同步、调度和管理线程的函数来控制用户线程。<br>不需要用户态/核心态切换，速度快，操作系统内核不知道多线程的存在，因此一个线程阻塞将使得整个进程（包括它的所有线程）阻塞。由于这里的处理器时间片分配是以进程为基本单位，所以每个线程执行的时间相对减少。</p>
+<h4 id="1-2-3-1：用户线程存在什么优势和缺陷？"><a href="#1-2-3-1：用户线程存在什么优势和缺陷？" class="headerlink" title="1-2-3-1：用户线程存在什么优势和缺陷？"></a>1-2-3-1：用户线程存在什么优势和缺陷？</h4><p>优点：</p>
+<ul>
+<li>线程的调度不需要内核直接参与，控制简单。</li>
+<li>可以在不支持线程的操作系统中实现。</li>
+<li>创建和销毁线程、线程切换代价等线程管理的代价比内核线程少得多。</li>
+<li>允许每个进程定制自己的调度算法，线程管理比较灵活。</li>
+<li>线程程能够利用的表空间和堆栈空间比内核级线多。</li>
+<li>同一进程中只能同时有一个线程在运行，如果有一个线程使用了系统调用而阻塞，那么整个进程都会被挂起。另外，页面失效也会产生同样的问题</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>资源调度按照进程进行，多个处理机下，同一个进程中的线程只能在同一个处理机下分时复用</li>
+</ul>
+<h3 id="1-2-4：内核线程如何理解？"><a href="#1-2-4：内核线程如何理解？" class="headerlink" title="1-2-4：内核线程如何理解？"></a>1-2-4：内核线程如何理解？</h3><p>由操作系统内核创建和撤销。内核维护进程及线程的上下文信息以及线程切换。一个内核线程由于 I/O 操作而阻塞，不会影响其它线程的运行。</p>
+<h4 id="1-2-4-1：内核线程存在什么优势和缺陷"><a href="#1-2-4-1：内核线程存在什么优势和缺陷" class="headerlink" title="1-2-4-1：内核线程存在什么优势和缺陷"></a>1-2-4-1：内核线程存在什么优势和缺陷</h4><p>优点：</p>
+<ul>
+<li>当有多个处理机时，一个进程的多个线程可以同时执行</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>即使 CPU 在同一个进程的多个线程之间切换，也需要陷入内核，因此其速度和效率不如用户级线程。</li>
+</ul>
+<h3 id="1-2-5：用户线程和内核线程的对应关系"><a href="#1-2-5：用户线程和内核线程的对应关系" class="headerlink" title="1-2-5：用户线程和内核线程的对应关系"></a>1-2-5：用户线程和内核线程的对应关系</h3><ul>
+<li>内核支持：用户级线程可在一个不支持线程的 OS 中实现；内核支持线程则需要得到 OS 内核的支持。亦即内核支持线程是 OS 内核可感知的，而用户级线程是 OS 内核不可感知的。</li>
+<li>处理器分配：在多处理机环境下，对用户级线程而言主，内核一次只为一个进程分配一个处理器，进程无法享用多处理机带来的好处；在设置有内核支持线程时，内核可调度一个应用中的多个线程同时在多个处理器上并行运行，提高程序的执行速度和效率。</li>
+<li>调度和线程执行时间：设置有内核支持线程的系统，其调度方式和算法与进程的调度十分相似，只不过调度单位是线程；对只设置了用户级线程的系统，调度的单位仍为进程。</li>
+<li>用户级线程执行系统调用指令时将导致其所属进程被中断，而内核支持线程执行系统调用指令时，只导致该线程被中断。</li>
+<li>在只有用户级线程的系统内，CPU 调度还是以进程为单位，处于运行状态的进程中的多个线程，由用户程序控制线程的轮换运行；在有内核支持线程的系统内，CPU 调度则以线程为单位，由 OS 的线程调度程序负责线程的调度。</li>
+</ul>
+<h3 id="1-2-6：轻量级进程如何理解"><a href="#1-2-6：轻量级进程如何理解" class="headerlink" title="1-2-6：轻量级进程如何理解"></a>1-2-6：轻量级进程如何理解</h3><p>轻量级进程(LWP)是建立在内核之上并由内核支持的用户线程，它是内核线程的高度抽象，每一个轻量级进程都与一个特定的内核线程关联。内核线程只能由内核管理并像普通进程一样被调度。</p>
+<h4 id="1-2-6-1：-LWP-与用户线程的对应关系"><a href="#1-2-6-1：-LWP-与用户线程的对应关系" class="headerlink" title="1-2-6-1： LWP 与用户线程的对应关系"></a>1-2-6-1： LWP 与用户线程的对应关系</h4><p>LWP 与普通进程的区别也在于它只有一个最小的执行上下文和调度程序所需的统计信息，而这也是它之所以被称为轻量级的原因。而和线程相比，LWP 可以共享进程空间，像进程一眼调度。</p>
+<h3 id="1-2-3：线程同步"><a href="#1-2-3：线程同步" class="headerlink" title="1-2-3：线程同步"></a>1-2-3：线程同步</h3><ul>
+<li>锁和同步</li>
+<li>等待/通知机制：notify(),wait()</li>
+<li>信号量：valatile</li>
+<li>管道</li>
+<li>其他<ul>
+<li>join()</li>
+<li>sleep()</li>
+<li>ThreadLocal</li>
+<li>InheritableThreadLocal</li>
+</ul>
+</li>
+</ul>
+<h4 id="1-2-3-1：wait-notify-机制"><a href="#1-2-3-1：wait-notify-机制" class="headerlink" title="1-2-3-1：wait/notify 机制"></a>1-2-3-1：wait/notify 机制</h4><ul>
+<li>wait()：Object 类的静态方法，释放当前线程占有的机锁，进入阻塞状态</li>
+<li>notify()/notifyAll()：唤醒一个/全部等待该锁的线程，然后继续执行，执行完成后释放锁。</li>
+</ul>
+<h4 id="1-2-3-2：管道通信"><a href="#1-2-3-2：管道通信" class="headerlink" title="1-2-3-2：管道通信"></a>1-2-3-2：管道通信</h4><ul>
+<li>PipedInputStream 和 PipedOutputStream</li>
+<li>PipedReader 和 PipedWriter</li>
+</ul>
+<h2 id="1-3-线程与进程的区别"><a href="#1-3-线程与进程的区别" class="headerlink" title="1-3.线程与进程的区别"></a>1-3.线程与进程的区别</h2><h3 id="1-3-1：进程切换与线程切换的区别"><a href="#1-3-1：进程切换与线程切换的区别" class="headerlink" title="1-3-1：进程切换与线程切换的区别"></a>1-3-1：进程切换与线程切换的区别</h3><p>进程切换与线程切换的一个最主要区别就在于进程切换涉及到虚拟地址空间的切换而线程切换则不会。因为每个进程都有自己的虚拟地址空间，而线程是共享所在进程的虚拟地址空间的，因此同一个进程中的线程进行线程切换时不涉及虚拟地址空间的转换。</p>
+<h3 id="1-3-2：为什么进程花销比线程花销大"><a href="#1-3-2：为什么进程花销比线程花销大" class="headerlink" title="1-3-2：为什么进程花销比线程花销大"></a>1-3-2：为什么进程花销比线程花销大</h3><p>进程都有自己的虚拟地址空间，把虚拟地址转换为物理地址需要查找页表，页表查找是一个很慢的过程，因此通常使用 Cache 来缓存常用的地址映射，这样可以加速页表查找，这个 cache 就是 TLB，Translation Lookaside Buffer，我们不需要关心这个名字只需要知道 TLB 本质上就是一个 cache，是用来加速页表查找的。<br>由于每个进程都有自己的虚拟地址空间，那么显然每个进程都有自己的页表，那么当进程切换后页表也要进行切换，页表切换后 TLB 就失效了，cache 失效导致命中率降低，那么虚拟地址转换为物理地址就会变慢，表现出来的就是程序运行会变慢，而线程切换则不会导致 TLB 失效，因为线程线程无需切换地址空间，因此我们通常说线程切换要比较进程切换块，原因就在这里。</p>
+<h2 id="1-4-上下文切换"><a href="#1-4-上下文切换" class="headerlink" title="1-4. 上下文切换"></a>1-4. 上下文切换</h2><h3 id="1-4-1：什么是上下⽂切换"><a href="#1-4-1：什么是上下⽂切换" class="headerlink" title="1-4-1：什么是上下⽂切换?"></a>1-4-1：什么是上下⽂切换?</h3><p>上下文切换指的是内核（操作系统的核心）在 CPU 上对进程或者线程进行切换。上下文切换过程中的信息被保存在进程控制块（PCB-Process Control Block）中。PCB 又被称作切换帧（SwitchFrame）。上下文切换的信息会一直被保存在 CPU 的内存中，直到被再次使用。</p>
+<h3 id="1-4-2：CPU-上下文切换"><a href="#1-4-2：CPU-上下文切换" class="headerlink" title="1-4-2：CPU 上下文切换"></a>1-4-2：CPU 上下文切换</h3><p>就是先把前一个任务的 CPU 上下文（也就是 CPU 寄存器和程序计数器）保存起来，然后加载新任务的上下文到这些寄存器和程序计数器，最后再跳转到程序计数器所指的新位置，运行新任务。</p>
+<p>而这些保存下来的上下文，会存储在系统内核中，并在任务重新调度执行时再次加载进来。这样就能保证任务原来的状态不受影响，让任务看起来还是连续运行。</p>
+<h3 id="1-4-3：进程的上下文"><a href="#1-4-3：进程的上下文" class="headerlink" title="1-4-3：进程的上下文"></a>1-4-3：进程的上下文</h3><p>进程是由内核来管理和调度的，进程的切换只能发生在内核态。所以，进程的上下文<strong>不仅包括了虚拟内存、栈、全局变量等用户空间的资源，还包括了内核堆栈、寄存器等内核空间的状态</strong>。</p>
+<p>因此，进程的上下文切换就比系统调用时多了一步：在保存内核态资源（当前进程的内核状态和 CPU 寄存器）之前，需要先把该进程的用户态资源（虚拟内存、栈等）保存下来；而加载了下一进程的内核态后，还需要刷新进程的虚拟内存和用户栈。</p>
+<h4 id="1-4-3-1：发生进程上下文切换有哪些场景？"><a href="#1-4-3-1：发生进程上下文切换有哪些场景？" class="headerlink" title="1-4-3-1：发生进程上下文切换有哪些场景？"></a>1-4-3-1：发生进程上下文切换有哪些场景？</h4><ol>
+<li>为了保证所有进程可以得到公平调度，CPU 时间被划分为一段段的时间片，这些时间片再被轮流分配给各个进程。这样，当某个进程的时间片耗尽了，就会被系统挂起，切换到其它正在等待 CPU 的进程运行。</li>
+<li>进程在系统资源不足（比如内存不足）时，要等到资源满足后才可以运行，这个时候进程也会被挂起，并由系统调度其他进程运行。</li>
+<li>当进程通过睡眠函数 sleep 这样的方法将自己主动挂起时，自然也会重新调度。</li>
+<li>当有优先级更高的进程运行时，为了保证高优先级进程的运行，当前进程会被挂起，由高优先级进程来运行</li>
+<li>发生硬件中断时，CPU 上的进程会被中断挂起，转而执行内核中的中断服务程序。</li>
+</ol>
+<h3 id="1-4-4：线程上下文"><a href="#1-4-4：线程上下文" class="headerlink" title="1-4-4：线程上下文"></a>1-4-4：线程上下文</h3><ul>
+<li>当进程只有一个线程时，可以认为进程就等于线程。</li>
+<li>当进程拥有多个线程时，这些线程会共享相同的虚拟内存和全局变量等资源。这些资源在上下文切换时是不需要修改的。</li>
+<li>另外，线程也有自己的私有数据，比如栈和寄存器等，这些在上下文切换时也是需要保存的。</li>
+</ul>
+<h2 id="1-5-调度"><a href="#1-5-调度" class="headerlink" title="1-5.调度"></a>1-5.调度</h2><h3 id="1-5-1：什么是调度"><a href="#1-5-1：什么是调度" class="headerlink" title="1-5-1：什么是调度"></a>1-5-1：什么是调度</h3><p>当计算机系统处于就绪状态的用户进程数多于 CPU 数时，就会产生多个进程或线程同时竞争 CPU 的结果。假设现在只有一个 CPU 可用，那么操作系统就必须选择下一个要运行的进程。完成这种选择工作的这一部分称为调度程序，该程序使用的算法称为调度算法。</p>
+<h3 id="1-5-2：什么时候会发生调度"><a href="#1-5-2：什么时候会发生调度" class="headerlink" title="1-5-2：什么时候会发生调度"></a>1-5-2：什么时候会发生调度</h3><ol>
+<li>正在执行的进程运行完毕。</li>
+<li>正在执行的进程由于某种错误而终止。</li>
+<li>时间片用完，即有一个进程从运行状态变为就绪状态。</li>
+<li>正在执行的进程调用阻塞原语将自己阻塞起来，即一个进程从运行状态进入阻塞状态。</li>
+<li>创建了新的进程，即有一个新的进程进入就绪队列。</li>
+<li>正在执行的进程调用了唤醒原语操作激活了等待资源的进程，即一个等待状态的进程变为就绪状态。</li>
+</ol>
+<h3 id="1-5-3：调度原则"><a href="#1-5-3：调度原则" class="headerlink" title="1-5-3：调度原则"></a>1-5-3：调度原则</h3><ol>
+<li>调度算法</li>
+<li>执行模型：程序在 CPU 突发和 I/O 中交替</li>
+<li>调度算法的评价指标</li>
+<li>人们要求“更快”的服务</li>
+<li>调度算法的要求（均衡、折中）</li>
+</ol>
+<h3 id="1-5-4：进程调度算法"><a href="#1-5-4：进程调度算法" class="headerlink" title="1-5-4：进程调度算法"></a>1-5-4：进程调度算法</h3><ol>
+<li>先来先服务调度算法(FCSFS)：从就绪队列选取最先进入该队列的进程</li>
+<li>短作业(进程)优先调度算法(SPN)：从就绪队列中选出一个估计运行时间最短的进程</li>
+<li>最高响应比优先(HRRN)：根据<code>响应比 = （等待时间+要求服务时间）/ 要求服务时间</code>计算出响应比。响应比高的算法会先执行。我们称之为「高响应比优先」</li>
+<li>时间片轮转法(RR)：将所有的就绪进程按先来先服务的原则排成一个队列，每次调度时，把 CPU 分配给队首进程，并令其执行一个时间片。时间片的大小从几 ms 到几百 ms。当执行的时间片用完时，由一个计时器发出时钟中断请求，调度程序便据此信号来停止该进程的执行，并将它送往就绪队列的末尾；然后，再把处理机分配给就绪队列中新的队首进程，同时也让它执行一个时间片。这样就可以保证就绪队列中的所有进程在一给定的时间内均能获得一时间片的处理机执行时间。换言之，系统能在给定的时间内响应所有用户的请求。</li>
+<li>优先级调度算法(HPF)：在进程等待队列中选择优先级最高的来执行。</li>
+<li>多级反馈队列调度算法：将时间片轮转与优先级调度相结合，把进程按优先级分成不同的队列，先按优先级调度，优先级相同的，按时间片轮转，轮转后未完成的进程降低优先级。</li>
+</ol>
+<h2 id="1-6-互斥与同步"><a href="#1-6-互斥与同步" class="headerlink" title="1-6.互斥与同步"></a>1-6.互斥与同步</h2><h3 id="1-6-1：互斥概念"><a href="#1-6-1：互斥概念" class="headerlink" title="1-6-1：互斥概念"></a>1-6-1：互斥概念</h3><p>互斥亦称间接制约关系。当一个进程进入临界区使用临界资源时，另一个进程必须等待, 当占用临界资源的进程退出临界区后，另一进程才允许去访问此临界资源。</p>
+<blockquote>
+<p>临界资源：一次仅允许一个进程使用的资源</p>
+</blockquote>
+<h4 id="1-6-1-1：临界区"><a href="#1-6-1-1：临界区" class="headerlink" title="1-6-1-1：临界区"></a>1-6-1-1：临界区</h4><p>对临界资源的访问，必须互斥地进行，在每个进程中，访问临界资源的那段代码称为临界区。为了保证临界资源的正确使用，可以把临界资源的访问过程分成四个部分：</p>
+<ul>
+<li>进入区：为了进入临界区使用临界资源，在进入区要检查可否进入临界区，如果可以进入临界区，则应设置正在访问临界区的标志，以阻止其他进程同时进入临界区。</li>
+<li>临界区：进程中访问临界资源的那段代码，又称临界段。</li>
+<li>退出区：将正在访问临界区的标志清除。</li>
+<li>剩余区：代码中的其余部分。</li>
+</ul>
+<h3 id="1-6-2：同步概念"><a href="#1-6-2：同步概念" class="headerlink" title="1-6-2：同步概念"></a>1-6-2：同步概念</h3><p>同步亦称直接制约关系，它是指为完成某种任务而建立的两个或多个进程，这些进程因为需要在某些位置上协调它们的工作次序而等待、传递信息所产生的制约关系。进程间的直接制约关系就是源于它们之间的相互合作。</p>
+<h4 id="1-6-2-1：同步的原理"><a href="#1-6-2-1：同步的原理" class="headerlink" title="1-6-2-1：同步的原理"></a>1-6-2-1：同步的原理</h4><p>当一个线程访问临界区时，判断是否有其他线程进入临界区，如果没有它才可以进入临界区，如果已经有线程进入临界区它会被同步挂起，直到进入的线程离开。</p>
+<h4 id="1-6-2-1：线程同步的方式"><a href="#1-6-2-1：线程同步的方式" class="headerlink" title="1-6-2-1：线程同步的方式"></a>1-6-2-1：线程同步的方式</h4><ol>
+<li>同步方法</li>
+<li>同步代码块</li>
+<li>volatile</li>
+<li>重入锁（Lock 类）</li>
+<li>ThreadLock</li>
+<li>阻塞队列</li>
+<li>原子变量</li>
+</ol>
+<h4 id="1-6-2-2：同步方法和同步代码块的区别是什么"><a href="#1-6-2-2：同步方法和同步代码块的区别是什么" class="headerlink" title="1-6-2-2：同步方法和同步代码块的区别是什么"></a>1-6-2-2：同步方法和同步代码块的区别是什么</h4><ul>
+<li>同步方法通过 ACC_SYNCHRONIZED 关键字隐式的对方法进行加锁。当线程要执行的方法被标注上 ACC_SYNCHRONIZED 时，需要先获得锁才能执行该方法。</li>
+<li>同步代码块通过 monitorenter 和 monitorexit 执行来进行加锁。当线程执行到 monitorenter 的时候要先获得所锁，才能执行后面的方法。当线程执行到 monitorexit 的时候则要释放锁。<br>每个对象自身维护这一个被加锁次数的计数器，当计数器数字为 0 时表示可以被任意线程获得锁。当计数器不为 0 时，只有获得锁的线程才能再次获得锁。即可重入锁。</li>
+</ul>
+<h4 id="1-6-2-3：在监视器内部，是如何做线程同步的？"><a href="#1-6-2-3：在监视器内部，是如何做线程同步的？" class="headerlink" title="1-6-2-3：在监视器内部，是如何做线程同步的？"></a>1-6-2-3：在监视器内部，是如何做线程同步的？</h4><ul>
+<li>偏向锁</li>
+<li>轻量级锁</li>
+<li>重量级锁</li>
+</ul>
+<h3 id="1-6-3：同步与互斥的区别"><a href="#1-6-3：同步与互斥的区别" class="headerlink" title="1-6-3：同步与互斥的区别"></a>1-6-3：同步与互斥的区别</h3><ul>
+<li>互斥：是指某一资源同时只允许一个访问者对其进行访问，具有唯一性和排它性。但互斥无法限制访问者对资源的访问顺序，即访问是无序的。</li>
+<li>同步：是指在互斥的基础上（大多数情况），通过其它机制实现访问者对资源的有序访问。在大多数情况下，同步已经实现了互斥，特别是所有写入资源的情况必定是互斥的。少数情况是指可以允许多个访问者同时访问资源。</li>
+</ul>
+<h2 id="1-7：生产者与消费者问题（同步问题）"><a href="#1-7：生产者与消费者问题（同步问题）" class="headerlink" title="1-7：生产者与消费者问题（同步问题）"></a>1-7：生产者与消费者问题（同步问题）</h2><ol>
+<li>wait()/notify()</li>
+<li>可重入锁 ReentrantLock - await()/signal()</li>
+<li>阻塞队列 BlockingQueue</li>
+<li>信号量</li>
+<li>管道</li>
+</ol>
+<h2 id="1-8：并发级别（并行和并发）"><a href="#1-8：并发级别（并行和并发）" class="headerlink" title="1-8：并发级别（并行和并发）"></a>1-8：并发级别（并行和并发）</h2><h3 id="1-8-1：并行与并发概念"><a href="#1-8-1：并行与并发概念" class="headerlink" title="1-8-1：并行与并发概念"></a>1-8-1：并行与并发概念</h3><ol>
+<li>并行：同一时间段多个线程同时执行</li>
+<li>并发：同一时间间隔内多个线程交替执行</li>
+</ol>
+<h2 id="1-9：并发特性"><a href="#1-9：并发特性" class="headerlink" title="1-9：并发特性"></a>1-9：并发特性</h2><ol>
+<li>阻塞：必须等待其他线程执行完成才能执行</li>
+<li>无饥饿：所以线程按抵达顺序依次执行</li>
+<li>无障碍：多个线程同时执行，如果发现自己的数据被破坏，对修改进行回滚</li>
+<li>无锁：多个线程同时修改，但是只有一个线程能在有限步内修改成功走出临界区</li>
+<li>无等待：所有线程都必须在有限步内完成操作</li>
+</ol>
+<h2 id="1-10：多线程"><a href="#1-10：多线程" class="headerlink" title="1-10：多线程"></a>1-10：多线程</h2><h3 id="1-10-1：为什么要使⽤多线程呢"><a href="#1-10-1：为什么要使⽤多线程呢" class="headerlink" title="1-10-1：为什么要使⽤多线程呢"></a>1-10-1：为什么要使⽤多线程呢</h3><p>减少程序响应时间，更快的处理事务。</p>
+<h3 id="1-10-1-1：使⽤多线程可能带来什么问题"><a href="#1-10-1-1：使⽤多线程可能带来什么问题" class="headerlink" title="1-10-1-1：使⽤多线程可能带来什么问题?"></a>1-10-1-1：使⽤多线程可能带来什么问题?</h3><ol>
+<li>线程过多：频繁的上下文切换会影响性能</li>
+<li>数据竞争：多个线程读写统一数据时，需要同步</li>
+<li>死锁：复数线程互相占有其他线程需要的资源</li>
+<li>饿死：一个或多个线程永远没有机会执行</li>
+<li>伪共享：多个线程的读写映射到一个同一缓存时，频繁的读写会导致不停的更新缓存，导致性能降低</li>
+</ol>
+<h3 id="1-10-2：多线程公共用一个数据注意什么"><a href="#1-10-2：多线程公共用一个数据注意什么" class="headerlink" title="1-10-2：多线程公共用一个数据注意什么"></a>1-10-2：多线程公共用一个数据注意什么</h3><ol>
+<li>原子性</li>
+<li>可加性</li>
+<li>有序性</li>
+</ol>
+<h4 id="1-10-2-1：如何确保-N-个线程可以访问-N-个资源同时又不导致死锁？"><a href="#1-10-2-1：如何确保-N-个线程可以访问-N-个资源同时又不导致死锁？" class="headerlink" title="1-10-2-1：如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？"></a>1-10-2-1：如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？</h4><ol>
+<li>所有资源空闲时才能申请锁</li>
+<li>所有线程顺序获取锁</li>
+</ol>
+<h4 id="1-10-2-2：单-cpu-上多线程效率和单线程比如何"><a href="#1-10-2-2：单-cpu-上多线程效率和单线程比如何" class="headerlink" title="1-10-2-2：单 cpu 上多线程效率和单线程比如何"></a>1-10-2-2：单 cpu 上多线程效率和单线程比如何</h4><p>并发编程的目的是为了让程序运行的更快，但是，并不是启动更多的线程就能让程序最大限度地并发运行。并且，在进行并发编程时，如果希望通过多线程执行任务让程序运行的更快，将会面临非常多的挑战，比如上下文切换问题、死锁等。所以单 cpu 多线程不一定比单线程快，但是也不一定慢。</p>
+<h2 id="1-11：线程的基本操作"><a href="#1-11：线程的基本操作" class="headerlink" title="1-11：线程的基本操作"></a>1-11：线程的基本操作</h2><h3 id="1-11-1：说说-sleep-⽅法和-wait-⽅法区别和共同点"><a href="#1-11-1：说说-sleep-⽅法和-wait-⽅法区别和共同点" class="headerlink" title="1-11-1：说说 sleep() ⽅法和 wait() ⽅法区别和共同点?"></a>1-11-1：说说 sleep() ⽅法和 wait() ⽅法区别和共同点?</h3><p>sleep()：方法是线程类（Thread）的静态方法，让调用线程进入睡眠状态，让出执行机会给其他线程，等到休眠时间结束后，线程进入就绪状态和其他线程一起竞争 cpu 的执行时间。因为 sleep() 是 static 静态的方法，他不能改变对象的机锁，当一个 synchronized 块中调用了 sleep () 方法，线程虽然进入休眠，但是对象的机锁没有被释放，其他线程依然无法访问这个对象。</p>
+<p>wait ()：wait () 是 Object 类的方法，当一个线程执行到 wait 方法时，它就进入到一个和该对象相关的等待池，同时释放对象的机锁，使得其他线程能够访问，可以通过 notify，notifyAll 方法来唤醒等待的线程</p>
+<h3 id="1-11-2：yield-join-notify-notifyAll"><a href="#1-11-2：yield-join-notify-notifyAll" class="headerlink" title="1-11-2：yield join notify notifyAll"></a>1-11-2：yield join notify notifyAll</h3><ul>
+<li>yield()：Thread 类方法，让出时间片</li>
+<li>sleep()：Thread 类方法，线程休眠</li>
+<li>join()：执行子线程</li>
+<li>wait()：Object 类静态方法，当前线程释放锁，进入等待池</li>
+<li>notify()/notifyAll()：唤醒等待池中的一个/所有线程，同其他线程随机竞争锁</li>
+</ul>
+<h3 id="1-11-3：为什么我们调⽤-start-⽅法时会执⾏-run-⽅法，为什么我们不能直接调⽤-run-⽅法"><a href="#1-11-3：为什么我们调⽤-start-⽅法时会执⾏-run-⽅法，为什么我们不能直接调⽤-run-⽅法" class="headerlink" title="1-11-3：为什么我们调⽤ start() ⽅法时会执⾏ run() ⽅法，为什么我们不能直接调⽤ run() ⽅法"></a>1-11-3：为什么我们调⽤ start() ⽅法时会执⾏ run() ⽅法，为什么我们不能直接调⽤ run() ⽅法</h3><p>start()方法会创建一个新线程，run()方法只是一个普通方法，直接调用相当于在当前线程调用一个方法。</p>
+<h3 id="1-11-4：中断线程方法（36-期）"><a href="#1-11-4：中断线程方法（36-期）" class="headerlink" title="1-11-4：中断线程方法（36 期）"></a>1-11-4：中断线程方法（36 期）</h3><p>interrupt()</p>
+<h3 id="1-11-5：用户线程和守护线程以及两者区别"><a href="#1-11-5：用户线程和守护线程以及两者区别" class="headerlink" title="1-11-5：用户线程和守护线程以及两者区别"></a>1-11-5：用户线程和守护线程以及两者区别</h3><p>守护线程都是为 JVM 中所有非守护线程的运行提供便利服务：</p>
+<ul>
+<li>只要当前 JVM 实例中尚存在任何一个用户线程没有结束，守护线程就全部工作；</li>
+<li>只有当最后一个用户线程结束时，守护线程随着 JVM 一同结束工作。</li>
+<li>如果 User Thread 已经全部退出运行了，只剩下 Daemon Thread 存在了，虚拟机也就退出了。</li>
+</ul>
+<h2 id="1-12：创建线程"><a href="#1-12：创建线程" class="headerlink" title="1-12：创建线程"></a>1-12：创建线程</h2><h3 id="1-12-1：创建线程的方式"><a href="#1-12-1：创建线程的方式" class="headerlink" title="1-12-1：创建线程的方式"></a>1-12-1：创建线程的方式</h3><ol>
+<li>实现 Runnable 接口，重写 run 方法</li>
+<li>继承 Thread 接口，重写 run 方法</li>
+<li>实现 Callable 接口，重写 call 方法</li>
+</ol>
+<h4 id="1-12-1-1：实现-Runnable-接⼝和-Callable-接⼝的区别"><a href="#1-12-1-1：实现-Runnable-接⼝和-Callable-接⼝的区别" class="headerlink" title="1-12-1-1：实现 Runnable 接⼝和 Callable 接⼝的区别"></a>1-12-1-1：实现 Runnable 接⼝和 Callable 接⼝的区别</h4><p>Runnable 接口没有返回值，Callable 接口有返回值，可以更方便的进行异常处理等工作。</p>
+<h4 id="1-12-1-2：实现-Runnable-接口比继承-Thread-类所具有的优势"><a href="#1-12-1-2：实现-Runnable-接口比继承-Thread-类所具有的优势" class="headerlink" title="1-12-1-2：实现 Runnable 接口比继承 Thread 类所具有的优势"></a>1-12-1-2：实现 Runnable 接口比继承 Thread 类所具有的优势</h4><p>实际使用两者都是一眼的，只是一个是继承一个是实现，只有这两方面的区别。</p>
+<h3 id="1-12-2：创建线程的对比"><a href="#1-12-2：创建线程的对比" class="headerlink" title="1-12-2：创建线程的对比"></a>1-12-2：创建线程的对比</h3><p>采用实现 Runnable、Callable 接口的方式创见多线程时，优势是：</p>
+<ul>
+<li>线程类只是实现了 Runnable 接口或 Callable 接口，还可以继承其他类。<br>在这种方式下，多个线程可以共享同一个 target 对象，所以非常适合多个相同线程来处理同一份资源的情况，从而可以将 CPU、代码和数据分开，形成清晰的模型，较好地体现了面向对象的思想。</li>
+</ul>
+<p>劣势是：</p>
+<ul>
+<li>编程稍微复杂，如果要访问当前线程，则必须使用 Thread.currentThread()方法。</li>
+</ul>
+<p>使用继承 Thread 类的方式创建多线程时优势是：</p>
+<ul>
+<li>编写简单，如果需要访问当前线程，则无需使用 Thread.currentThread()方法，直接使用 this 即可获得当前线程。</li>
+</ul>
+<p>劣势是：</p>
+<ul>
+<li>线程类已经继承了 Thread 类，所以不能再继承其他父类。</li>
+</ul>
+<h2 id="1-13：线程安全"><a href="#1-13：线程安全" class="headerlink" title="1-13：线程安全"></a>1-13：线程安全</h2><h3 id="1-13-1：什么是线程安全"><a href="#1-13-1：什么是线程安全" class="headerlink" title="1-13-1：什么是线程安全"></a>1-13-1：什么是线程安全</h3><p>多线程执行环境下，保证对共享资源的操作能够得到正确执行</p>
+<h4 id="1-13-1-1：举例说明线程不安全"><a href="#1-13-1-1：举例说明线程不安全" class="headerlink" title="1-13-1-1：举例说明线程不安全"></a>1-13-1-1：举例说明线程不安全</h4><p>i++,i–</p>
+<h2 id="1-14：synchronized-关键字"><a href="#1-14：synchronized-关键字" class="headerlink" title="1-14：synchronized 关键字"></a>1-14：synchronized 关键字</h2><h3 id="1-14-1：synchronized-关键字"><a href="#1-14-1：synchronized-关键字" class="headerlink" title="1-14-1：synchronized 关键字"></a>1-14-1：synchronized 关键字</h3><ul>
+<li>同步方法</li>
+<li>同步代码块</li>
+</ul>
+<h3 id="1-14-2：JDK1-6-优化有哪些？"><a href="#1-14-2：JDK1-6-优化有哪些？" class="headerlink" title="1-14-2：JDK1.6 优化有哪些？"></a>1-14-2：JDK1.6 优化有哪些？</h3><ol>
+<li>偏向锁</li>
+<li>轻量级锁</li>
+<li>锁消除</li>
+<li>锁加粗</li>
+</ol>
+<h3 id="1-14-3：底层原理"><a href="#1-14-3：底层原理" class="headerlink" title="1-14-3：底层原理"></a>1-14-3：底层原理</h3><p>对于同步方法，JVM 采用 ACC_SYNCHRONIZED 标记符来实现同步。 对于同步代码块。JVM 采用 monitorenter、monitorexit 两个指令来实现同步。</p>
+<h3 id="1-14-4：synchronized-的优势"><a href="#1-14-4：synchronized-的优势" class="headerlink" title="1-14-4：synchronized 的优势"></a>1-14-4：synchronized 的优势</h3><ol>
+<li>实现简单，自动获取锁，释放锁</li>
+</ol>
+<h3 id="1-14-5：synchronized-锁的膨胀（升级）过程"><a href="#1-14-5：synchronized-锁的膨胀（升级）过程" class="headerlink" title="1-14-5：synchronized 锁的膨胀（升级）过程"></a>1-14-5：synchronized 锁的膨胀（升级）过程</h3><ol>
+<li>默认为偏向锁状态，通过比较 mark word 来获取锁。</li>
+<li>如果有其余线程竞争偏向锁，偏向锁会被安全的撤销为无锁状态</li>
+<li>无锁状态时，会通过自旋锁的方式来获取锁，这个等级时轻量级锁</li>
+<li>轻量级锁的状态下，有其他线程同时访问锁，会升级为重量级锁。重量级锁使用阻塞来达成同步。</li>
+</ol>
+<h3 id="1-14-6：使用-Synchronized-关键字需要注意什么"><a href="#1-14-6：使用-Synchronized-关键字需要注意什么" class="headerlink" title="1-14-6：使用 Synchronized 关键字需要注意什么"></a>1-14-6：使用 Synchronized 关键字需要注意什么</h3><ol>
+<li>synchronized 可能会出现死锁</li>
+<li>synchronized 的作用范围应适当调整</li>
+<li>synchronized 的锁对象不能为空</li>
+</ol>
+<h3 id="1-14-7：synchronized-在内存层面，是如何实现加锁和释放锁的？"><a href="#1-14-7：synchronized-在内存层面，是如何实现加锁和释放锁的？" class="headerlink" title="1-14-7：synchronized 在内存层面，是如何实现加锁和释放锁的？"></a>1-14-7：synchronized 在内存层面，是如何实现加锁和释放锁的？</h3><ol>
+<li>偏向锁会在对象头的 mark word 区域存放线程 id，如果 id 相同表示只有一个线程访问，如果有其余线程竞争，就会进化为轻量级锁</li>
+<li>轻量级锁状态下 mark word 区域会存放指向栈中锁记录的指针</li>
+<li>重量级锁会存放指向互斥量的指针</li>
+</ol>
+<h2 id="1-15：volatile-关键字"><a href="#1-15：volatile-关键字" class="headerlink" title="1-15：volatile 关键字"></a>1-15：volatile 关键字</h2><ol>
+<li>直接读写主存数据，实现可见性</li>
+<li>禁止指令重排，实现有序性</li>
+</ol>
+<h3 id="1-15-1：基本原理"><a href="#1-15-1：基本原理" class="headerlink" title="1-15-1：基本原理"></a>1-15-1：基本原理</h3><p>通过内存屏障，确保指令重排序时不会把其后面的指令排到内存屏障之前的位置，也不会把前面的指令排到内存屏障的后面。即在执行到内存屏障这句指令时，在它前面的操作已经全部完成。</p>
+<p>也是通过内存屏障，实现和主存数据的同步，保证了可见性。</p>
+<h4 id="1-15-1-1：缓存一致性协议"><a href="#1-15-1-1：缓存一致性协议" class="headerlink" title="1-15-1-1：缓存一致性协议"></a>1-15-1-1：缓存一致性协议</h4><p>为了缓解 CPU 和内存之间速度的不匹配问题，引入了多级缓存概念。而缓存一致性就是为了保证多级缓存中的数据一致性。</p>
+<h3 id="1-15-2：为什么要是用-volatile-关键字"><a href="#1-15-2：为什么要是用-volatile-关键字" class="headerlink" title="1-15-2：为什么要是用 volatile 关键字"></a>1-15-2：为什么要是用 volatile 关键字</h3><p>volatile 是比 synchronized 更轻量的同步方法，同时 synchonized 只能保证一定的有序性，而 volatile 通过禁止指令重排实现了更严格的有序性。volatile 也能实现变量的修改可见性。</p>
+<h3 id="1-15-3：volatile-的作用"><a href="#1-15-3：volatile-的作用" class="headerlink" title="1-15-3：volatile 的作用"></a>1-15-3：volatile 的作用</h3><ul>
+<li>可见性</li>
+<li>有序性</li>
+</ul>
+<h3 id="1-15-4：原子性"><a href="#1-15-4：原子性" class="headerlink" title="1-15-4：原子性"></a>1-15-4：原子性</h3><p>volatile 虽然直接对主存数据进行读写，但是它是不能保证原子性的。</p>
+<h4 id="1-15-4-1：volatile-为什么不保证原子性吗"><a href="#1-15-4-1：volatile-为什么不保证原子性吗" class="headerlink" title="1-15-4-1：volatile 为什么不保证原子性吗"></a>1-15-4-1：volatile 为什么不保证原子性吗</h4><p>因为在 volatile 读取数据进行中间计算时，如果有其余线程修改主存的值，第一个线程的计算结果还是不受影响的。</p>
+<h4 id="1-15-4-2：为什么其他线程能感知到变量更新"><a href="#1-15-4-2：为什么其他线程能感知到变量更新" class="headerlink" title="1-15-4-2：为什么其他线程能感知到变量更新"></a>1-15-4-2：为什么其他线程能感知到变量更新</h4><p>每个 CPU 不断嗅探总线上传播的数据来检查自己缓存值是否过期了，如果处理器发现自己的缓存行对应的内存地址被修改，就会将当前处理器的缓存行设置为无效状态，当处理器对这个数据进行修改操作的时候，会重新从内存中把数据读取到处理器缓存中。</p>
+<h3 id="1-15-5：举例说一下指令重排"><a href="#1-15-5：举例说一下指令重排" class="headerlink" title="1-15-5：举例说一下指令重排"></a>1-15-5：举例说一下指令重排</h3><p>例如单例模式中使用的 volatile 就是为了有序性，正常一个对象的创建的过程是：1.分配内存空间–&gt;2.初始化零值–&gt;3.设置对象头。指令重排可能就是变成 1–&gt;3–&gt;2。<br>这种情况下如果有其他线程获取单例就可能出现错误，</p>
+<h3 id="1-15-6：happen-before-原则是什么"><a href="#1-15-6：happen-before-原则是什么" class="headerlink" title="1-15-6：happen-before 原则是什么"></a>1-15-6：happen-before 原则是什么</h3><p>对于两个操作 A 和 B，这两个操作可以在不同的线程中执行。如果 A Happens-Before B，那么可以保证，当 A 操作执行完后，A 操作的执行结果对 B 操作是可见的。</p>
+<h3 id="1-15-7：volatile-的典型应用场景"><a href="#1-15-7：volatile-的典型应用场景" class="headerlink" title="1-15-7：volatile 的典型应用场景"></a>1-15-7：volatile 的典型应用场景</h3><ol>
+<li>信号：用于保证其他线程读取最新数据</li>
+<li>双重校验锁</li>
+</ol>
+<h2 id="1-16：synchronized-与其他的区别"><a href="#1-16：synchronized-与其他的区别" class="headerlink" title="1-16：synchronized 与其他的区别"></a>1-16：synchronized 与其他的区别</h2><h3 id="1-16-1：谈谈-synchronized-和-ReentrantLock-的区别"><a href="#1-16-1：谈谈-synchronized-和-ReentrantLock-的区别" class="headerlink" title="1-16-1：谈谈 synchronized 和 ReentrantLock 的区别"></a>1-16-1：谈谈 synchronized 和 ReentrantLock 的区别</h3><ol>
+<li>synchronized 是关键字，reentrantlock 是类</li>
+<li>synchronized 自动释放锁，reentrantlock 手动释放</li>
+<li>synchronized 可重入，非公平，不可中断，reentrantlock 可重入，公平，可中断</li>
+</ol>
+<h3 id="1-16-2：synchronized-关键字和-volatile-关键字的区别"><a href="#1-16-2：synchronized-关键字和-volatile-关键字的区别" class="headerlink" title="1-16-2：synchronized 关键字和 volatile 关键字的区别"></a>1-16-2：synchronized 关键字和 volatile 关键字的区别</h3><ol>
+<li>synchronized 修饰方法和代码块，volatile 修饰变量</li>
+<li>synchronzied 保证原子性，可见性，有序性，volatile 保证可见性，有序性</li>
+</ol>
+<h2 id="1-17：线程池–死锁"><a href="#1-17：线程池–死锁" class="headerlink" title="1-17：线程池–死锁"></a>1-17：线程池–死锁</h2><h3 id="1-17-1：使⽤线程池的好处"><a href="#1-17-1：使⽤线程池的好处" class="headerlink" title="1-17-1：使⽤线程池的好处"></a>1-17-1：使⽤线程池的好处</h3><ol>
+<li>降低资源消耗。通过重复利用已创建的线程降低线程创建和销毁造成的消耗。</li>
+<li>提高响应速度。当任务到达时，任务可以不需要的等到线程创建就能立即执行。</li>
+<li>提高线程的可管理性。线程是稀缺资源，如果无限制的创建，不仅会消耗系统资源，还会降低系统的稳定性，使用线程池可以进行统一的分配，调优和监控。</li>
+</ol>
+<h3 id="1-17-2：线程池增长策略"><a href="#1-17-2：线程池增长策略" class="headerlink" title="1-17-2：线程池增长策略"></a>1-17-2：线程池增长策略</h3><p>核心线程已满就加入等待队列，等待队列已满就加入线程，达到最大线程数就按照拒绝策略拒绝。</p>
+<h3 id="1-17-3：线程池拒绝策略"><a href="#1-17-3：线程池拒绝策略" class="headerlink" title="1-17-3：线程池拒绝策略"></a>1-17-3：线程池拒绝策略</h3><ul>
+<li>AbortPolicy:丢弃任务并抛出 RejectedExecutionException 异常  (默认)</li>
+<li>DiscardPolicy：也是丢弃任务，但是不抛出异常</li>
+<li>DiscardOldestPolicy：丢弃队列最前面的任务，执行后面的任务</li>
+<li>CallerRunsPolicy：由调用线程处理该任务</li>
+</ul>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-03-24/20210324225151.png!img" alt="20210324225151"></p>
+<h3 id="1-17-4：线程池参数"><a href="#1-17-4：线程池参数" class="headerlink" title="1-17-4：线程池参数"></a>1-17-4：线程池参数</h3><p>源码如下，一共有 7 个参数：</p>
+<ol>
+<li>corePoolSize：核心线程数量</li>
+<li>maximumPoolSize：最大线程数量</li>
+<li>keepAliveTime：当线程数大于核心线程数时，多余的空闲线程在终止之前等待新任务的最长时间</li>
+<li>unit： keepAliveTime 参数的时间单位</li>
+<li>workQueue：工作队列</li>
+<li>threadFactory：创建线程使用的工厂</li>
+<li>handler：拒绝策略</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ThreadPoolExecutor</span><span class="params">(<span class="keyword">int</span> corePoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">int</span> maximumPoolSize,</span></span></span><br><span class="line"><span class="function"><span class="params">                          <span class="keyword">long</span> keepAliveTime,</span></span></span><br><span class="line"><span class="function"><span class="params">                          TimeUnit unit,</span></span></span><br><span class="line"><span class="function"><span class="params">                          BlockingQueue&lt;Runnable&gt; workQueue,</span></span></span><br><span class="line"><span class="function"><span class="params">                          ThreadFactory threadFactory,</span></span></span><br><span class="line"><span class="function"><span class="params">                          RejectedExecutionHandler handler)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (corePoolSize &lt; <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt;= <span class="number">0</span> ||</span><br><span class="line">        maximumPoolSize &lt; corePoolSize ||</span><br><span class="line">        keepAliveTime &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException();</span><br><span class="line">    <span class="keyword">if</span> (workQueue == <span class="keyword">null</span> || threadFactory == <span class="keyword">null</span> || handler == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">this</span>.acc = System.getSecurityManager() == <span class="keyword">null</span> ?</span><br><span class="line">            <span class="keyword">null</span> :</span><br><span class="line">            AccessController.getContext();</span><br><span class="line">    <span class="keyword">this</span>.corePoolSize = corePoolSize;</span><br><span class="line">    <span class="keyword">this</span>.maximumPoolSize = maximumPoolSize;</span><br><span class="line">    <span class="keyword">this</span>.workQueue = workQueue;</span><br><span class="line">    <span class="keyword">this</span>.keepAliveTime = unit.toNanos(keepAliveTime);</span><br><span class="line">    <span class="keyword">this</span>.threadFactory = threadFactory;</span><br><span class="line">    <span class="keyword">this</span>.handler = handler;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-17-5：线程池处理流程"><a href="#1-17-5：线程池处理流程" class="headerlink" title="1-17-5：线程池处理流程"></a>1-17-5：线程池处理流程</h3><p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-03-24/20210324230242.png!img" alt="20210324230242"></p>
+<h3 id="1-17-6：设计线程池"><a href="#1-17-6：设计线程池" class="headerlink" title="1-17-6：设计线程池"></a>1-17-6：设计线程池</h3><ul>
+<li>IO 密集型：2n</li>
+<li>CPU 密集型：n+1</li>
+</ul>
+<h3 id="1-17-7：线程池中的线程出现异常"><a href="#1-17-7：线程池中的线程出现异常" class="headerlink" title="1-17-7：线程池中的线程出现异常"></a>1-17-7：线程池中的线程出现异常</h3><ol>
+<li>使用 execute 执行会抛出堆栈异常，使用 submit 执行，会返回异常，可以使用 Future.get()获取。</li>
+<li>不会影响线程池里的其他线程执行</li>
+<li>线程池会移除错误线程，创建新的线程放入线程池中</li>
+</ol>
+<h3 id="1-17-8：线程池的风险"><a href="#1-17-8：线程池的风险" class="headerlink" title="1-17-8：线程池的风险"></a>1-17-8：线程池的风险</h3><ol>
+<li>死锁</li>
+<li>资源不足</li>
+<li>并发错误</li>
+<li>线程泄露</li>
+<li>请求过载</li>
+</ol>
+<p>17-9-1：死锁<br>17-9-1-1：什么是线程死锁<br>17-9-1-2：产生死锁的条件<br>17-9-1-3：如何解决线程死锁问题<br>17-10：线程池单例问题 18.锁<br>18-1：锁<br>18-2：乐观锁与悲观锁<br>18-2-1：两种锁的使用场景<br>18-2-2：乐观锁常见的两种实现方式<br>18-2-3：乐观锁的缺点<br>18-3：自旋锁<br>18-3-1：自旋锁的优缺点<br>18-3-2：自旋锁的升级——自适应自旋<br>18-3-3：自旋锁使用场景<br>18-4：可重入锁（递归锁）<br>18-4-1：可重入锁使用场景<br>18-4-2：可重入锁如果加了两把，但是只释放了一把会出现什么问题？<br>18-4-3：如果只加了一把锁，释放两次会出现什么问题？<br>18-5：读写锁<br>18-6：公平锁与非公平锁<br>18-6-1：公平锁与非公平锁优缺点<br>18-6-2：公平锁与非公平锁使用场景<br>18-7：共享锁<br>18-7-1：共享锁使用场景<br>18-8：独占锁<br>18-8-1：独占锁使用场景<br>18-9：重量级锁<br>18-9-1：重量级锁使用场景<br>18-10：轻量级锁<br>18-10-1：轻量级锁优缺点<br>18-11：偏向锁<br>18-11-1：偏向锁优缺点<br>18-12：分段锁<br>18-13：互斥锁<br>18-14：同步锁<br>18-15：死锁<br>18-16：锁粗化<br>18-17：锁消除<br>18-18：提高锁性能的方法<br>19.ThreadLocal<br>19-1：什么是 ThreadLocal，优势在哪里<br>19-2：ThreadLocal 的实现原理<br>19-3：ThreadLocal 内存泄露问题<br>19-3-1：ThreadLocal 如何防止内存泄漏？ 20.线程变量绑定 21.无锁-CAS、Atomic<br>21-1：CAS<br>21-1-1：CAS 使用时存在的问题以及解决方案<br>21-1-1-1：CAS 的 ABA 问题<br>21-2：CAS 原理<br>21-2：原子类原理<br>21-1-1：为什么要使用原子类<br>21-1-2：原子类的作用？<br>21-4：i++自增操作不是原子性的，如何决绝原子性问题<br>21-5：基本数据类型原子类的优势<br>21-6：为什么是 unsafe<br>26-2：Unsafe 为什么是不安全的？<br>26-3：Unsafe 的实例怎么获取？<br>26-4：讲一讲 Unsafe 中的 CAS 操作？<br>26-5：unsafe 的阻塞/唤醒操作？<br>23.AQS（队列同步器）<br>23-1：对 AQS 原理分析<br>23-2：AQS 对资源的共享⽅式<br>23-3：AQS 组件<br>23-4：AQS 应用场景 24.并发容器<br>24-1：JDK 提供的并发容器总结<br>24-2：CopyOnWriteArrayList 是如何做到的？<br>24-3：BlockingQueue<br>24-3-1：什么是阻塞队列<br>24-3-2：阻塞队列的常用类<br>24-3-3：手写堵塞队列 25.快速失败与安全失败</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/3b872ac8/">https://shiming.best/blog/3b872ac8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的日记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%B9%B6%E5%8F%91/">并发</a></div><div class="post_share"><div class="social-share" data-image="https://image.shiming.online/guidao/pic-88.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/8efca904/"><img class="prev-cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">面试题-JVM篇</div></div></a></div><div class="next-post pull-right"><a href="/blog/cdb9830f/"><img class="next-cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">面试题-序列化篇</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description">El Psy Congroo</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">116</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">61</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">38</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XShiMing"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="card-widget card-announcement"><div class="card-content"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">欢迎阅读我的笔记。笔记中可能存在遗漏或简单的错误，请见谅。</div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">1-1:进程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1-1-1：什么是进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">1.2.</span> <span class="toc-text">1-1-2：进程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-2-1%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E8%BF%81"><span class="toc-number">1.2.1.</span> <span class="toc-text">1-1-2-1：进程的状态变迁</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF-PCB"><span class="toc-number">1.3.</span> <span class="toc-text">1-1-3：什么是 PCB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1-3-1%EF%BC%9APCB-%E5%85%B7%E4%BD%93%E5%8C%85%E5%90%AB%E4%BB%80%E4%B9%88%E4%BF%A1%E6%81%AF%E5%91%A2%EF%BC%9F"><span class="toc-number">1.3.1.</span> <span class="toc-text">1-1-3-1：PCB 具体包含什么信息呢？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-2%EF%BC%9A%E5%A4%9A%E4%B8%AA-PCB-%E6%98%AF%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E7%9A%84%E5%91%A2%EF%BC%9F"><span class="toc-number">1.4.</span> <span class="toc-text">1-1-3-2：多个 PCB 是如何组织的呢？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E6%8E%A7%E5%88%B6"><span class="toc-number">1.5.</span> <span class="toc-text">1-1-4：进程的控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-5%EF%BC%9A%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-number">1.6.</span> <span class="toc-text">1-1-5：进程间通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-6%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><span class="toc-number">1.7.</span> <span class="toc-text">1-1-6：进程的内存结构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2%EF%BC%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">1-2：线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%A6%82%E5%BF%B5"><span class="toc-number">2.1.</span> <span class="toc-text">1-2-1：线程概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-1%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B"><span class="toc-number">2.1.1.</span> <span class="toc-text">1-2-1-1：为什么使用线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1-2%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">2.1.2.</span> <span class="toc-text">1-2-1-2：线程的优缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2%EF%BC%9A%E4%B8%89%E7%A7%8D%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">2.2.</span> <span class="toc-text">1-2-2：三种线程的实现方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">2.3.</span> <span class="toc-text">1-2-3：用户线程如何理解？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-1%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E5%AD%98%E5%9C%A8%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%E5%92%8C%E7%BC%BA%E9%99%B7%EF%BC%9F"><span class="toc-number">2.3.1.</span> <span class="toc-text">1-2-3-1：用户线程存在什么优势和缺陷？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4%EF%BC%9A%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%EF%BC%9F"><span class="toc-number">2.4.</span> <span class="toc-text">1-2-4：内核线程如何理解？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-4-1%EF%BC%9A%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E5%AD%98%E5%9C%A8%E4%BB%80%E4%B9%88%E4%BC%98%E5%8A%BF%E5%92%8C%E7%BC%BA%E9%99%B7"><span class="toc-number">2.4.1.</span> <span class="toc-text">1-2-4-1：内核线程存在什么优势和缺陷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-5%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%86%85%E6%A0%B8%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">2.5.</span> <span class="toc-text">1-2-5：用户线程和内核线程的对应关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-6%EF%BC%9A%E8%BD%BB%E9%87%8F%E7%BA%A7%E8%BF%9B%E7%A8%8B%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3"><span class="toc-number">2.6.</span> <span class="toc-text">1-2-6：轻量级进程如何理解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-6-1%EF%BC%9A-LWP-%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="toc-number">2.6.1.</span> <span class="toc-text">1-2-6-1： LWP 与用户线程的对应关系</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3%EF%BC%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="toc-number">2.7.</span> <span class="toc-text">1-2-3：线程同步</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-1%EF%BC%9Await-notify-%E6%9C%BA%E5%88%B6"><span class="toc-number">2.7.1.</span> <span class="toc-text">1-2-3-1：wait&#x2F;notify 机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-3-2%EF%BC%9A%E7%AE%A1%E9%81%93%E9%80%9A%E4%BF%A1"><span class="toc-number">2.7.2.</span> <span class="toc-text">1-2-3-2：管道通信</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E7%BA%BF%E7%A8%8B%E4%B8%8E%E8%BF%9B%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.</span> <span class="toc-text">1-3.线程与进程的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1%EF%BC%9A%E8%BF%9B%E7%A8%8B%E5%88%87%E6%8D%A2%E4%B8%8E%E7%BA%BF%E7%A8%8B%E5%88%87%E6%8D%A2%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">3.1.</span> <span class="toc-text">1-3-1：进程切换与线程切换的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%9B%E7%A8%8B%E8%8A%B1%E9%94%80%E6%AF%94%E7%BA%BF%E7%A8%8B%E8%8A%B1%E9%94%80%E5%A4%A7"><span class="toc-number">3.2.</span> <span class="toc-text">1-3-2：为什么进程花销比线程花销大</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">1-4. 上下文切换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%8A%E4%B8%8B%E2%BD%82%E5%88%87%E6%8D%A2"><span class="toc-number">4.1.</span> <span class="toc-text">1-4-1：什么是上下⽂切换?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2%EF%BC%9ACPU-%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="toc-number">4.2.</span> <span class="toc-text">1-4-2：CPU 上下文切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3%EF%BC%9A%E8%BF%9B%E7%A8%8B%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">4.3.</span> <span class="toc-text">1-4-3：进程的上下文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4-3-1%EF%BC%9A%E5%8F%91%E7%94%9F%E8%BF%9B%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9C%BA%E6%99%AF%EF%BC%9F"><span class="toc-number">4.3.1.</span> <span class="toc-text">1-4-3-1：发生进程上下文切换有哪些场景？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-4%EF%BC%9A%E7%BA%BF%E7%A8%8B%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-number">4.4.</span> <span class="toc-text">1-4-4：线程上下文</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E8%B0%83%E5%BA%A6"><span class="toc-number">5.</span> <span class="toc-text">1-5.调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E8%B0%83%E5%BA%A6"><span class="toc-number">5.1.</span> <span class="toc-text">1-5-1：什么是调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2%EF%BC%9A%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E7%94%9F%E8%B0%83%E5%BA%A6"><span class="toc-number">5.2.</span> <span class="toc-text">1-5-2：什么时候会发生调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-3%EF%BC%9A%E8%B0%83%E5%BA%A6%E5%8E%9F%E5%88%99"><span class="toc-number">5.3.</span> <span class="toc-text">1-5-3：调度原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-4%EF%BC%9A%E8%BF%9B%E7%A8%8B%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="toc-number">5.4.</span> <span class="toc-text">1-5-4：进程调度算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-%E4%BA%92%E6%96%A5%E4%B8%8E%E5%90%8C%E6%AD%A5"><span class="toc-number">6.</span> <span class="toc-text">1-6.互斥与同步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-1%EF%BC%9A%E4%BA%92%E6%96%A5%E6%A6%82%E5%BF%B5"><span class="toc-number">6.1.</span> <span class="toc-text">1-6-1：互斥概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-1-1%EF%BC%9A%E4%B8%B4%E7%95%8C%E5%8C%BA"><span class="toc-number">6.1.1.</span> <span class="toc-text">1-6-1-1：临界区</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-2%EF%BC%9A%E5%90%8C%E6%AD%A5%E6%A6%82%E5%BF%B5"><span class="toc-number">6.2.</span> <span class="toc-text">1-6-2：同步概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-1%EF%BC%9A%E5%90%8C%E6%AD%A5%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">6.2.1.</span> <span class="toc-text">1-6-2-1：同步的原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-1%EF%BC%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">6.2.2.</span> <span class="toc-text">1-6-2-1：线程同步的方式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-2%EF%BC%9A%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95%E5%92%8C%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">6.2.3.</span> <span class="toc-text">1-6-2-2：同步方法和同步代码块的区别是什么</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-6-2-3%EF%BC%9A%E5%9C%A8%E7%9B%91%E8%A7%86%E5%99%A8%E5%86%85%E9%83%A8%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E5%81%9A%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5%E7%9A%84%EF%BC%9F"><span class="toc-number">6.2.4.</span> <span class="toc-text">1-6-2-3：在监视器内部，是如何做线程同步的？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-3%EF%BC%9A%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BA%92%E6%96%A5%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.3.</span> <span class="toc-text">1-6-3：同步与互斥的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-7%EF%BC%9A%E7%94%9F%E4%BA%A7%E8%80%85%E4%B8%8E%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98%EF%BC%88%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">1-7：生产者与消费者问题（同步问题）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-8%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%BA%A7%E5%88%AB%EF%BC%88%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">1-8：并发级别（并行和并发）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-1%EF%BC%9A%E5%B9%B6%E8%A1%8C%E4%B8%8E%E5%B9%B6%E5%8F%91%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.</span> <span class="toc-text">1-8-1：并行与并发概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-9%EF%BC%9A%E5%B9%B6%E5%8F%91%E7%89%B9%E6%80%A7"><span class="toc-number">9.</span> <span class="toc-text">1-9：并发特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-10%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">10.</span> <span class="toc-text">1-10：多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-1%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E2%BD%A4%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%91%A2"><span class="toc-number">10.1.</span> <span class="toc-text">1-10-1：为什么要使⽤多线程呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-1-1%EF%BC%9A%E4%BD%BF%E2%BD%A4%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%8F%AF%E8%83%BD%E5%B8%A6%E6%9D%A5%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-number">10.2.</span> <span class="toc-text">1-10-1-1：使⽤多线程可能带来什么问题?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-10-2%EF%BC%9A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%85%AC%E5%85%B1%E7%94%A8%E4%B8%80%E4%B8%AA%E6%95%B0%E6%8D%AE%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88"><span class="toc-number">10.3.</span> <span class="toc-text">1-10-2：多线程公共用一个数据注意什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-2-1%EF%BC%9A%E5%A6%82%E4%BD%95%E7%A1%AE%E4%BF%9D-N-%E4%B8%AA%E7%BA%BF%E7%A8%8B%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE-N-%E4%B8%AA%E8%B5%84%E6%BA%90%E5%90%8C%E6%97%B6%E5%8F%88%E4%B8%8D%E5%AF%BC%E8%87%B4%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="toc-number">10.3.1.</span> <span class="toc-text">1-10-2-1：如何确保 N 个线程可以访问 N 个资源同时又不导致死锁？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-10-2-2%EF%BC%9A%E5%8D%95-cpu-%E4%B8%8A%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%95%88%E7%8E%87%E5%92%8C%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%AF%94%E5%A6%82%E4%BD%95"><span class="toc-number">10.3.2.</span> <span class="toc-text">1-10-2-2：单 cpu 上多线程效率和单线程比如何</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-11%EF%BC%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">11.</span> <span class="toc-text">1-11：线程的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-1%EF%BC%9A%E8%AF%B4%E8%AF%B4-sleep-%E2%BD%85%E6%B3%95%E5%92%8C-wait-%E2%BD%85%E6%B3%95%E5%8C%BA%E5%88%AB%E5%92%8C%E5%85%B1%E5%90%8C%E7%82%B9"><span class="toc-number">11.1.</span> <span class="toc-text">1-11-1：说说 sleep() ⽅法和 wait() ⽅法区别和共同点?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-2%EF%BC%9Ayield-join-notify-notifyAll"><span class="toc-number">11.2.</span> <span class="toc-text">1-11-2：yield join notify notifyAll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-3%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E8%B0%83%E2%BD%A4-start-%E2%BD%85%E6%B3%95%E6%97%B6%E4%BC%9A%E6%89%A7%E2%BE%8F-run-%E2%BD%85%E6%B3%95%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E4%BB%AC%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%B0%83%E2%BD%A4-run-%E2%BD%85%E6%B3%95"><span class="toc-number">11.3.</span> <span class="toc-text">1-11-3：为什么我们调⽤ start() ⽅法时会执⾏ run() ⽅法，为什么我们不能直接调⽤ run() ⽅法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-4%EF%BC%9A%E4%B8%AD%E6%96%AD%E7%BA%BF%E7%A8%8B%E6%96%B9%E6%B3%95%EF%BC%8836-%E6%9C%9F%EF%BC%89"><span class="toc-number">11.4.</span> <span class="toc-text">1-11-4：中断线程方法（36 期）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-11-5%EF%BC%9A%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B%E4%BB%A5%E5%8F%8A%E4%B8%A4%E8%80%85%E5%8C%BA%E5%88%AB"><span class="toc-number">11.5.</span> <span class="toc-text">1-11-5：用户线程和守护线程以及两者区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-12%EF%BC%9A%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="toc-number">12.</span> <span class="toc-text">1-12：创建线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-1%EF%BC%9A%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="toc-number">12.1.</span> <span class="toc-text">1-12-1：创建线程的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-12-1-1%EF%BC%9A%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E2%BC%9D%E5%92%8C-Callable-%E6%8E%A5%E2%BC%9D%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">12.1.1.</span> <span class="toc-text">1-12-1-1：实现 Runnable 接⼝和 Callable 接⼝的区别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-12-1-2%EF%BC%9A%E5%AE%9E%E7%8E%B0-Runnable-%E6%8E%A5%E5%8F%A3%E6%AF%94%E7%BB%A7%E6%89%BF-Thread-%E7%B1%BB%E6%89%80%E5%85%B7%E6%9C%89%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">12.1.2.</span> <span class="toc-text">1-12-1-2：实现 Runnable 接口比继承 Thread 类所具有的优势</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-12-2%EF%BC%9A%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">12.2.</span> <span class="toc-text">1-12-2：创建线程的对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-13%EF%BC%9A%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">13.</span> <span class="toc-text">1-13：线程安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-13-1%EF%BC%9A%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><span class="toc-number">13.1.</span> <span class="toc-text">1-13-1：什么是线程安全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-13-1-1%EF%BC%9A%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8"><span class="toc-number">13.1.1.</span> <span class="toc-text">1-13-1-1：举例说明线程不安全</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-14%EF%BC%9Asynchronized-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">14.</span> <span class="toc-text">1-14：synchronized 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-1%EF%BC%9Asynchronized-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">14.1.</span> <span class="toc-text">1-14-1：synchronized 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-2%EF%BC%9AJDK1-6-%E4%BC%98%E5%8C%96%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="toc-number">14.2.</span> <span class="toc-text">1-14-2：JDK1.6 优化有哪些？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-3%EF%BC%9A%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="toc-number">14.3.</span> <span class="toc-text">1-14-3：底层原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-4%EF%BC%9Asynchronized-%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">14.4.</span> <span class="toc-text">1-14-4：synchronized 的优势</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-5%EF%BC%9Asynchronized-%E9%94%81%E7%9A%84%E8%86%A8%E8%83%80%EF%BC%88%E5%8D%87%E7%BA%A7%EF%BC%89%E8%BF%87%E7%A8%8B"><span class="toc-number">14.5.</span> <span class="toc-text">1-14-5：synchronized 锁的膨胀（升级）过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-6%EF%BC%9A%E4%BD%BF%E7%94%A8-Synchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%80%E4%B9%88"><span class="toc-number">14.6.</span> <span class="toc-text">1-14-6：使用 Synchronized 关键字需要注意什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-14-7%EF%BC%9Asynchronized-%E5%9C%A8%E5%86%85%E5%AD%98%E5%B1%82%E9%9D%A2%EF%BC%8C%E6%98%AF%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A0%E9%94%81%E5%92%8C%E9%87%8A%E6%94%BE%E9%94%81%E7%9A%84%EF%BC%9F"><span class="toc-number">14.7.</span> <span class="toc-text">1-14-7：synchronized 在内存层面，是如何实现加锁和释放锁的？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-15%EF%BC%9Avolatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">15.</span> <span class="toc-text">1-15：volatile 关键字</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-1%EF%BC%9A%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="toc-number">15.1.</span> <span class="toc-text">1-15-1：基本原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-15-1-1%EF%BC%9A%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7%E5%8D%8F%E8%AE%AE"><span class="toc-number">15.1.1.</span> <span class="toc-text">1-15-1-1：缓存一致性协议</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%98%AF%E7%94%A8-volatile-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">15.2.</span> <span class="toc-text">1-15-2：为什么要是用 volatile 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-3%EF%BC%9Avolatile-%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">15.3.</span> <span class="toc-text">1-15-3：volatile 的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-4%EF%BC%9A%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">15.4.</span> <span class="toc-text">1-15-4：原子性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-15-4-1%EF%BC%9Avolatile-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7%E5%90%97"><span class="toc-number">15.4.1.</span> <span class="toc-text">1-15-4-1：volatile 为什么不保证原子性吗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-15-4-2%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E5%85%B6%E4%BB%96%E7%BA%BF%E7%A8%8B%E8%83%BD%E6%84%9F%E7%9F%A5%E5%88%B0%E5%8F%98%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="toc-number">15.4.2.</span> <span class="toc-text">1-15-4-2：为什么其他线程能感知到变量更新</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-5%EF%BC%9A%E4%B8%BE%E4%BE%8B%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%8C%87%E4%BB%A4%E9%87%8D%E6%8E%92"><span class="toc-number">15.5.</span> <span class="toc-text">1-15-5：举例说一下指令重排</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-6%EF%BC%9Ahappen-before-%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">15.6.</span> <span class="toc-text">1-15-6：happen-before 原则是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-15-7%EF%BC%9Avolatile-%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">15.7.</span> <span class="toc-text">1-15-7：volatile 的典型应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-16%EF%BC%9Asynchronized-%E4%B8%8E%E5%85%B6%E4%BB%96%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">16.</span> <span class="toc-text">1-16：synchronized 与其他的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-16-1%EF%BC%9A%E8%B0%88%E8%B0%88-synchronized-%E5%92%8C-ReentrantLock-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">16.1.</span> <span class="toc-text">1-16-1：谈谈 synchronized 和 ReentrantLock 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-16-2%EF%BC%9Asynchronized-%E5%85%B3%E9%94%AE%E5%AD%97%E5%92%8C-volatile-%E5%85%B3%E9%94%AE%E5%AD%97%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">16.2.</span> <span class="toc-text">1-16-2：synchronized 关键字和 volatile 关键字的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-17%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E2%80%93%E6%AD%BB%E9%94%81"><span class="toc-number">17.</span> <span class="toc-text">1-17：线程池–死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-1%EF%BC%9A%E4%BD%BF%E2%BD%A4%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">17.1.</span> <span class="toc-text">1-17-1：使⽤线程池的好处</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-2%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A2%9E%E9%95%BF%E7%AD%96%E7%95%A5"><span class="toc-number">17.2.</span> <span class="toc-text">1-17-2：线程池增长策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-3%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="toc-number">17.3.</span> <span class="toc-text">1-17-3：线程池拒绝策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-4%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%8F%82%E6%95%B0"><span class="toc-number">17.4.</span> <span class="toc-text">1-17-4：线程池参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-5%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-number">17.5.</span> <span class="toc-text">1-17-5：线程池处理流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-6%EF%BC%9A%E8%AE%BE%E8%AE%A1%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="toc-number">17.6.</span> <span class="toc-text">1-17-6：设计线程池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-7%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%AD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%87%BA%E7%8E%B0%E5%BC%82%E5%B8%B8"><span class="toc-number">17.7.</span> <span class="toc-text">1-17-7：线程池中的线程出现异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-17-8%EF%BC%9A%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E9%A3%8E%E9%99%A9"><span class="toc-number">17.8.</span> <span class="toc-text">1-17-8：线程池的风险</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/ec09f6b3/" title="面试题-Redis篇">面试题-Redis篇</a><time datetime="2021-04-28T09:04:16.000Z" title="发表于 2021-04-28 17:04:16">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/828907ec/" title="面试题-Spring篇">面试题-Spring篇</a><time datetime="2021-04-28T09:03:37.000Z" title="发表于 2021-04-28 17:03:37">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/63929c6f/" title="面试题-数据库篇">面试题-数据库篇</a><time datetime="2021-04-28T09:01:41.000Z" title="发表于 2021-04-28 17:01:41">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/15163a62/" title="面试题-计网和操作系统篇">面试题-计网和操作系统篇</a><time datetime="2021-04-28T09:00:52.000Z" title="发表于 2021-04-28 17:00:52">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/8efca904/" title="面试题-JVM篇">面试题-JVM篇</a><time datetime="2021-04-28T09:00:08.000Z" title="发表于 2021-04-28 17:00:08">2021-04-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>渝ICP备2020010262号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js', () => {
+      pangu.spacingElementById('content-inner')
+    })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguFn)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '8AI4XAeM1WByt61C1hTs3U7f-MdYXbMMI',
+      appKey: 'TxTEH6NbG1UeKnrlAFuRIcDH',
+      placeholder: '给我的文章加点评论吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div></body></html>
