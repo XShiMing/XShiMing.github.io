@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-03-17 19:45:23'
+  postUpdate: '2021-04-28 16:34:40'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -158,15 +158,7 @@ if (asideStatus !== undefined) {
 @SpringBootApplication: Spring Boot应用标注在某个类上说明这个类是SpringBoot的主配置类，SpringBoot就应该运行这个类的main方法来启动SpringBoot应用。
 
 在xxxApplication.java文件中查看@SpringBootApplication注解（按住ctrl+点击注解）
-12345678910111213141516171819// S ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/52912/" title="前后端传递参数">前后端传递参数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-24T16:00:00.000Z" title="发表于 2020-07-25 00:00:00">2020-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Web%E5%89%8D%E7%AB%AF/">Web前端</a></span></div><div class="content">正常情况下传递给后端的是application/x-www-form-urlencoded格式，后端可以直接接收但是传递对象时，需要以json格式来传递（application/json），前端需要设置
-12contentType: &quot;application/json&quot;,data: JSON.stringify(data),
-
-同时，后端需要用@RequestBody作用在参数上来接受例:
-1234@RequestMapping(&quot;/deleteAll&quot;) public String deleteAll(@RequestBody Vip vip) &#123; &#125;
-
-后端返回JSON格式数据可以使用@RestController
-@RestController等价于@Controller+@ResponseBody
-</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/14614/" title="knife4j">knife4j</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-24T16:00:00.000Z" title="发表于 2020-07-25 00:00:00">2020-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">
+12345678910111213141516171819// S ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/14614/" title="knife4j">knife4j</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-24T16:00:00.000Z" title="发表于 2020-07-25 00:00:00">2020-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/%E5%B7%A5%E5%85%B7/">工具</a></span></div><div class="content">
 这是对官网内容的一份总结，是对官网内容的整理本文中所使用knife4j版本号–&gt;2.0.8
 
 简介knife4j是springfox-swagger的增强UI实现，为Java开发者在使用Swagger的时候，能拥有一份简洁、强大的接口文档体验,前身是swagger-bootstrap-ui官方指南
@@ -174,7 +166,15 @@ if (asideStatus !== undefined) {
 在pom.xml中添加依赖
  123456&lt;dependency&gt;    &lt;groupId&gt;com.github.xiaoymin&lt;/groupId&gt;    &lt;artifactId&gt;knife4j-spring-boot-starter&lt;/artifactId&gt;    &lt;!--在引用时请在maven中央仓库搜索最新版本号--&gt;    &lt;version&gt;2.0.8&lt;/version&gt;&lt;/dependency&gt;
 
- TIP:3.x的版本依赖springfox3.0.0，springfox3.0目前也只更新发布了一个版本，从功能稳定性来说，可能不如2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/21968/" title="MyBatis Generator">MyBatis Generator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MyBatis/">MyBatis</a></span></div><div class="content">Why生成pojo,mapper.java.mapper.xml文件（包含基础增删改查），提交工作效率，解决繁琐的消逝
+ TIP:3.x的版本依赖springfox3.0.0，springfox3.0目前也只更新发布了一个版本，从功能稳定性来说，可能不如2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/52912/" title="前后端传递参数">前后端传递参数</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-24T16:00:00.000Z" title="发表于 2020-07-25 00:00:00">2020-07-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Web%E5%89%8D%E7%AB%AF/">Web前端</a></span></div><div class="content">正常情况下传递给后端的是application/x-www-form-urlencoded格式，后端可以直接接收但是传递对象时，需要以json格式来传递（application/json），前端需要设置
+12contentType: &quot;application/json&quot;,data: JSON.stringify(data),
+
+同时，后端需要用@RequestBody作用在参数上来接受例:
+1234@RequestMapping(&quot;/deleteAll&quot;) public String deleteAll(@RequestBody Vip vip) &#123; &#125;
+
+后端返回JSON格式数据可以使用@RestController
+@RestController等价于@Controller+@ResponseBody
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/21968/" title="MyBatis Generator">MyBatis Generator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MyBatis/">MyBatis</a></span></div><div class="content">Why生成pojo,mapper.java.mapper.xml文件（包含基础增删改查），提交工作效率，解决繁琐的消逝
 使用方法1. pom.xml导入插件1234567891011&lt;dependency&gt;    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;    &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;    &lt;version&gt;1.4.0&lt;/version&gt;&lt;/dependency&gt;&lt;!-- Mybatis Dynamic Sql 依赖，可以不添加 --&gt;&lt;!-- &lt;dependency&gt;    &lt;groupId&gt;org.mybatis.dynamic-sql&lt;/groupId&gt;    &lt;artifactId&gt;mybatis-dynamic-sql&lt;/artifactId&gt;    &lt;version&gt;1.1.4&l ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/56612/" title="SSM搭建">SSM搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-22T16:00:00.000Z" title="发表于 2020-07-23 00:00:00">2020-07-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a></span></div><div class="content">总结
 
 修改web.xml配置文件的内容

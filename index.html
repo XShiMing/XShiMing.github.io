@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-03-17 19:45:22'
+  postUpdate: '2021-04-28 16:34:39'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -164,13 +164,19 @@ Integer转String转化为16进制/8进制/2进制方法如下：
 123456789101112public static String toHexString(int i) &#123;    return toUnsignedString0(i, 4);&#125;public static String toOctalString(int i) &#123;    return toUnsignedString0(i, 3);&#125;public static String toBinarySt ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/abb154f4/" title="ArrayList源码解析">ArrayList源码解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-12T05:36:21.000Z" title="发表于 2021-03-12 13:36:21">2021-03-12</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Java/%E6%BA%90%E7%A0%81/">源码</a></span></div><div class="content">基础结构12345678910111213141516171819202122232425262728293031323334353637383940414243444546// 默认初始化容量，私有常量private static final int DEFAULT_CAPACITY = 10;// 初始容量设为0时的数组，私有常量private static final Object[] EMPTY_ELEMENTDATA = &#123;&#125;;// 未设置初始容量时的空数组，与上一步拆分以在第一个元素添加时确定数组大小，私有常量private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = &#123;&#125;;// 存放数据，如果 elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA，那么第一个数据时，容量为默认容量10transient Object[] elementData; // non-private to simplify nested cla ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/a2a7cca8/" title="HashMap源码解析">HashMap源码解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-10T09:21:46.000Z" title="发表于 2021-03-10 17:21:46">2021-03-10</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java%EF%BC%8C%E6%BA%90%E7%A0%81/">Java，源码</a></span></div><div class="content">基本结构123456789101112131415161718192021222324252627282930// 默认容量16 static final int DEFAULT_INITIAL_CAPACITY = 1 &lt;&lt; 4; // aka 16// 默认最大容量static final int MAXIMUM_CAPACITY = 1 &lt;&lt; 30;// 默认负载因子0.75 16*0.75 = 12 即容量为13时扩容static final float DEFAULT_LOAD_FACTOR = 0.75f;// 树转化临界点8 链表容量为9时扩容static final int TREEIFY_THRESHOLD = 8;// 树退化临界点6 扩容时如果链表容量&lt;=6,退化为链表static final int UNTREEIFY_THRESHOLD = 6;// 树容量 转换为红黑树时，如果table长度小于64，扩容static final int MIN_TREEIFY_CAPACITY = 64;// 链表节点static class  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/a7ef9c4d/" title="Java面试题">Java面试题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-26T05:37:39.000Z" title="发表于 2021-02-26 13:37:39">2021-02-26</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">
 整理自各面试题博客和牛客网面经
 
-toString 和 String.valueOf()的区别将对象转为字符串常用三种方法：(String) xxx, xxx.toString(), String.valueOf(xxx)
+Comparator 与 Comparable 有什么区别？
+Comparable 是排序接口；若一个类实现了 Comparable 接口，就意味着“该类支持排序”。
+而 Comparator 是比较器；我们若需要控制某个类的次序，可以建立一个“该类的比较器”来进行排序。
+Comparable 相当于“内部比较器”，而 Comparator 相当于“外部比较器”。
 
-(String) ：强制转换，将object转成String类型的值。使用这种方法时，需要注意的是类型必须能转成String类型。否则容易抛出CalssCastException异常
-toString() ：在使用时要注意，必须保证转换的对象不是null值，否则将抛出NullPointerException异常。采用这种方法时，通常派生类会覆盖Object里的toString（）方法。
-String.valueOf() ：String的静态方法，避免了前两个的不足和缺点。在内部加了非空判断，不会抛出空指针异常，但是需要注意：对象为null时，会转换成字符串”null”，而不是 null ！。
+int 和 Integer 有什么区别，还有 Integer 缓存的实现int 和 Integer 的区别
+数组的特点？底层如何定位到数组中的元素？数组的内存空间是连续的吗？数组查询快，增删慢。数组底层是一块连续的内存空间，访问地址时根据内存块的首地址根据公式确定访问下标对应地址。
 
-123public static String valueOf(Object obj) &#123;    return (obj == null) ? &quot;nu ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/81f10c79/" title="常量池">常量池</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-25T05:43:24.000Z" title="发表于 2021-02-25 13:43:24">2021-02-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java%E5%BA%95%E5%B1%82/">Java底层</a></span></div><div class="content">Class常量池
+Java 中数组的引用放于栈内存中，而实际数据放于堆内存中。
+如果数组是引用类型数组，则堆内存中对应地址则指向对应对象。
+多维数组其实也是一维数组，每一格都指向下一层数组。例如二维数组存放行的一维数组，每一格指向列的一维数组。
+
+SpringSpring 和 SpringBoot 的关系Spring 框架为 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/81f10c79/" title="常量池">常量池</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-02-25T05:43:24.000Z" title="发表于 2021-02-25 13:43:24">2021-02-25</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java%E5%BA%95%E5%B1%82/">Java底层</a></span></div><div class="content">Class常量池
 原文地址：Java工程师成神之路
 
 在Java中，常量池的概念想必很多人都听说过。这也是面试中比较常考的题目之一。在Java有关的面试题中，一般习惯通过String的有关问题来考察面试者对于常量池的知识的理解，几道简单的String面试题难倒了无数的开发者。所以说，常量池是Java体系中一个非常重要的概念。
