@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-06-25 10:33:26'
+  postUpdate: '2021-06-27 14:15:38'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -231,8 +231,8 @@ Char（字符）是用户的可读写的最小单位，在 Java 里面由 16 位
 1-2：JVM\JRE\JDK\JIT
 JDK：Java Development Kit 的简称，Java 开发工具包，提供了 Java 的开发环境和运行环境。
 JRE：Java Runtime Environment 的简称，Java 运行环境，为 Java 的运行提供了所需环境。
-JVM：Java Virtual Machine，Java 虚拟机
-JIT：Just-In-Time Compiler，即时编译器
+JVM：Java Virtual Machine，Java 虚拟机。
+JIT：Just-In-Time Compiler，即时编译器。
 
 JDK 包含 JRE 和编译器 Javac，还包含很多 Java 程序调试和分析的工具。JRE（Java 运行时环境）包含虚拟机但是不包含编译器。简单来说：如果需要运行 Java 程序，只需安装 JRE ，如果需要编写 Java 程序，则需要安装 JDK。
 1-3：变量的初始化顺序
@@ -243,8 +243,8 @@ JDK 包含 JRE 和编译器 Javac，还包含很多 Java 程序调试和分析�
 子类成员代码块
 子类构造函数
 
-静态代码块和非静态代码块按顺序加载
-1-4：⾯向过程性能⽐⾯ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/3cd8af52/" title="Integer源码解析">Integer源码解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-17T05:37:08.000Z" title="发表于 2021-03-17 13:37:08">2021-03-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Java/%E6%BA%90%E7%A0%81/">源码</a></span></div><div class="content">构造函数123456789private final int value;public Integer(int value) &#123;    this.value = value;&#125;public Integer(String s) throws NumberFormatException &#123;    this.value = parseInt(s, 10);&#125;
+静态代码块和非静态代码块按顺序加载。
+1-4：⾯向过程性 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/3cd8af52/" title="Integer源码解析">Integer源码解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-17T05:37:08.000Z" title="发表于 2021-03-17 13:37:08">2021-03-17</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/Java/%E6%BA%90%E7%A0%81/">源码</a></span></div><div class="content">构造函数123456789private final int value;public Integer(int value) &#123;    this.value = value;&#125;public Integer(String s) throws NumberFormatException &#123;    this.value = parseInt(s, 10);&#125;
 
 从构造方法中我们可以知道，初始化一个Integer对象的时候只能创建一个十进制的整数。
 Integer转String转化为16进制/8进制/2进制方法如下：

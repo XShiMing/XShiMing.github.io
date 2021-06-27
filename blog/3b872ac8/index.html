@@ -532,15 +532,15 @@ if (asideStatus !== undefined) {
 <li>环路等待条件：在发生死锁时，必然存在一个进程–资源的环形链。</li>
 </ul>
 <h3 id="17-9-3：如何解决线程死锁问题"><a href="#17-9-3：如何解决线程死锁问题" class="headerlink" title="17-9-3：如何解决线程死锁问题"></a>17-9-3：如何解决线程死锁问题</h3><ul>
-<li>资源一次性分配：一次性分配所有资源，这样就不会再有请求了。（破坏请求条件）</li>
-<li>只要有一个资源得不到分配，也不给这个进程分配其他的资源。（破坏请求保持条件）</li>
+<li>资源一次性分配：一次性分配所有资源，这样就不会再有请求了（破坏请求条件）。</li>
+<li>只要有一个资源得不到分配，也不给这个进程分配其他的资源（破坏请求保持条件）。</li>
 <li>可剥夺资源：即当某进程获得了部分资源，但得不到其它资源，则释放已占有的资源（破坏不可剥夺条件）。</li>
 <li>资源有序分配法：系统给每类资源赋予一个编号，每一个进程按编号递增的顺序请求资源，释放则相反（破坏环路等待条件）。</li>
 </ul>
 <h3 id="17-10：线程池单例问题"><a href="#17-10：线程池单例问题" class="headerlink" title="17-10：线程池单例问题"></a>17-10：线程池单例问题</h3><p>可以通过常见的懒汉式单例创建线程池</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.LinkedBlockingDeque;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.ThreadPoolExecutor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.TimeUnit;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadPoolService</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_CORE_SIZE=<span class="number">100</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_QUEUE_SIZE=<span class="number">500</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> ThreadPoolExecutor executor;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">ThreadPoolService</span><span class="params">()</span> </span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取单例的线程池对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ThreadPoolExecutor <span class="title">getInstance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (ThreadPoolService.class) &#123;</span><br><span class="line">                <span class="keyword">if</span> (executor == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    executor = <span class="keyword">new</span> ThreadPoolExecutor(DEFAULT_CORE_SIZE,<span class="comment">// 核心线程数</span></span><br><span class="line">                    MAX_QUEUE_SIZE, <span class="comment">// 最大线程数</span></span><br><span class="line">                    Integer.MAX_VALUE, <span class="comment">// 闲置线程存活时间</span></span><br><span class="line">                    TimeUnit.MILLISECONDS,<span class="comment">// 时间单位</span></span><br><span class="line">                    <span class="keyword">new</span> LinkedBlockingDeque&lt;Runnable&gt;(Integer.MAX_VALUE),<span class="comment">// 线程队列</span></span><br><span class="line">                    Executors.defaultThreadFactory()<span class="comment">// 线程工厂</span></span><br><span class="line">                    );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> executor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (runnable == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        executor.execute(runnable);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从线程队列中移除对象</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">(Runnable runnable)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (executor != <span class="keyword">null</span>) &#123;</span><br><span class="line">            executor.getQueue().remove(runnable);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="18：锁"><a href="#18：锁" class="headerlink" title="18：锁"></a>18：锁</h2><h3 id="18-1：锁"><a href="#18-1：锁" class="headerlink" title="18-1：锁"></a>18-1：锁</h3><p>Java 中通过锁实现多线程处理业务时的线程同步和互斥</p>
+<h2 id="18：锁"><a href="#18：锁" class="headerlink" title="18：锁"></a>18：锁</h2><h3 id="18-1：锁"><a href="#18-1：锁" class="headerlink" title="18-1：锁"></a>18-1：锁</h3><p>Java 中通过锁实现多线程处理业务时的线程同步和互斥。</p>
 <h3 id="18-2：乐观锁与悲观锁"><a href="#18-2：乐观锁与悲观锁" class="headerlink" title="18-2：乐观锁与悲观锁"></a>18-2：乐观锁与悲观锁</h3><ul>
 <li>乐观锁：每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在提交更新的时候会判断一下在此期间别人有没有去更新这个数据。</li>
 <li>悲观锁：每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻止，直到这个锁被释放。</li>
@@ -550,8 +550,8 @@ if (asideStatus !== undefined) {
 <li>乐观锁适合读操作多的场景，不加锁的特点能够使其读操作的性能大幅提升。</li>
 </ul>
 <h3 id="18-2-2：乐观锁常见的两种实现方式"><a href="#18-2-2：乐观锁常见的两种实现方式" class="headerlink" title="18-2-2：乐观锁常见的两种实现方式"></a>18-2-2：乐观锁常见的两种实现方式</h3><ul>
-<li>直接比较当前值和预期值是否相同，相同则继续处理，但是可能会出现 ABA 问题</li>
-<li>通过版本号或者时间戳进行判断</li>
+<li>直接比较当前值和预期值是否相同，相同则继续处理，但是可能会出现 ABA 问题。</li>
+<li>通过版本号或者时间戳进行判断。</li>
 </ul>
 <h3 id="18-2-3：乐观锁的缺点"><a href="#18-2-3：乐观锁的缺点" class="headerlink" title="18-2-3：乐观锁的缺点"></a>18-2-3：乐观锁的缺点</h3><ul>
 <li>ABA 问题。CAS 需要在操作值的时候检查内存值是否发生变化，没有发生变化才会更新内存值。但是如果内存值原来是 A，后来变成了 B，然后又变成了 A，那么 CAS 进行检查时会发现值没有发生变化，但是实际上是有变化的。ABA 问题的解决思路就是在变量前面添加版本号，每次变量更新的时候都把版本号加一，这样变化过程就从“A－B－A”变成了“1A－2B－3A”。<br>JDK 从 1.5 开始提供了 AtomicStampedReference 类来解决 ABA 问题，具体操作封装在 compareAndSet()中。compareAndSet()首先检查当前引用和当前标志与预期引用和预期标志是否相等，如果都相等，则以原子方式将引用值和标志的值设置为给定的更新值。</li>
@@ -566,34 +566,34 @@ if (asideStatus !== undefined) {
 </ol>
 <p>优点：</p>
 <ol>
-<li>不会进行线程切换，不会使线程进行阻塞状态，减少了上下文切换的损失</li>
+<li>不会进行线程切换，不会使线程进行阻塞状态，减少了上下文切换的损失。</li>
 </ol>
 <h4 id="18-3-2：自旋锁的升级——自适应自旋"><a href="#18-3-2：自旋锁的升级——自适应自旋" class="headerlink" title="18-3-2：自旋锁的升级——自适应自旋"></a>18-3-2：自旋锁的升级——自适应自旋</h4><p>自旋锁在 Java1.6 中改为默认开启，并引入了自适应的自旋锁。<br>自适应意味着自旋的次数不在固定，而是由前一次在同一个锁上的自旋时间和锁的拥有者的状态共同决定。<br>如果在同一个锁对象上，自旋等待刚刚成功获得过锁，并且持有锁的线程正在运行中，那么虚拟机就会认为这次自旋也是很可能再次成功的，进而它将会允许线程自旋相对更长的时间。<br>如果对于某个锁，线程很少成功获得过，则会相应减少自旋的时间甚至直接进入阻塞的状态，避免浪费处理器资源。</p>
 <h4 id="18-3-3：自旋锁使用场景"><a href="#18-3-3：自旋锁使用场景" class="headerlink" title="18-3-3：自旋锁使用场景"></a>18-3-3：自旋锁使用场景</h4><p>在多核/多 CPU 的系统上，特别是大量的线程只会短时间的持有锁的时候，在使线程上下文切换上浪费大量的时间，也许会显著降低程序的运行性能。使用自旋锁，线程可以充分利用调度程序分配的时间片(不需要进入阻塞状态)， 以达到更高的处理能力和吞吐量。</p>
 <h3 id="18-4：可重入锁（递归锁）"><a href="#18-4：可重入锁（递归锁）" class="headerlink" title="18-4：可重入锁（递归锁）"></a>18-4：可重入锁（递归锁）</h3><p>可重入锁又名递归锁，是指在同一个线程在外层方法获取锁的时候，再进入该线程的内层方法会自动获取锁（前提锁对象得是同一个对象或者 class），不会因为之前已经获取过还没释放而阻塞。</p>
 <h4 id="18-4-1：可重入锁使用场景"><a href="#18-4-1：可重入锁使用场景" class="headerlink" title="18-4-1：可重入锁使用场景"></a>18-4-1：可重入锁使用场景</h4><ol>
-<li>如果发现该操作已经在执行中则不再执行（有状态执行）：例如定时任务/页面交互，避免多次执行</li>
-<li>如果发现该操作已经在执行，等待一个一个执行（同步执行，类似 synchronized）</li>
-<li>如果发现该操作已经在执行，则尝试等待一段时间，等待超时则不执行（尝试等待执行）</li>
-<li>如果发现该操作已经在执行，等待执行。这时可中断正在进行的操作立刻释放锁继续下一操作</li>
+<li>如果发现该操作已经在执行中则不再执行（有状态执行）：例如定时任务/页面交互，避免多次执行。</li>
+<li>如果发现该操作已经在执行，等待一个一个执行（同步执行，类似 synchronized）。</li>
+<li>如果发现该操作已经在执行，则尝试等待一段时间，等待超时则不执行（尝试等待执行）。</li>
+<li>如果发现该操作已经在执行，等待执行。这时可中断正在进行的操作立刻释放锁继续下一操作。</li>
 </ol>
 <h4 id="18-4-2：可重入锁如果加了两把，但是只释放了一把会出现什么问题？"><a href="#18-4-2：可重入锁如果加了两把，但是只释放了一把会出现什么问题？" class="headerlink" title="18-4-2：可重入锁如果加了两把，但是只释放了一把会出现什么问题？"></a>18-4-2：可重入锁如果加了两把，但是只释放了一把会出现什么问题？</h4><p>程序卡死，线程不能出来，也就是说我们申请了几把锁，就需要释放几把锁。</p>
 <h4 id="18-4-3：如果只加了一把锁，释放两次会出现什么问题？"><a href="#18-4-3：如果只加了一把锁，释放两次会出现什么问题？" class="headerlink" title="18-4-3：如果只加了一把锁，释放两次会出现什么问题？"></a>18-4-3：如果只加了一把锁，释放两次会出现什么问题？</h4><p>会报错，java.lang.IllegalMonitorStateException。</p>
 <h3 id="18-5：读写锁"><a href="#18-5：读写锁" class="headerlink" title="18-5：读写锁"></a>18-5：读写锁</h3><p>通过 ReentrantReadWriteLock 类来实现。为了提高性能， Java 提供了读写锁，在读的地方使用读锁，在写的地方使用写锁，灵活控制，如果没有写锁的情况下，读是无阻塞的，在一定程度上提高了程序的执行效率。读写锁分为读锁和写锁，多个读锁不互斥，读锁与写锁互斥，这是由 jvm 自己控制的。</p>
 <h3 id="18-6：公平锁与非公平锁"><a href="#18-6：公平锁与非公平锁" class="headerlink" title="18-6：公平锁与非公平锁"></a>18-6：公平锁与非公平锁</h3><p>公平锁：多个线程按照申请锁的顺序去获得锁，线程会直接进入队列去排队，永远都是队列的第一位才能得到锁。<br>非公平锁：多个线程去获取锁的时候，会直接去尝试获取，获取不到，再去进入等待队列，如果能获取到，就直接获取到锁。</p>
-<h4 id="18-6-1：公平锁与非公平锁优缺点"><a href="#18-6-1：公平锁与非公平锁优缺点" class="headerlink" title="18-6-1：公平锁与非公平锁优缺点"></a>18-6-1：公平锁与非公平锁优缺点</h4><p>优点： 非公平锁的性能高于公平锁。公平锁中会从队列首位唤醒线程，而非公平锁可能会直接获取锁，避免上下文切换带来的消耗<br>缺点： 公平锁有可能造成线程饥饿（某个线程很长一段时间获取不到锁）</p>
-<h4 id="18-6-2：公平锁与非公平锁使用场景"><a href="#18-6-2：公平锁与非公平锁使用场景" class="headerlink" title="18-6-2：公平锁与非公平锁使用场景"></a>18-6-2：公平锁与非公平锁使用场景</h4><p>非公平锁能用于提升效率，但是对于执行时间较长的程序，节省的时间忽略不计，但是会造成线程饥饿</p>
-<h3 id="18-7：共享锁"><a href="#18-7：共享锁" class="headerlink" title="18-7：共享锁"></a>18-7：共享锁</h3><p>即读锁，多个线程可以同时读取内容</p>
-<h4 id="18-7-1：共享锁使用场景"><a href="#18-7-1：共享锁使用场景" class="headerlink" title="18-7-1：共享锁使用场景"></a>18-7-1：共享锁使用场景</h4><p>限制公共资源访问人数，例如登陆人数，数据库连接池</p>
-<h3 id="18-8：独占锁"><a href="#18-8：独占锁" class="headerlink" title="18-8：独占锁"></a>18-8：独占锁</h3><p>即写锁，只有一个线程可以进行读写，其他线程都会被排斥</p>
-<h3 id="18-9：重量级锁"><a href="#18-9：重量级锁" class="headerlink" title="18-9：重量级锁"></a>18-9：重量级锁</h3><p>通过阻塞实现同步</p>
-<h4 id="18-9-1：重量级锁使用场景"><a href="#18-9-1：重量级锁使用场景" class="headerlink" title="18-9-1：重量级锁使用场景"></a>18-9-1：重量级锁使用场景</h4><p>多线程同时并发的情况下保证数据同步</p>
-<h3 id="18-10：轻量级锁"><a href="#18-10：轻量级锁" class="headerlink" title="18-10：轻量级锁"></a>18-10：轻量级锁</h3><p>通过乐观锁的 CAS 操作保证数据同步</p>
-<h4 id="18-10-1：轻量级锁优缺点"><a href="#18-10-1：轻量级锁优缺点" class="headerlink" title="18-10-1：轻量级锁优缺点"></a>18-10-1：轻量级锁优缺点</h4><p>在并发线程较少时保证数据同步</p>
-<h3 id="18-11：偏向锁"><a href="#18-11：偏向锁" class="headerlink" title="18-11：偏向锁"></a>18-11：偏向锁</h3><p>保存当前线程 id，比较 id 是否相同</p>
-<h4 id="18-11-1：偏向锁优缺点"><a href="#18-11-1：偏向锁优缺点" class="headerlink" title="18-11-1：偏向锁优缺点"></a>18-11-1：偏向锁优缺点</h4><p>节约资源，提高执行效率</p>
+<h4 id="18-6-1：公平锁与非公平锁优缺点"><a href="#18-6-1：公平锁与非公平锁优缺点" class="headerlink" title="18-6-1：公平锁与非公平锁优缺点"></a>18-6-1：公平锁与非公平锁优缺点</h4><p>优点： 非公平锁的性能高于公平锁。公平锁中会从队列首位唤醒线程，而非公平锁可能会直接获取锁，避免上下文切换带来的消耗。<br>缺点： 公平锁有可能造成线程饥饿（某个线程很长一段时间获取不到锁）。</p>
+<h4 id="18-6-2：公平锁与非公平锁使用场景"><a href="#18-6-2：公平锁与非公平锁使用场景" class="headerlink" title="18-6-2：公平锁与非公平锁使用场景"></a>18-6-2：公平锁与非公平锁使用场景</h4><p>非公平锁能用于提升效率，但是对于执行时间较长的程序，节省的时间忽略不计，但是会造成线程饥饿。</p>
+<h3 id="18-7：共享锁"><a href="#18-7：共享锁" class="headerlink" title="18-7：共享锁"></a>18-7：共享锁</h3><p>即读锁，多个线程可以同时读取内容。</p>
+<h4 id="18-7-1：共享锁使用场景"><a href="#18-7-1：共享锁使用场景" class="headerlink" title="18-7-1：共享锁使用场景"></a>18-7-1：共享锁使用场景</h4><p>限制公共资源访问人数，例如登陆人数，数据库连接池。</p>
+<h3 id="18-8：独占锁"><a href="#18-8：独占锁" class="headerlink" title="18-8：独占锁"></a>18-8：独占锁</h3><p>即写锁，只有一个线程可以进行读写，其他线程都会被排斥。</p>
+<h3 id="18-9：重量级锁"><a href="#18-9：重量级锁" class="headerlink" title="18-9：重量级锁"></a>18-9：重量级锁</h3><p>通过阻塞实现同步。</p>
+<h4 id="18-9-1：重量级锁使用场景"><a href="#18-9-1：重量级锁使用场景" class="headerlink" title="18-9-1：重量级锁使用场景"></a>18-9-1：重量级锁使用场景</h4><p>多线程同时并发的情况下保证数据同步。</p>
+<h3 id="18-10：轻量级锁"><a href="#18-10：轻量级锁" class="headerlink" title="18-10：轻量级锁"></a>18-10：轻量级锁</h3><p>通过乐观锁的 CAS 操作保证数据同步。</p>
+<h4 id="18-10-1：轻量级锁优缺点"><a href="#18-10-1：轻量级锁优缺点" class="headerlink" title="18-10-1：轻量级锁优缺点"></a>18-10-1：轻量级锁优缺点</h4><p>在并发线程较少时保证数据同步。</p>
+<h3 id="18-11：偏向锁"><a href="#18-11：偏向锁" class="headerlink" title="18-11：偏向锁"></a>18-11：偏向锁</h3><p>保存当前线程 id，比较 id 是否相同。</p>
+<h4 id="18-11-1：偏向锁优缺点"><a href="#18-11-1：偏向锁优缺点" class="headerlink" title="18-11-1：偏向锁优缺点"></a>18-11-1：偏向锁优缺点</h4><p>节约资源，提高执行效率。</p>
 <h3 id="18-12：分段锁"><a href="#18-12：分段锁" class="headerlink" title="18-12：分段锁"></a>18-12：分段锁</h3><p>ConcurrentHashMap 原理：它内部细分了若干个小的 HashMap，称之为段(Segment)。默认情况下一个 ConcurrentHashMap 被进一步细分为 16 个段，既就是锁的并发度。如果需要在 ConcurrentHashMap 添加一项 key-value，并不是将整个 HashMap 加锁，而是首先根据 hashcode 得到该 key-value 应该存放在哪个段中，然后对该段加锁，并完成 put 操作。在多线程环境中，如果多个线程同时进行 put 操作，只要被加入的 key-value 不存放在同一个段中，则线程间可以做到真正的并行。</p>
-<h3 id="18-13：互斥锁"><a href="#18-13：互斥锁" class="headerlink" title="18-13：互斥锁"></a>18-13：互斥锁</h3><p>与悲观锁，写锁同义，只有一个线程能够访问</p>
+<h3 id="18-13：互斥锁"><a href="#18-13：互斥锁" class="headerlink" title="18-13：互斥锁"></a>18-13：互斥锁</h3><p>与悲观锁，写锁同义，只有一个线程能够访问。</p>
 <h3 id="18-14：同步锁"><a href="#18-14：同步锁" class="headerlink" title="18-14：同步锁"></a>18-14：同步锁</h3><p>同步锁与互斥锁同义，表示并发执行的多个线程，在同一时间内只允许一个线程访问共享数据。</p>
 <h3 id="18-15：死锁"><a href="#18-15：死锁" class="headerlink" title="18-15：死锁"></a>18-15：死锁</h3><p><strong>死锁是一种现象</strong>：如线程 A 持有资源 x，线程 B 持有资源 y，线程 A 等待线程 B 释放资源 y，线程 B 等待线程 A 释放资源 x，两个线程都不释放自己持有的资源，则两个线程都获取不到对方的资源，就会造成死锁。</p>
 <p>Java 中的死锁不能自行打破，所以线程死锁后，线程不能进行响应。所以一定要注意程序的并发场景，避免造成死锁。</p>
@@ -611,17 +611,17 @@ if (asideStatus !== undefined) {
 </ol>
 <h2 id="19：ThreadLocal"><a href="#19：ThreadLocal" class="headerlink" title="19：ThreadLocal"></a>19：ThreadLocal</h2><h3 id="19-1：什么是-ThreadLocal，优势在哪里"><a href="#19-1：什么是-ThreadLocal，优势在哪里" class="headerlink" title="19-1：什么是 ThreadLocal，优势在哪里"></a>19-1：什么是 ThreadLocal，优势在哪里</h3><p>ThreadLocal 是线程本地存储，在每个线程中都创建了一个 ThreadLocalMap 对象，每个线程可以访问自己内部 ThreadLocalMap 对象内的 value。</p>
 <p>Synchronized 用于线程间的数据共享，而 ThreadLocal 则用于线程间的数据隔离。</p>
-<h3 id="19-2：ThreadLocal-的实现原理"><a href="#19-2：ThreadLocal-的实现原理" class="headerlink" title="19-2：ThreadLocal 的实现原理"></a>19-2：ThreadLocal 的实现原理</h3><p>每个线程内部都有一个 Map，Map 里面存储线程本地对象（key）和线程的变量副本（value）。Thread 内部的 Map 是由 ThreadLocal 维护的，由 ThreadLocal 负责向 map 获取和设置线程的变量值</p>
+<h3 id="19-2：ThreadLocal-的实现原理"><a href="#19-2：ThreadLocal-的实现原理" class="headerlink" title="19-2：ThreadLocal 的实现原理"></a>19-2：ThreadLocal 的实现原理</h3><p>每个线程内部都有一个 Map，Map 里面存储线程本地对象（key）和线程的变量副本（value）。Thread 内部的 Map 是由 ThreadLocal 维护的，由 ThreadLocal 负责向 map 获取和设置线程的变量值。</p>
 <h3 id="19-3：ThreadLocal-内存泄露问题"><a href="#19-3：ThreadLocal-内存泄露问题" class="headerlink" title="19-3：ThreadLocal 内存泄露问题"></a>19-3：ThreadLocal 内存泄露问题</h3><p>所有 Entry 对象都被 ThreadLocalMap 类的实例化对象 threadLocals 持有，当 ThreadLocal 对象不再使用时，ThreadLocal 对象在栈中的引用就会被回收，一旦没有任何引用指向 ThreadLocal 对象，Entry 只持有弱引用的 key 就会自动在下一次 YGC 时被回收，而此时持有强引用的 Entry 对象并不会被回收。<br>简而言之： threadLocals 对象中的 entry 对象不在使用后，没有及时 remove 该 entry 对象 ，然而程序自身也无法通过垃圾回收机制自动清除，从而导致内存泄漏。</p>
 <h4 id="19-3-1：ThreadLocal-如何防止内存泄漏？"><a href="#19-3-1：ThreadLocal-如何防止内存泄漏？" class="headerlink" title="19-3-1：ThreadLocal 如何防止内存泄漏？"></a>19-3-1：ThreadLocal 如何防止内存泄漏？</h4><p>只要在使用完 ThreadLocal 对象后，调用其 remove 方法删除对应的 Entry，即可从根本解决问题。</p>
 <h2 id="20：无锁-CAS、Atomic"><a href="#20：无锁-CAS、Atomic" class="headerlink" title="20：无锁-CAS、Atomic"></a>20：无锁-CAS、Atomic</h2><h3 id="20-1：CAS"><a href="#20-1：CAS" class="headerlink" title="20-1：CAS"></a>20-1：CAS</h3><h4 id="20-1-1：CAS-使用时存在的问题以及解决方案"><a href="#20-1-1：CAS-使用时存在的问题以及解决方案" class="headerlink" title="20-1-1：CAS 使用时存在的问题以及解决方案"></a>20-1-1：CAS 使用时存在的问题以及解决方案</h4><ol>
-<li>问题：ABA 问题，即将 A 改为 B，再改为 A，如果直接通过原值比较替换，就丢失了替换 B 的过程</li>
-<li>解决方案：版本号或者时间戳</li>
+<li>问题：ABA 问题，即将 A 改为 B，再改为 A，如果直接通过原值比较替换，就丢失了替换 B 的过程。</li>
+<li>解决方案：版本号或者时间戳。</li>
 </ol>
-<h3 id="20-2：原子类原理"><a href="#20-2：原子类原理" class="headerlink" title="20-2：原子类原理"></a>20-2：原子类原理</h3><p>CAS 即乐观锁</p>
+<h3 id="20-2：原子类原理"><a href="#20-2：原子类原理" class="headerlink" title="20-2：原子类原理"></a>20-2：原子类原理</h3><p>CAS 即乐观锁。</p>
 <h4 id="20-2-1：为什么要使用原子类"><a href="#20-2-1：为什么要使用原子类" class="headerlink" title="20-2-1：为什么要使用原子类"></a>20-2-1：为什么要使用原子类</h4><p>不会阻塞线程从而不会带来 CPU 上下文切换的性能开销。</p>
-<h4 id="20-2-2：原子类的作用？"><a href="#20-2-2：原子类的作用？" class="headerlink" title="20-2-2：原子类的作用？"></a>20-2-2：原子类的作用？</h4><p>和锁相同，保证并发情况下的线程安全</p>
-<h3 id="20-3：基本数据类型原子类的优势"><a href="#20-3：基本数据类型原子类的优势" class="headerlink" title="20-3：基本数据类型原子类的优势"></a>20-3：基本数据类型原子类的优势</h3><p>不需要加锁就能实现线程安全</p>
+<h4 id="20-2-2：原子类的作用？"><a href="#20-2-2：原子类的作用？" class="headerlink" title="20-2-2：原子类的作用？"></a>20-2-2：原子类的作用？</h4><p>和锁相同，保证并发情况下的线程安全。</p>
+<h3 id="20-3：基本数据类型原子类的优势"><a href="#20-3：基本数据类型原子类的优势" class="headerlink" title="20-3：基本数据类型原子类的优势"></a>20-3：基本数据类型原子类的优势</h3><p>不需要加锁就能实现线程安全。</p>
 <h3 id="20-4：-unsafe-类"><a href="#20-4：-unsafe-类" class="headerlink" title="20-4： unsafe 类"></a>20-4： unsafe 类</h3><p>Java 无法直接访问底层操作系统，而是通过本地（native）方法来访问。不过尽管如此，JVM 还是开了一个后门，JDK 中有一个类 Unsafe，底层是使用 C/C++写的，它提供了硬件级别的原子操作。Unsafe 为我们提供了访问底层的机制，这种机制仅供 java 核心类库使用，而不应该被普通用户使用。</p>
 <p>UnSafe 的功能主要有：（1）实例化一个类；（2）修改私有字段的值；（3）抛出 checked 异常；（4）使用堆外内存；（5）CAS 操作；（6）阻塞/唤醒线程；（7）内存屏障</p>
 <h4 id="20-4-1：为什么是-unsafe"><a href="#20-4-1：为什么是-unsafe" class="headerlink" title="20-4-1：为什么是 unsafe"></a>20-4-1：为什么是 unsafe</h4><p>直接操纵内存，意味着实例化出来的对象不会受到 JVM 的管理，不会被 GC，需要手动进行回收，容易出现内存泄露的问题。</p>
