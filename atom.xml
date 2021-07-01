@@ -488,7 +488,9 @@
     
     
     
-    <category term="Java，源码" scheme="https://shiming.best/categories/Java%EF%BC%8C%E6%BA%90%E7%A0%81/"/>
+    <category term="Java" scheme="https://shiming.best/categories/Java/"/>
+    
+    <category term="源码" scheme="https://shiming.best/categories/%E6%BA%90%E7%A0%81/"/>
     
     
     <category term="HashMap" scheme="https://shiming.best/tags/HashMap/"/>
