@@ -515,7 +515,9 @@
     
     
     
-    <category term="Java底层" scheme="https://shiming.best/categories/Java%E5%BA%95%E5%B1%82/"/>
+    <category term="Java" scheme="https://shiming.best/categories/Java/"/>
+    
+    <category term="JVM" scheme="https://shiming.best/categories/JVM/"/>
     
     
     <category term="Java" scheme="https://shiming.best/tags/Java/"/>
