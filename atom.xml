@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>面试题-Redis篇</title>
+    <title>面试题-Redis</title>
     <link href="https://shiming.best/blog/ec09f6b3/"/>
     <id>https://shiming.best/blog/ec09f6b3/</id>
     <published>2021-04-28T09:04:16.000Z</published>
@@ -34,7 +34,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Redis" scheme="https://shiming.best/tags/Redis/"/>
@@ -42,7 +44,7 @@
   </entry>
   
   <entry>
-    <title>面试题-Spring篇</title>
+    <title>面试题-Spring</title>
     <link href="https://shiming.best/blog/828907ec/"/>
     <id>https://shiming.best/blog/828907ec/</id>
     <published>2021-04-28T09:03:37.000Z</published>
@@ -59,7 +61,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Spring" scheme="https://shiming.best/tags/Spring/"/>
@@ -67,7 +71,7 @@
   </entry>
   
   <entry>
-    <title>面试题-数据库篇</title>
+    <title>面试题-数据库</title>
     <link href="https://shiming.best/blog/63929c6f/"/>
     <id>https://shiming.best/blog/63929c6f/</id>
     <published>2021-04-28T09:01:41.000Z</published>
@@ -84,7 +88,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="数据库" scheme="https://shiming.best/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
@@ -92,7 +98,7 @@
   </entry>
   
   <entry>
-    <title>面试题-计网和操作系统篇</title>
+    <title>面试题-计网和操作系统</title>
     <link href="https://shiming.best/blog/15163a62/"/>
     <id>https://shiming.best/blog/15163a62/</id>
     <published>2021-04-28T09:00:52.000Z</published>
@@ -109,7 +115,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="计网和操作系统" scheme="https://shiming.best/tags/%E8%AE%A1%E7%BD%91%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
@@ -117,7 +125,7 @@
   </entry>
   
   <entry>
-    <title>面试题-JVM篇</title>
+    <title>面试题-JVM</title>
     <link href="https://shiming.best/blog/8efca904/"/>
     <id>https://shiming.best/blog/8efca904/</id>
     <published>2021-04-28T09:00:08.000Z</published>
@@ -134,7 +142,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="JVM" scheme="https://shiming.best/tags/JVM/"/>
@@ -142,7 +152,7 @@
   </entry>
   
   <entry>
-    <title>面试题-并发篇</title>
+    <title>面试题-并发</title>
     <link href="https://shiming.best/blog/3b872ac8/"/>
     <id>https://shiming.best/blog/3b872ac8/</id>
     <published>2021-04-28T08:56:36.000Z</published>
@@ -159,7 +169,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="并发" scheme="https://shiming.best/tags/%E5%B9%B6%E5%8F%91/"/>
@@ -167,7 +179,7 @@
   </entry>
   
   <entry>
-    <title>面试题-序列化篇</title>
+    <title>面试题-序列化</title>
     <link href="https://shiming.best/blog/cdb9830f/"/>
     <id>https://shiming.best/blog/cdb9830f/</id>
     <published>2021-04-28T08:55:20.000Z</published>
@@ -184,7 +196,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="序列化" scheme="https://shiming.best/tags/%E5%BA%8F%E5%88%97%E5%8C%96/"/>
@@ -192,7 +206,7 @@
   </entry>
   
   <entry>
-    <title>面试题-常用类篇</title>
+    <title>面试题-常用类</title>
     <link href="https://shiming.best/blog/212d009/"/>
     <id>https://shiming.best/blog/212d009/</id>
     <published>2021-04-28T08:52:52.000Z</published>
@@ -209,7 +223,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="常用类" scheme="https://shiming.best/tags/%E5%B8%B8%E7%94%A8%E7%B1%BB/"/>
@@ -217,7 +233,7 @@
   </entry>
   
   <entry>
-    <title>面试题-String篇</title>
+    <title>面试题-String</title>
     <link href="https://shiming.best/blog/6c30916/"/>
     <id>https://shiming.best/blog/6c30916/</id>
     <published>2021-04-28T08:51:57.000Z</published>
@@ -234,7 +250,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="String" scheme="https://shiming.best/tags/String/"/>
@@ -242,7 +260,7 @@
   </entry>
   
   <entry>
-    <title>面试题-异常篇</title>
+    <title>面试题-异常</title>
     <link href="https://shiming.best/blog/e17021cf/"/>
     <id>https://shiming.best/blog/e17021cf/</id>
     <published>2021-04-28T08:51:07.000Z</published>
@@ -259,7 +277,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="异常" scheme="https://shiming.best/tags/%E5%BC%82%E5%B8%B8/"/>
@@ -267,7 +287,7 @@
   </entry>
   
   <entry>
-    <title>面试题-泛型篇</title>
+    <title>面试题-泛型</title>
     <link href="https://shiming.best/blog/5f845b50/"/>
     <id>https://shiming.best/blog/5f845b50/</id>
     <published>2021-04-28T08:50:16.000Z</published>
@@ -284,7 +304,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="泛型" scheme="https://shiming.best/tags/%E6%B3%9B%E5%9E%8B/"/>
@@ -292,7 +314,7 @@
   </entry>
   
   <entry>
-    <title>面试题-注解篇</title>
+    <title>面试题-注解</title>
     <link href="https://shiming.best/blog/b326aa67/"/>
     <id>https://shiming.best/blog/b326aa67/</id>
     <published>2021-04-28T08:49:22.000Z</published>
@@ -309,7 +331,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="注解" scheme="https://shiming.best/tags/%E6%B3%A8%E8%A7%A3/"/>
@@ -317,7 +341,7 @@
   </entry>
   
   <entry>
-    <title>面试题-反射篇</title>
+    <title>面试题-反射</title>
     <link href="https://shiming.best/blog/96f70960/"/>
     <id>https://shiming.best/blog/96f70960/</id>
     <published>2021-04-28T08:48:25.000Z</published>
@@ -334,7 +358,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="反射" scheme="https://shiming.best/tags/%E5%8F%8D%E5%B0%84/"/>
@@ -342,7 +368,7 @@
   </entry>
   
   <entry>
-    <title>面试题-IO篇</title>
+    <title>面试题-IO</title>
     <link href="https://shiming.best/blog/fe675ab8/"/>
     <id>https://shiming.best/blog/fe675ab8/</id>
     <published>2021-04-28T08:47:13.000Z</published>
@@ -359,7 +385,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="IO" scheme="https://shiming.best/tags/IO/"/>
@@ -367,7 +395,7 @@
   </entry>
   
   <entry>
-    <title>面试题-集合篇</title>
+    <title>面试题-集合</title>
     <link href="https://shiming.best/blog/12201e3/"/>
     <id>https://shiming.best/blog/12201e3/</id>
     <published>2021-04-28T08:41:49.000Z</published>
@@ -384,7 +412,9 @@
     
     
     
-    <category term="面试题" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="集合" scheme="https://shiming.best/tags/%E9%9B%86%E5%90%88/"/>
@@ -392,7 +422,7 @@
   </entry>
   
   <entry>
-    <title>面试题-Java基础篇</title>
+    <title>面试题-Java基础</title>
     <link href="https://shiming.best/blog/6ac545c4/"/>
     <id>https://shiming.best/blog/6ac545c4/</id>
     <published>2021-04-28T08:36:58.000Z</published>
@@ -409,7 +439,9 @@
     
     
     
-    <category term="面试" scheme="https://shiming.best/categories/%E9%9D%A2%E8%AF%95/"/>
+    <category term="其他" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    <category term="面试" scheme="https://shiming.best/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/"/>
     
     
     <category term="Java基础" scheme="https://shiming.best/tags/Java%E5%9F%BA%E7%A1%80/"/>
