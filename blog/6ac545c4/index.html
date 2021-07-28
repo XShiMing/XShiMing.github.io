@@ -200,21 +200,15 @@ if (asideStatus !== undefined) {
 <h3 id="2-3：面对对象三大特性"><a href="#2-3：面对对象三大特性" class="headerlink" title="2-3：面对对象三大特性"></a>2-3：面对对象三大特性</h3><blockquote>
 <p>来自维基百科：面向对象程序设计（英语：Object-oriented programming，缩写：OOP）是种具有对象概念的编程典范，同时也是一种程序开发的抽象方针。它可能包含数据、属性、代码与方法。对象则指的是类（class）的实例。它将对象作为程序的基本单元，将程序和数据封装其中，以提高软件的重用性、灵活性和扩展性，对象里的程序可以访问及经常修改对象相关联的数据。在面向对象程序编程里，计算机程序会被设计成彼此相关的对象。</p>
 </blockquote>
-<h4 id="2-3-1：封装"><a href="#2-3-1：封装" class="headerlink" title="2-3-1：封装"></a>2-3-1：封装</h4><ul>
-<li>封装（数据安全）：把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。</li>
-</ul>
+<h4 id="2-3-1：封装"><a href="#2-3-1：封装" class="headerlink" title="2-3-1：封装"></a>2-3-1：封装</h4><p>封装（数据安全）：把客观事物封装成抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象操作，对不可信的进行信息隐藏。</p>
 <h5 id="2-3-1-1：封装的应用场景"><a href="#2-3-1-1：封装的应用场景" class="headerlink" title="2-3-1-1：封装的应用场景"></a>2-3-1-1：封装的应用场景</h5><ol>
 <li>控制访问范围</li>
 <li>代码复用</li>
 <li>隐藏实现细节</li>
 </ol>
-<h4 id="2-3-2：继承"><a href="#2-3-2：继承" class="headerlink" title="2-3-2：继承"></a>2-3-2：继承</h4><h5 id="2-3-2-1：什么是继承"><a href="#2-3-2-1：什么是继承" class="headerlink" title="2-3-2-1：什么是继承"></a>2-3-2-1：什么是继承</h5><ul>
-<li>继承（代码复用）：在已存在的类的基础上扩展新类，提高代码的复用，程序的可维护性，节省大量创建新类的时间，提高效率。</li>
-</ul>
+<h4 id="2-3-2：继承"><a href="#2-3-2：继承" class="headerlink" title="2-3-2：继承"></a>2-3-2：继承</h4><h5 id="2-3-2-1：什么是继承"><a href="#2-3-2-1：什么是继承" class="headerlink" title="2-3-2-1：什么是继承"></a>2-3-2-1：什么是继承</h5><p>继承（代码复用）：在已存在的类的基础上扩展新类，提高代码的复用，程序的可维护性，节省大量创建新类的时间，提高效率。</p>
 <h5 id="2-3-2-2：继承的应用场景"><a href="#2-3-2-2：继承的应用场景" class="headerlink" title="2-3-2-2：继承的应用场景"></a>2-3-2-2：继承的应用场景</h5><p>对现存场景修改，维护</p>
-<h4 id="2-3-3：多态"><a href="#2-3-3：多态" class="headerlink" title="2-3-3：多态"></a>2-3-3：多态</h4><ul>
-<li>多态（动态绑定）：多态是同一个行为具有多个不同表现形式或形态的能力。</li>
-</ul>
+<h4 id="2-3-3：多态"><a href="#2-3-3：多态" class="headerlink" title="2-3-3：多态"></a>2-3-3：多态</h4><p>多态（动态绑定）：多态是同一个行为具有多个不同表现形式或形态的能力。</p>
 <h5 id="2-3-3-1：多态的必要条件（实现方式、机制）"><a href="#2-3-3-1：多态的必要条件（实现方式、机制）" class="headerlink" title="2-3-3-1：多态的必要条件（实现方式、机制）"></a>2-3-3-1：多态的必要条件（实现方式、机制）</h5><ol>
 <li>继承（实现）</li>
 <li>重写</li>
@@ -350,7 +344,7 @@ if (asideStatus !== undefined) {
 <h4 id="2-9-3：深拷贝方法"><a href="#2-9-3：深拷贝方法" class="headerlink" title="2-9-3：深拷贝方法"></a>2-9-3：深拷贝方法</h4><p>实现 Cloneable 接口，重写 clone 方法法将属性对象也调用 clone 方法。或者实现 Serializable 接口。</p>
 <h4 id="2-9-4：赋值和浅拷贝的区别"><a href="#2-9-4：赋值和浅拷贝的区别" class="headerlink" title="2-9-4：赋值和浅拷贝的区别"></a>2-9-4：赋值和浅拷贝的区别</h4><p>赋值时直接将引用引向堆内存，浅拷贝的问题是只是复制一个引用。</p>
 <h3 id="2-10-equals-与-hashcode"><a href="#2-10-equals-与-hashcode" class="headerlink" title="2-10 equals 与 hashcode"></a>2-10 equals 与 hashcode</h3><h4 id="2-10-1：为什么要重写-hashcode-与-equals"><a href="#2-10-1：为什么要重写-hashcode-与-equals" class="headerlink" title="2-10-1：为什么要重写 hashcode 与 equals"></a>2-10-1：为什么要重写 hashcode 与 equals</h4><p>因为 hashcode 和 equals 方法是 Object 类的方法，如果不重写 equals()，则会直接比较引用。源码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(Object obj) &#123;</span><br><span class="line">    return (this &#x3D;&#x3D; obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"> public boolean equals(Object obj) &#123;</span><br><span class="line">    return (this &#x3D;&#x3D; obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>如上，如果不充写 equals()方法则二者不可能相等。而 hashcode 和 equals 的关系是：</p>
 <ol>
@@ -368,7 +362,7 @@ if (asideStatus !== undefined) {
 <li>因为 Set 存储的是不重复的对象，依据 hashCode 和 equals 进行判断，所以 Set 存储的对象必须覆写这两种方法。</li>
 <li>如果自定义对象作为 Map 的键，那么必须覆写 hashCode 和 equals。</li>
 </ol>
-<h4 id="2-10-5：hashcode-和-equals-源码写一下"><a href="#2-10-5：hashcode-和-equals-源码写一下" class="headerlink" title="2-10-5：hashcode 和 equals 源码写一下"></a>2-10-5：hashcode 和 equals 源码写一下</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="2-10-5：hashcode-和-equals-源码写一下"><a href="#2-10-5：hashcode-和-equals-源码写一下" class="headerlink" title="2-10-5：hashcode 和 equals 源码写一下"></a>2-10-5：hashcode 和 equals 源码写一下</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">   <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">native</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>hashcode 是个 native 方法</p>
 <h3 id="2-11-i-与-i-的问题"><a href="#2-11-i-与-i-的问题" class="headerlink" title="2-11 i++与++i 的问题"></a>2-11 i++与++i 的问题</h3><h4 id="2-11-1：i-和-i-的区别，及其线程安全问题"><a href="#2-11-1：i-和-i-的区别，及其线程安全问题" class="headerlink" title="2-11-1：i++和++i 的区别，及其线程安全问题"></a>2-11-1：i++和++i 的区别，及其线程安全问题</h4><p>i++是调用 i 的值，再+1，++i 是先+1，让调用 i 的值。这两个都是线程不安全的。</p>
@@ -378,15 +372,15 @@ if (asideStatus !== undefined) {
 <p>如果 a,b 两个线程同时进行 i++，a 先读取 i 的值为 100，随后切换线程 b 读取 i 的值也为 100。然后 a 进行 100+1 并赋值，b 也进行 100+1 并赋值。最后的结果为 i=101，实际运算结果为 i=102。</p>
 <h4 id="2-11-2：i-和-i-是否为原子操作"><a href="#2-11-2：i-和-i-是否为原子操作" class="headerlink" title="2-11-2：i++和++i 是否为原子操作"></a>2-11-2：i++和++i 是否为原子操作</h4><p>不是</p>
 <h4 id="2-11-3：如何实现-i-和-i-的原子性呢？"><a href="#2-11-3：如何实现-i-和-i-的原子性呢？" class="headerlink" title="2-11-3：如何实现 i++和++i 的原子性呢？"></a>2-11-3：如何实现 i++和++i 的原子性呢？</h4><p>atomic 包</p>
-<h3 id="2-12-数据类型"><a href="#2-12-数据类型" class="headerlink" title="2-12 数据类型"></a>2-12 数据类型</h3><h4 id="2-12-1：八种数据类型是什么？"><a href="#2-12-1：八种数据类型是什么？" class="headerlink" title="2-12-1：八种数据类型是什么？"></a>2-12-1：八种数据类型是什么？</h4><p>byte，short，int，lone，float，double，char，boolean</p>
+<h3 id="2-12-数据类型"><a href="#2-12-数据类型" class="headerlink" title="2-12 数据类型"></a>2-12 数据类型</h3><h4 id="2-12-1：八种数据类型是什么？"><a href="#2-12-1：八种数据类型是什么？" class="headerlink" title="2-12-1：八种数据类型是什么？"></a>2-12-1：八种数据类型是什么？</h4><p>byte，short，int，long，float，double，char，boolean</p>
 <h5 id="2-12-1-1：Java-为什么除了基本数据类型还要有引用数据类型"><a href="#2-12-1-1：Java-为什么除了基本数据类型还要有引用数据类型" class="headerlink" title="2-12-1-1：Java 为什么除了基本数据类型还要有引用数据类型"></a>2-12-1-1：Java 为什么除了基本数据类型还要有引用数据类型</h5><p>Java 是面向对象语言，准确来说是只有引用类型的，而基础数据类型是为了减少资源消耗，加快运行速度推出的。</p>
 <h5 id="2-12-1-2：String-为什么不是基本数据类型"><a href="#2-12-1-2：String-为什么不是基本数据类型" class="headerlink" title="2-12-1-2：String 为什么不是基本数据类型"></a>2-12-1-2：String 为什么不是基本数据类型</h5><p>String 内部其实是个 char[]数组，所以是引用类型</p>
 <h5 id="2-12-1-2：引用类型有哪几种"><a href="#2-12-1-2：引用类型有哪几种" class="headerlink" title="2-12-1-2：引用类型有哪几种"></a>2-12-1-2：引用类型有哪几种</h5><p>除了基础类型都是引用类型</p>
 <h5 id="2-12-2：数据类型的范围"><a href="#2-12-2：数据类型的范围" class="headerlink" title="2-12-2：数据类型的范围"></a>2-12-2：数据类型的范围</h5><ul>
-<li>byte：一个字节，-2^7-1<del>2^7，-128</del>127</li>
-<li>short：两个字节，-2^15-1<del>2^15，-32768</del>32767</li>
-<li>int：四个字节，-2^31-1<del>2^31，-2147483648</del>2147483647</li>
-<li>long：八个字节，-2^63-1<del>2^63，-9223372036854774808</del>9223372036854774807</li>
+<li>byte：一个字节，<code>-2^7-1~2^7</code>，-128~127</li>
+<li>short：两个字节，<code>-2^15-1~2^15</code>，-32768~32767</li>
+<li>int：四个字节，<code>-2^31-1~2^31</code>，-2147483648~2147483647</li>
+<li>long：八个字节，<code>-2^63-1~2^63</code>，-9223372036854774808~9223372036854774807</li>
 <li>float：四个字节，3.402823e+38 ~ 1.401298e-45</li>
 <li>double：八个字节，1.797693e+308~ 4.9000000e-324</li>
 <li>char：两个字节</li>
