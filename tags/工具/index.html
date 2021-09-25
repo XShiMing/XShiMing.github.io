@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-25 12:12:06'
+  postUpdate: '2021-09-25 15:15:44'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -187,7 +187,7 @@ FINEST
 最好
 
 
-默认情况下，只记录前三个级别，也可以调整其他级别，例：使用logger.setLevel(Level.FINE)调整 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48230/" title="Linux常用命令">Linux常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-04T16:00:00.000Z" title="发表于 2020-08-05 00:00:00">2020-08-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">systemctl
+默认情况下，只记录前三个级别，也可以调整其他级别，例：使用logger.setLevel(Level.FINE)调整 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48230/" title="Linux常用命令">Linux常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-04T16:00:00.000Z" title="发表于 2020-08-05 00:00:00">2020-08-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">1：systemctl
 systemctl –version，查看版本。
 whereis systemctl，查看位置。
 systemctl list-unit-files，列出所有可用单元（服务）。
@@ -200,14 +200,14 @@ systemctl start mysqld.service，启动某个单元。
 systemctl restart mysqld.service，重启某个单元。
 systemctl stop mysqld.service，停止某个单元。
 systemctl daemon-reload，修改了某个单元的配置文件后，重载配置文件。
-systemctl reload mysqld.service， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16460/" title="Linux设置Redis开机自启">Linux设置Redis开机自启</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-02T01:15:09.000Z" title="发表于 2020-08-02 09:15:09">2020-08-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">
+systemctl reload mysqld.servic ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16460/" title="Linux设置Redis开机自启">Linux设置Redis开机自启</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-02T01:15:09.000Z" title="发表于 2020-08-02 09:15:09">2020-08-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">
 初接触Linux，记录设置方法本文以redis为例,但是方法是通用的
 
-系统服务下创建service文件1vi /usr/lib/systemd/system/redis-server.service
+1：系统服务下创建service文件1vi /usr/lib/systemd/system/redis-server.service
 
-写入内容1234567891011121314[Unit]Description=redis-serverAfter=network.target  [Service]Type=forkingTimeoutSec=0ExecStart=/usr/local/redis/src/redis  /usr/local/redis/redis.confExecReload=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s reloadExecStop=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s quitPrivateTmp=true  [Install]WantedBy=multi-user.target
+2：写入内容1234567891011121314[Unit]Description=redis-serverAfter=network.target  [Service]Type=forkingTimeoutSec=0ExecStart=/usr/local/redis/src/redis  /usr/local/redis/redis.confExecReload=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s reloadExecStop=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s quitPrivateTmp=true  [Install]WantedBy=multi-user.target
 
-Description:描述服务After: ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16571/" title="Windows Terminal">Windows Terminal</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-30T14:15:05.000Z" title="发表于 2020-07-30 22:15:05">2020-07-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="content">1：前言这是闲来无事对电脑界面进行的优化（瞎整），性能优不优化不一定，界面更好看就完事了
+Description:描述服务Af ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16571/" title="Windows Terminal">Windows Terminal</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-30T14:15:05.000Z" title="发表于 2020-07-30 22:15:05">2020-07-30</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="content">1：前言这是闲来无事对电脑界面进行的优化（瞎整），性能优不优化不一定，界面更好看就完事了
 2：Windows TerminalWindows 终端是一个面向命令行工具和 shell（如命令提示符、PowerShell 和适用于 Linux 的 Windows 子系统 (WSL)）用户的新式终端应用程序。 它的主要功能包括多个选项卡、窗格、Unicode 和 UTF-8 字符支持、GPU 加速文本呈现引擎，还可以用于创建你自己的主题并自定义文本、颜色、背景和快捷键绑定。
 3：安装在微软商店即可下载Windows Terminal。
 

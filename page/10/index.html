@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-25 12:12:06'
+  postUpdate: '2021-09-25 15:15:44'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -156,7 +156,7 @@ nginx使用安装jdk1. 下载jdk文件官网或者华为镜像网站
 1vim /etc/profile
 
 在文件尾部配置
-1234567# jdk1.8.0_201JAVA_HOME=/usr/local/java/jdk1.8.0_201JRE_HOME=$JAVA_HOME/jrePATH=$PATH:$JAVA_ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48230/" title="Linux常用命令">Linux常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-04T16:00:00.000Z" title="发表于 2020-08-05 00:00:00">2020-08-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">systemctl
+1234567# jdk1.8.0_201JAVA_HOME=/usr/local/java/jdk1.8.0_201JRE_HOME=$JAVA_HOME/jrePATH=$PATH:$JAVA_ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/48230/" title="Linux常用命令">Linux常用命令</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-04T16:00:00.000Z" title="发表于 2020-08-05 00:00:00">2020-08-05</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">1：systemctl
 systemctl –version，查看版本。
 whereis systemctl，查看位置。
 systemctl list-unit-files，列出所有可用单元（服务）。
@@ -169,14 +169,14 @@ systemctl start mysqld.service，启动某个单元。
 systemctl restart mysqld.service，重启某个单元。
 systemctl stop mysqld.service，停止某个单元。
 systemctl daemon-reload，修改了某个单元的配置文件后，重载配置文件。
-systemctl reload mysqld.service， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16460/" title="Linux设置Redis开机自启">Linux设置Redis开机自启</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-02T01:15:09.000Z" title="发表于 2020-08-02 09:15:09">2020-08-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">
+systemctl reload mysqld.servic ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/16460/" title="Linux设置Redis开机自启">Linux设置Redis开机自启</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-02T01:15:09.000Z" title="发表于 2020-08-02 09:15:09">2020-08-02</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Linux/">Linux</a></span></div><div class="content">
 初接触Linux，记录设置方法本文以redis为例,但是方法是通用的
 
-系统服务下创建service文件1vi /usr/lib/systemd/system/redis-server.service
+1：系统服务下创建service文件1vi /usr/lib/systemd/system/redis-server.service
 
-写入内容1234567891011121314[Unit]Description=redis-serverAfter=network.target  [Service]Type=forkingTimeoutSec=0ExecStart=/usr/local/redis/src/redis  /usr/local/redis/redis.confExecReload=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s reloadExecStop=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s quitPrivateTmp=true  [Install]WantedBy=multi-user.target
+2：写入内容1234567891011121314[Unit]Description=redis-serverAfter=network.target  [Service]Type=forkingTimeoutSec=0ExecStart=/usr/local/redis/src/redis  /usr/local/redis/redis.confExecReload=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s reloadExecStop=/usr/local/redis/src/redis  /usr/local/redis/redis.conf -s quitPrivateTmp=true  [Install]WantedBy=multi-user.target
 
-Description:描述服务After: ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/5151/" title="消息队列">消息队列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-31T07:14:43.000Z" title="发表于 2020-07-31 15:14:43">2020-07-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Message-Queue/">Message Queue</a></span></div><div class="content">概念队列队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。队列的数据元素又称为队列元素。在队列中插入一个队列元素称为入队，从队列中删除一个队列元素称为出队。因为队列只允许在一端插入，在另一端删除，所以只有最早进入队列的元素才能最先从队列中删除，故队列又称为先进先出（FIFO—first in first out）线性表。
+Description:描述服务Af ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/5151/" title="消息队列">消息队列</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-31T07:14:43.000Z" title="发表于 2020-07-31 15:14:43">2020-07-31</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/Message-Queue/">Message Queue</a></span></div><div class="content">概念队列队列是一种特殊的线性表，特殊之处在于它只允许在表的前端（front）进行删除操作，而在表的后端（rear）进行插入操作，和栈一样，队列是一种操作受限制的线性表。进行插入操作的端称为队尾，进行删除操作的端称为队头。队列中没有元素时，称为空队列。队列的数据元素又称为队列元素。在队列中插入一个队列元素称为入队，从队列中删除一个队列元素称为出队。因为队列只允许在一端插入，在另一端删除，所以只有最早进入队列的元素才能最先从队列中删除，故队列又称为先进先出（FIFO—first in first out）线性表。
 消息队列（Message Queue）消息队列可以简单理解为把要传输的数据放在队列中。
 消息队列是分布式系统中重要的组件，其通用的使用场景可以简单地描述为：
 
