@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-25 11:04:40'
+  postUpdate: '2021-09-25 12:12:06'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -195,24 +195,24 @@ RuntimeException: 由程序错误导致的异常
 在pom.xml中添加依赖
  123456&lt;dependency&gt;    &lt;groupId&gt;com.github.xiaoymin&lt;/groupId&gt;    &lt;artifactId&gt;knife4j-spring-boot-starter&lt;/artifactId&gt;    &lt;!--在引用时请在maven中央仓库搜索最新版本号--&gt;    &lt;version&gt;2.0.8&lt;/version&gt;&lt;/dependency&gt;
 
- TIP:3.x的版本依赖springfox3.0.0，springfox3.0目前也只更新发布了一个版本，从功能稳定性来说，可能不如2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/26832/" title="博客搭建">博客搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="content">前置准备安装git，nodejs，hexo
-Git
+ TIP:3.x的版本依赖springfox3.0.0，springfox3.0目前也只更新发布了一个版本，从功能稳定性来说，可能不如2 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/26832/" title="博客搭建">博客搭建</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a></span></div><div class="content">1：前置准备安装git，nodejs，hexo
+1-1：Git
 git安装详细教程
 
 设置用户名和邮箱
 12git config --global user.name &quot;github用户名&quot;git config --global user.email &quot;github邮箱&quot;
 
-nodejs下载后默认配置一路确定
+1-2：nodejs下载后默认配置一路确定
 node -v和npm -v检查是否安装成功
 设置淘宝镜像npm config set registry https://registry.npm.taobao.org检查是否更换成功npm config get registry结果为：https://registry.npm.taobao.org/
-安装Hexo打开命令行npm install -g hexo
+1-3：安装Hexo打开命令行npm install -g hexo
 
 
-开始搭建初始化Hexo在创建的Hexo文件夹上打开命令行（shift+右键），输入：hexo init
+2：开始搭建2-1：初始化Hexo在创建的Hexo文件夹上打开命令行（shift+右键），输入：hexo init
 创建成功后输入：
 123hexo new my_first_blog&#x2F;&#x2F;新建个人页面hexo ghexo s
 
-就可以本地访问”localhost:4000”网址访问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/21968/" title="MyBatis Generator">MyBatis Generator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MyBatis/">MyBatis</a></span></div><div class="content">Why生成pojo,mapper.java.mapper.xml文件（包含基础增删改查），提交工作效率，解决繁琐的消逝
+就可以本地访问 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/21968/" title="MyBatis Generator">MyBatis Generator</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-23T16:00:00.000Z" title="发表于 2020-07-24 00:00:00">2020-07-24</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%BA%94%E7%94%A8/MyBatis/">MyBatis</a></span></div><div class="content">Why生成pojo,mapper.java.mapper.xml文件（包含基础增删改查），提交工作效率，解决繁琐的消逝
 使用方法1. pom.xml导入插件1234567891011&lt;dependency&gt;    &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;    &lt;artifactId&gt;mybatis-generator-core&lt;/artifactId&gt;    &lt;version&gt;1.4.0&lt;/version&gt;&lt;/dependency&gt;&lt;!-- Mybatis Dynamic Sql 依赖，可以不添加 --&gt;&lt;!-- &lt;dependency&gt;    &lt;groupId&gt;org.mybatis.dynamic-sql&lt;/groupId&gt;    &lt;artifactId&gt;mybatis-dynamic-sql&lt;/artifactId&gt;    &lt;version&gt;1.1.4&l ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/38008/" title="Maven">Maven</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-22T16:00:00.000Z" title="发表于 2020-07-23 00:00:00">2020-07-23</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/Spring/">Spring</a></span></div><div class="content">Maven概念Maven 翻译为”专家”、”内行”，是 Apache 下的一个纯 Java 开发的开源项目。基于项目对象模型（缩写：POM）概念，Maven利用一个中央信息片断能管理一个项目的构建、报告和文档等步骤。Maven 是一个项目管理工具，可以对 Java 项目进行构建、依赖管理。Maven 也可被用于构建和管理各种项目，例如 C#，Ruby，Scala 和其他语言编写的项目。Maven 曾是 Jakarta 项目的子项目，现为由 Apache 软件基金会主持的独立 Apache 项目。
 领域
 简化构建过程
