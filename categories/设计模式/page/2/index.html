@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-25 15:15:44'
+  postUpdate: '2021-09-25 16:16:12'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -146,7 +146,14 @@ if (asideStatus !== undefined) {
 1：生成器模式生成器模式是一种创建型设计模式，使你能够分步骤创建复杂对象。该模式允许你使用相同的创建代码生成不同类型和形式的对象。
 2：生成器模式问题在软件开发过程中有时需要创建一个复杂的对象，这个复杂对象通常由多个子部件按一定的步骤组合而成。例如，计算机是由 OPU、主板、内存、硬盘、显卡、机箱、显示器、键盘、鼠标等部件组装而成的，采购员不可能自己去组装计算机，而是将计算机的配置要求告诉计算机销售公司，计算机销售公司安排技术人员去组装计算机，然后再交给要买计算机的采购员。生活中这样的例子很多，如游戏中的不同角色，其性别、个性、能力、脸型、体型、服装、发型等特性都有所差异；还有汽车中的方向盘、发动机、车架、轮胎等部件也多种多样；每封电子邮件的发件人、收件人、主题、内容、附件等内容也各不相同。
 解决这些问题最简单的方法是扩展基类，然后创建一系列覆盖所有参数组合的子类。但最终你将面对相当数量的子类。任何新增的参数都会让这个层次结构更加复杂。
-另一种方法则无需生成子类。你可以在房屋基类中创建一个包括所有可能参数的超级构造函数，并用它来控制房屋对象 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/7b510e10/" title="代理模式">代理模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+另一种方法则无需生成子类。你可以在房屋基类中创建一个包括所有可能参数的超级构造函数，并用它来控制房屋对象 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e19da94a/" title="享元模式">享元模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+1：享元模式享元模式是一种结构型设计模式， 它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。
+2：享元模式问题在面向对象程序设计过程中，有时会面临要创建大量相同或相似对象实例的问题。创建那么多的对象将会耗费很多的系统资源，它是系统性能提高的一个瓶颈。例如，围棋和五子棋中的黑白棋子，图像中的坐标点或颜色，局域网中的路由器、交换机和集线器，教室里的桌子和凳子等。这些对象有很多相似的地方，如果能把它们相同的部分提取出来共享，则能节省大量的系统资源，这就是享元模式的产生背景。
+3：享元模式解决方案在黑白棋子，坐标点这些类中，你会发现一些成员变量储存的值是相同的，而每个粒子的另一些状态（坐标，颜色等）是不同的。
+对象的常量数据通常被称为内在状态（即不会随着环境的改变而改变的可共享部分）， 其位于对象中，其他对象只能读取但不能修改其数值。而对象的其他状态常常能被其他对象 “从外部” 改变，因此被称为外在状态（随环境改变而改变的不可以共享的部分）。
+享元模式建议不在对象中存储外在状态，而 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/7b510e10/" title="代理模式">代理模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：代理模式(Proxy)代理模式是一种结构型设计模式，让你能够提供对象的替代品或其占位符。代理控制着对于目标对象的访问，并允许在将请求提交给对象前后进行一些处理。
@@ -161,14 +168,7 @@ if (asideStatus !== undefined) {
 由于代理实现的接口与原类相同，因此你可将其传递给任何一个使用实际服务对象的客户端。
 
 例：
-信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e19da94a/" title="享元模式">享元模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-1：享元模式享元模式是一种结构型设计模式， 它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。
-2：享元模式问题在面向对象程序设计过程中，有时会面临要创建大量相同或相似对象实例的问题。创建那么多的对象将会耗费很多的系统资源，它是系统性能提高的一个瓶颈。例如，围棋和五子棋中的黑白棋子，图像中的坐标点或颜色，局域网中的路由器、交换机和集线器，教室里的桌子和凳子等。这些对象有很多相似的地方，如果能把它们相同的部分提取出来共享，则能节省大量的系统资源，这就是享元模式的产生背景。
-3：享元模式解决方案在黑白棋子，坐标点这些类中，你会发现一些成员变量储存的值是相同的，而每个粒子的另一些状态（坐标，颜色等）是不同的。
-对象的常量数据通常被称为内在状态（即不会随着环境的改变而改变的可共享部分）， 其位于对象中，其他对象只能读取但不能修改其数值。而对象的其他状态常常能被其他对象 “从外部” 改变，因此被称为外在状态（随环境改变而改变的不可以共享的部分）。
-享元模式建议不在对象中存储外在状态，而 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：外观模式外观模式是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。
@@ -188,16 +188,7 @@ if (asideStatus !== undefined) {
 3：桥接模式解决方案问题的根本原因是我们试图在两个独立的维度——形状与颜色——上扩展形状类。这在处理类继承时是很常见的问题。
 桥接模式通过将继承改为组合的方式来解决这个问题。具体来说，就是抽取其中一个维度并使之成为独立的类层次， 这样就可以在初始类中引用这个新层次的对象， 从而使得一个类不必拥有所有的状态和行为。
 
-将颜色相关的代码抽取到拥有红色和蓝色两个子类的颜色类中，然后在形状类中添加一个指向某一颜色对象的引用成员变量。现在，形状类可以将所有与颜色相关的工作委派给连入的颜色对象。 这样的引用就成为了形状和颜色之间的桥梁。 此后 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/df879792/" title="组合模式">组合模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-1：组合模式组合模式是一种结构型设计模式，又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象，你可以使用它将对象组合成树状结构，并且能像使用独立对象一样使用它们。
-2：组合模式问题如果应用的核心模型能用树状结构表示，在应用中使用组合模式才有价值。
-例如，你有两类对象：产品和盒子。一个盒子中可以包含多个产品或者几个较小的盒子。这些小盒子中同样可以包含一些产品或更小的盒子，以此类推。
-在这些类的基础上你需要开发一个订单系统。订单中可以包含无包装的简单产品，也可以包含装满产品的盒子……以及其他盒子。如何计算订单的总价呢？
-
-在现实生活中，可以直接拆开盒子，直接计算每个产品的价格。而在程序中，你必须知道所有产品和盒子的细节，知道盒子的嵌套层数以及其他详细信息，才能计算出总价。因此直接计算是不可行。
-在现实生活中，存在很多“部分-整体”的关系，例如，大学中的部门与学院、总公司中的部门与分公司、学习用品中的书与书包、生活用品中的衣服与衣柜以及厨房中的锅碗瓢盆等。在软件开发中也是这样，例如，文件系统中的文件与文件夹、窗体程序中的简单控件与容器控件 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e671036b/" title="装饰模式">装饰模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+将颜色相关的代码抽取到拥有红色和蓝色两个子类的颜色类中，然后在形状类中添加一个指向某一颜色对象的引用成员变量。现在，形状类可以将所有与颜色相关的工作委派给连入的颜色对象。 这样的引用就成为了形状和颜色之间的桥梁。 此后 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/e671036b/" title="装饰模式">装饰模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：装饰模式装饰模式是一种结构型设计模式，允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。即在不改变现有对象结构的情况下，动态地给该对象增加一些职责（即增加其额外功能）。
@@ -221,7 +212,16 @@ if (asideStatus !== undefined) {
 适配器方法被调用后将以另一个对象兼容的格式和顺序将请求传递给该对象。
 
 有时候你还可以写一个双向适配器来实现双向转换调用
-例：出国旅行时，不同国家 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+例：出国旅行时，不同国家 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/df879792/" title="组合模式">组合模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+1：组合模式组合模式是一种结构型设计模式，又叫部分整体模式，是用于把一组相似的对象当作一个单一的对象，你可以使用它将对象组合成树状结构，并且能像使用独立对象一样使用它们。
+2：组合模式问题如果应用的核心模型能用树状结构表示，在应用中使用组合模式才有价值。
+例如，你有两类对象：产品和盒子。一个盒子中可以包含多个产品或者几个较小的盒子。这些小盒子中同样可以包含一些产品或更小的盒子，以此类推。
+在这些类的基础上你需要开发一个订单系统。订单中可以包含无包装的简单产品，也可以包含装满产品的盒子……以及其他盒子。如何计算订单的总价呢？
+
+在现实生活中，可以直接拆开盒子，直接计算每个产品的价格。而在程序中，你必须知道所有产品和盒子的细节，知道盒子的嵌套层数以及其他详细信息，才能计算出总价。因此直接计算是不可行。
+在现实生活中，存在很多“部分-整体”的关系，例如，大学中的部门与学院、总公司中的部门与分公司、学习用品中的书与书包、生活用品中的衣服与衣柜以及厨房中的锅碗瓢盆等。在软件开发中也是这样，例如，文件系统中的文件与文件夹、窗体程序中的简单控件与容器控件 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/78134e07/" title="命令模式">命令模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/">行为型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：命令模式命令模式是一种行为设计模式， 它可将请求转换为一个包含与请求相关的所有信息的独立对象。 该转换让你能根据不同的请求将方法参数化、 延迟请求执行或将其放入队列中， 且能实现可撤销操作。

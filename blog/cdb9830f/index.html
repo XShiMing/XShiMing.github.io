@@ -163,9 +163,9 @@ if (asideStatus !== undefined) {
 <li>Transient 关键字的作用是控制变量的序列化，在变量声明前加上该关键字，可以阻止该变量被序列化到文件中，在被反序列化后，transient 变量的值被设为初始值，如 int 型的是 0，对象型的是 null。</li>
 <li>服务器端给客户端发送序列化对象数据，对象中有一些数据是敏感的，比如密码字符串等，希望对该密码字段在序列化时，进行加密，而客户端如果拥有解密的密钥，只有在客户端进行反序列化时，才可以对密码进行读取，这样可以一定程度保证序列化对象的数据安全。</li>
 </ol>
-<h3 id="3-2：Externalizable-和-Serializable-的区别"><a href="#3-2：Externalizable-和-Serializable-的区别" class="headerlink" title="3-2：Externalizable 和 Serializable 的区别"></a>3-2：Externalizable 和 Serializable 的区别</h3><p>Externalizable 继承了 Serializable， 该接口中定义了两个抽象⽅法：<code>writeExternal()</code>与<code>readExternal()</code>。 当使⽤ Externalizable 接口来进⾏序列化与反序列化的时候需要开发⼈员重写<code>writeExternal()</code>与<code>readExternal()</code>⽅法。<br>如果没有在这两个⽅法中定义序列化实现细节，那么序列化之后，对象内容为空。</p>
+<h3 id="3-2：Externalizable-和-Serializable-的区别"><a href="#3-2：Externalizable-和-Serializable-的区别" class="headerlink" title="3-2：Externalizable 和 Serializable 的区别"></a>3-2：Externalizable 和 Serializable 的区别</h3><p>Externalizable 继承了 Serializable， 该接口中定义了两个抽象方法：<code>writeExternal()</code>与<code>readExternal()</code>。 当使⽤ Externalizable 接口来进⾏序列化与反序列化的时候需要开发⼈员重写<code>writeExternal()</code>与<code>readExternal()</code>方法。<br>如果没有在这两个方法中定义序列化实现细节，那么序列化之后，对象内容为空。</p>
 <p>实现 Externalizable 接口的类反序列化时会通过无参构造函数创建类再填充数据，所以必须要提供⼀个 public 的⽆参的构造器。</p>
-<p><strong>实现 Externalizable， 并实现<code>writeExternal()</code>和<code>readExternal()</code>⽅法可以指定序列化哪些属性。</strong></p>
+<p><strong>实现 Externalizable， 并实现<code>writeExternal()</code>和<code>readExternal()</code>方法可以指定序列化哪些属性。</strong></p>
 <h3 id="3-3-什么是-serialVersionUID"><a href="#3-3-什么是-serialVersionUID" class="headerlink" title="3-3: 什么是 serialVersionUID"></a>3-3: 什么是 serialVersionUID</h3><p><code>serialVersionUID</code>是用来验证版本一致性的。用于反序列化时保证数据的版本正确。</p>
 <h3 id="3-4：序列化协议有哪些"><a href="#3-4：序列化协议有哪些" class="headerlink" title="3-4：序列化协议有哪些"></a>3-4：序列化协议有哪些</h3><ul>
 <li>xml</li>
