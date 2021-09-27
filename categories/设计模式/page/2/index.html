@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-28 00:03:42'
+  postUpdate: '2021-09-28 00:06:19'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -168,7 +168,18 @@ if (asideStatus !== undefined) {
 由于代理实现的接口与原类相同，因此你可将其传递给任何一个使用实际服务对象的客户端。
 
 例：
-信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/563268dc/" title="桥接模式">桥接模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+信用卡是银行账户的代理，银行账户则是一大捆现金的代理。它们都实现了同样的接口，均可用于进行支付。你通过信用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+
+
+1：外观模式外观模式是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。
+2：外观模式问题在现实生活中，常常存在办事较复杂的例子，例如申请一些东西，有时要同多个部门联系，这时要是有一个综合部门能解决一切手续问题就好了。
+在程序设计中，当一个系统的功能越来越强，子系统会越来越多，客户对系统的访问也变得越来越复杂。这时如果系统内部发生改变，客户端也要跟着改变，这违背了“开闭原则”，也违背了“迪米特法则”，所以有必要为多个子系统提供一个统一的接口，从而降低系统的耦合度，这就是外观模式的目标。
+3：外观模式解决方案外观类为包含许多活动部件的复杂子系统提供一个简单的接口。 与直接调用子系统相比， 外观提供的功能可能比较有限， 但它却包含了客户端真正关心的功能。
+例如：在淘宝下单后，商店包装，快递揽收，送达，这是一系列复杂的流程，但是你只需要下单就完成了这一系列流程的调用。
+4：外观模式结构
+
+外观 （Facade） 提供了一种访问特定子系统功能的便捷方式， 其了解如何重定向客户端请求， 知晓如何操作一切活动部件。
+创建附加外观  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/563268dc/" title="桥接模式">桥接模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：桥接模式桥接模式是一种结构型设计模式， 可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构， 从而能在开发时分别使用。
@@ -194,18 +205,7 @@ if (asideStatus !== undefined) {
 库的最初版本基于通知器(Notifier)类，其中只有很少的几个成员变量，一个构造函数和一个send发送方法。该方法可以接收来自客户端的消息参数，并将该消息发送给一系列的邮箱，邮箱列表则是通过构造函数传递给通知器的。作为客户端的第三方程序仅会创建和配置通知器对象一次，然后在有重要事件发生时对其进行调用。
 在不断发展后，有些用户希望使用微信通知，使用QQ通知，又或者使用短信通知。最简单的方法是： 扩展通知器类，然后在新的子类中加入额外的通知方法。现在客户端要对所需通知形式的对应类进行初始化，然后使用该类发送后续所有的通知消息。
 但如果用户希望组合不同的方式，如果创建特殊子类来整合的话，代码量会迅速膨胀。而且不仅是程序库，客户端也是如此。
-3：装饰模式解决方 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f7de8aa8/" title="外观模式">外观模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
-
-
-1：外观模式外观模式是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。
-2：外观模式问题在现实生活中，常常存在办事较复杂的例子，例如申请一些东西，有时要同多个部门联系，这时要是有一个综合部门能解决一切手续问题就好了。
-在程序设计中，当一个系统的功能越来越强，子系统会越来越多，客户对系统的访问也变得越来越复杂。这时如果系统内部发生改变，客户端也要跟着改变，这违背了“开闭原则”，也违背了“迪米特法则”，所以有必要为多个子系统提供一个统一的接口，从而降低系统的耦合度，这就是外观模式的目标。
-3：外观模式解决方案外观类为包含许多活动部件的复杂子系统提供一个简单的接口。 与直接调用子系统相比， 外观提供的功能可能比较有限， 但它却包含了客户端真正关心的功能。
-例如：在淘宝下单后，商店包装，快递揽收，送达，这是一系列复杂的流程，但是你只需要下单就完成了这一系列流程的调用。
-4：外观模式结构
-
-外观 （Facade） 提供了一种访问特定子系统功能的便捷方式， 其了解如何重定向客户端请求， 知晓如何操作一切活动部件。
-创建附加外观  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f5c535ea/" title="适配器模式">适配器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
+3：装饰模式解决方 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/f5c535ea/" title="适配器模式">适配器模式</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-30T16:00:00.000Z" title="发表于 2020-12-01 00:00:00">2020-12-01</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/">结构型模式</a></span></div><div class="content">本博客大部分内容来于免费在线学习设计模式
 
 
 1：适配器模式适配器模式是一种结构型设计模式，它能使接口不兼容的对象能够相互合作。它结合了两个独立接口的功能。
