@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: false,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-26 14:49:33'
+  postUpdate: '2021-09-27 23:48:25'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -146,8 +146,8 @@ if (asideStatus !== undefined) {
 保证客户端发送的最后一个 ACK 报文段能够到达服务端。这个 ACK 报文段有可能丢失，使得处于 LAST-ACK 状态的 B 收不到对已发送的 FIN+ACK 报文段的确认，服务端超时重传 FIN+ACK 报文段，而客户端能在 2MSL 时间内收到这个重传的 FIN+ACK 报文段，接着客户端重传一次确认，重新启动 2MSL 计时器，最后客户端和服务端都进入到 CLOSED 状态。若客户端在 TIME-WAIT 状态不等待一段时间，而是发送完 ACK 报文段后立即释放连接，则无法收到服务端重传的 FIN+ACK 报文段，所以不会再发送一次确认报文段，则服务端无法正常进入到 CLOSED 状态。
 防止 “已失效的连接请求报文段” 出现在本连接中。客户端在发送完最后一个 ACK 报文段后，再经过 2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失，使下一个新的连接中不会出现这种旧的连接请求报文段。
 
-1：各层协议1-1：OSI与TCP/IP各层结构和功能，以及相应的协议
-转至OSI与TCP/IP各层结构和功能，以及相 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">1：简介
+1：各层协议1-1：OSI 与 TCP/IP 各层结构和功能，以及相应的协议
+转至OSI 与 TCP/IP 各层结构和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/4c5df410/" title="HTTP和HTTPS的区别">HTTP和HTTPS的区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-08-27T16:00:00.000Z" title="发表于 2020-08-28 00:00:00">2020-08-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="content">1：简介
 HTTP是一个简单的请求-响应协议，它通常运行在TCP之上。它指定了客户端可能发送给服务器什么样的消息以及得到什么样的响应。请求和响应消息的头以ASCII码形式给出；而消息内容则具有一个类似MIME的格式。这个简单模型是早期Web成功的有功之臣，因为它使得开发和部署是那么的直截了当。
 
 HTTP（超文本传输协议）被用于在Web浏览器和网站服务器之间，以明文方式传递信息，不提供任何方式的数据加密，因此使用HTTP协议传输隐私信息（如：银行卡号、密码等支付信息）非常不安全。

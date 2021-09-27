@@ -150,8 +150,8 @@ if (asideStatus !== undefined) {
 <li><code>Code specialization</code>。在实例化一个泛型类或泛型方法时都产生一份新的目标代码（字节码 or 二进制代码）。例如，针对一个泛型 List，可能需要 针对 String，Integer，Float 产生三份目标代码。</li>
 <li><code>Code sharing</code>。对每个泛型类只生成唯一的一份目标代码；该泛型类的所有实例都映射到这份目标代码上，在需要的时候执行类型检查和类型转换。</li>
 </ol>
-<p>Java 中使用<code>Code sharing</code>。对每个泛型类只会生成一份代码</p>
-<h3 id="2-1：为什么-Java-要用这种编译器"><a href="#2-1：为什么-Java-要用这种编译器" class="headerlink" title="2-1：为什么 Java 要用这种编译器"></a>2-1：为什么 Java 要用这种编译器</h3><p>C++和 C#是使用<code>Code specialization</code>的处理机制，它会导致代码膨胀。另外一个弊端是在引用类型系统中，浪费空间，因为引用类型集合中元素本质上都是一个指针。没必要为每个类型都产生一份执行代码。而这也是 Java 编译器中采用<code>Code sharing</code>方式处理泛型的主要原因。</p>
+<p>Java 中使用 <code>Code sharing</code>。对每个泛型类只会生成一份代码</p>
+<h3 id="2-1：为什么-Java-要用这种编译器"><a href="#2-1：为什么-Java-要用这种编译器" class="headerlink" title="2-1：为什么 Java 要用这种编译器"></a>2-1：为什么 Java 要用这种编译器</h3><p>C++和 C#是使用 <code>Code specialization</code>的处理机制，它会导致代码膨胀。另外一个弊端是在引用类型系统中，浪费空间，因为引用类型集合中元素本质上都是一个指针。没必要为每个类型都产生一份执行代码。而这也是 Java 编译器中采用 <code>Code sharing</code>方式处理泛型的主要原因。</p>
 <h2 id="3-什么是类型擦除"><a href="#3-什么是类型擦除" class="headerlink" title="3: 什么是类型擦除"></a>3: 什么是类型擦除</h2><blockquote>
 <p>类型擦除指的是通过类型参数合并，将泛型类型实例关联到同一份字节码上。编译器只为泛型类型生成一份字节码，并将其实例关联到这份字节码上。类型擦除的关键在于从泛型类型中清除类型参数的相关信息，并且在必要的时候添加类型检查和类型转换的方法。 类型擦除可以简单的理解为将泛型 Java 代码转换为普通 Java 代码，只不过编译器更直接点，将泛型 Java 代码直接转换成普通 Java 字节码。<br>类型擦除的主要过程如下： 1.将所有的泛型参数用其最左边界（最顶级的父类型）类型替换。（这部分内容可以看：Java 泛型中 extends 和 super 的理解） 2.移除所有的类型参数</p>
 </blockquote>

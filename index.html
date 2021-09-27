@@ -74,7 +74,7 @@ var saveToLocal = {
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2021-09-26 14:49:33'
+  postUpdate: '2021-09-27 23:48:25'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -179,8 +179,8 @@ SQL 在 1986 年成为 ANSI（American National Standards Institute 美国国家
 保证客户端发送的最后一个 ACK 报文段能够到达服务端。这个 ACK 报文段有可能丢失，使得处于 LAST-ACK 状态的 B 收不到对已发送的 FIN+ACK 报文段的确认，服务端超时重传 FIN+ACK 报文段，而客户端能在 2MSL 时间内收到这个重传的 FIN+ACK 报文段，接着客户端重传一次确认，重新启动 2MSL 计时器，最后客户端和服务端都进入到 CLOSED 状态。若客户端在 TIME-WAIT 状态不等待一段时间，而是发送完 ACK 报文段后立即释放连接，则无法收到服务端重传的 FIN+ACK 报文段，所以不会再发送一次确认报文段，则服务端无法正常进入到 CLOSED 状态。
 防止 “已失效的连接请求报文段” 出现在本连接中。客户端在发送完最后一个 ACK 报文段后，再经过 2MSL，就可以使本连接持续的时间内所产生的所有报文段都从网络中消失，使下一个新的连接中不会出现这种旧的连接请求报文段。
 
-1：各层协议1-1：OSI与TCP/IP各层结构和功能，以及相应的协议
-转至OSI与TCP/IP各层结构和功能，以及相 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/8efca904/" title="面试题-JVM">面试题-JVM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-28T09:00:08.000Z" title="发表于 2021-04-28 17:00:08">2021-04-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">1：JVM1-1：JVM1.8 新特性在 1.7 之前在 (JDK1.2 ~ JDK6) 的实现中，HotSpot 使用永久代实现方法区，而在 1.8 之后方法区被彻底移除了，而使用元空间取而代之，方法区位于堆内存中，而元空间使用的是本地内存。元空间存储的是类的元数据，常量池还是在堆内存中。
+1：各层协议1-1：OSI 与 TCP/IP 各层结构和功能，以及相应的协议
+转至OSI 与 TCP/IP 各层结构和 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/8efca904/" title="面试题-JVM">面试题-JVM</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-28T09:00:08.000Z" title="发表于 2021-04-28 17:00:08">2021-04-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">1：JVM1-1：JVM1.8 新特性在 1.7 之前在 (JDK1.2 ~ JDK6) 的实现中，HotSpot 使用永久代实现方法区，而在 1.8 之后方法区被彻底移除了，而使用元空间取而代之，方法区位于堆内存中，而元空间使用的是本地内存。元空间存储的是类的元数据，常量池还是在堆内存中。
 1-2：JDK1.8 默认垃圾回收器使用 java -XX:+PrintCommandLineFlags -version 命令查看
 1234-XX:InitialHeapSize=266668608 -XX:MaxHeapSize=4266697728 -XX:+PrintCommandLineFlags -XX:+UseCompressedClassPointers -XX:+UseCompressedOops -XX:-UseLargePagesIndividualAllocation -XX:+UseParallelGCjava version &quot;1.8.0_201&quot;Java(TM) SE Runtime Environment (build 1.8.0_201-b09 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/blog/3b872ac8/" title="面试题-并发">面试题-并发</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-28T08:56:36.000Z" title="发表于 2021-04-28 16:56:36">2021-04-28</time></span><span class="article-meta"><span class="article-meta__separator">|</span><i class="fas fa-inbox article-meta__icon"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><i class="fas fa-angle-right"></i><a class="article-meta__categories" href="/categories/%E5%85%B6%E4%BB%96/%E9%9D%A2%E8%AF%95/">面试</a></span></div><div class="content">1：进程1-1：什么是进程进程是程序的一次执行过程，进程是程序运行和资源分配的基本单位。
 1-2：进程的状态多进程和多线程都分为五个阶段
