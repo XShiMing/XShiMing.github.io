@@ -1,0 +1,356 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MySQL日志 | 失铭的笔记</title><meta name="author" content="失铭"><meta name="copyright" content="失铭"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="1：MySQL日志日志文件中记录着 MySQL 数据库运行期间发生的变化。也就是说用来记录 MySQL 数据库的客户端连接状况、SQL 语句的执行情况和错误信息等。当数据库遭到意外的损坏时，可以通过日志查看文件出错的原因，并且可以通过日志文件进行数据恢复。 MySQL日志文件分为以下几种：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（erro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL日志">
+<meta property="og:url" content="https://shiming.best/blog/566e96c3/index.html">
+<meta property="og:site_name" content="失铭的笔记">
+<meta property="og:description" content="1：MySQL日志日志文件中记录着 MySQL 数据库运行期间发生的变化。也就是说用来记录 MySQL 数据库的客户端连接状况、SQL 语句的执行情况和错误信息等。当数据库遭到意外的损坏时，可以通过日志查看文件出错的原因，并且可以通过日志文件进行数据恢复。 MySQL日志文件分为以下几种：  重做日志（redo log） 回滚日志（undo log） 二进制日志（binlog） 错误日志（erro">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.shiming.online/guidao/pic-88.jpg">
+<meta property="article:published_time" content="2021-11-05T03:37:59.000Z">
+<meta property="article:modified_time" content="2021-11-05T03:37:59.000Z">
+<meta property="article:author" content="失铭">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.shiming.online/guidao/pic-88.jpg"><link rel="shortcut icon" href="https://image.shiming.online/background/favicon.ico"><link rel="canonical" href="https://shiming.best/blog/566e96c3/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-05 11:37:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+   if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }const asideStatus = saveToLocal.get('aside-status')
+if (asideStatus !== undefined) {
+   if (asideStatus === 'hide') {
+     document.documentElement.classList.add('hide-aside')
+   } else {
+     document.documentElement.classList.remove('hide-aside')
+   }
+}})()</script><link rel="stylesheet" href="/css/background.css"><link rel="stylesheet" href="/css/gdt.css"><link rel="stylesheet" href="/css/foot.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_1995009_6m1bfgtzjiv.css"><meta name="generator" content="Hexo 5.2.0"><link rel="alternate" href="/atom.xml" title="失铭的笔记" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">60</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Java/%E6%BA%90%E7%A0%81/"><i class="fa-fw iconfont icon-CodeApplicationDevelopmentProgrammingSoftware"></i><span> 源码</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div></div></div></div><div id="body-wrap"><header class="no-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">失铭的笔记</a></span><span id="menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/Java/%E6%BA%90%E7%A0%81/"><i class="fa-fw iconfont icon-CodeApplicationDevelopmentProgrammingSoftware"></i><span> 源码</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-32shejimoshi"></i><span> 设计模式</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/blog/41682/"><i class="fa-fw iconfont icon-dashujukeshihuaico--copy"></i><span> 设计模式</span></a></li><li><a class="site-page" href="/blog/8f9f2030/"><i class="fa-fw iconfont icon-chuangjian"></i><span> 创建型模式</span></a></li><li><a class="site-page" href="/blog/620ff0b5/"><i class="fa-fw iconfont icon-jiegou"></i><span> 结构型模式</span></a></li><li><a class="site-page" href="/blog/e55dcfb0/"><i class="fa-fw iconfont icon-hangwei"></i><span> 行为型模式</span></a></li></ul></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">MySQL日志</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-05T03:37:59.000Z" title="发表于 2021-11-05 11:37:59">2021-11-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-05T03:37:59.000Z" title="更新于 2021-11-05 11:37:59">2021-11-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E7%94%A8/">应用</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%BA%94%E7%94%A8/MySQL/">MySQL</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span></div></div></div><article class="post-content" id="article-container"><h2 id="1：MySQL日志"><a href="#1：MySQL日志" class="headerlink" title="1：MySQL日志"></a>1：MySQL日志</h2><p>日志文件中记录着 MySQL 数据库运行期间发生的变化。也就是说用来记录 MySQL 数据库的客户端连接状况、SQL 语句的执行情况和错误信息等。当数据库遭到意外的损坏时，可以通过日志查看文件出错的原因，并且可以通过日志文件进行数据恢复。</p>
+<p>MySQL日志文件分为以下几种：</p>
+<ol>
+<li>重做日志（redo log）</li>
+<li>回滚日志（undo log）</li>
+<li>二进制日志（binlog）</li>
+<li>错误日志（errorlog）</li>
+<li>慢查询日志（slow query log）</li>
+<li>一般查询日志（general log）</li>
+<li>中继日志（relay log）</li>
+</ol>
+<h2 id="2：binlog"><a href="#2：binlog" class="headerlink" title="2：binlog"></a>2：binlog</h2><p>binlog 是 MySQL server 层维护的一种二进制日志，这个文件记录了 MySQL 所有的 DML 操作。通过 binlog 日志我们可以做数据恢复，增量备份，主主复制和主从复制等等。</p>
+<ul>
+<li>复制：MySQL 在主库开启 binlog，主库把它的二进制日志传递给从库并回放来达到主从数据一致的目的。</li>
+<li>数据恢复：指通过 mysqlbinlog 工具恢复数据。</li>
+<li>增量备份：指在一次全备份或上一次增量备份后，以后每次的备份只需备份与前一次相比增加或者被修改的文件。</li>
+</ul>
+<h3 id="2-1：binlog的录入格式"><a href="#2-1：binlog的录入格式" class="headerlink" title="2-1：binlog的录入格式"></a>2-1：binlog的录入格式</h3><ul>
+<li><p>statement(基于SQL语句的复制)：statement模式下记录的是执行的sql语句，也就是主库上执行了什么语句，binlog中就记录什么语句。</p>
+</li>
+<li><p>row(基于行的复制)：row模式下不记录 sql 语句上下文相关信息，仅保存哪条记录被修改。若一条sql语句修改了1000条记录，row格式的日志将会分别记录1000条记录的修改，而statement仅记录一条sql语句。</p>
+</li>
+<li><p>mixed(混合模式复制)：mixed是以上两种 level 的混合使用，MySQL 会根据执行的每一条具体的 SQL 语句来区分对待记录的日志形式，也就是在 statement 和 row 之间选择一种。默认情况下使用statement模式，在以下情况下，Mixed会使用row模式：</p>
+<ul>
+<li>当一个函数包含 UUID().</li>
+<li>当AUTO_INCREMENT更新一个或多个带有列的表 并调用触发器或存储函数时。与所有其他不安全语句一样，如果 binlog_format = STATEMENT。</li>
+<li>当视图的主体需要基于行的复制时，创建视图的语句也会使用它。例如，当创建视图的语句使用该UUID()函数时，就会发生这种情况 。</li>
+<li>当涉及对可加载函数的调用时。</li>
+<li>何时使用FOUND_ROWS()或 ROW_COUNT()。</li>
+<li>当USER(), CURRENT_USER(), 或 CURRENT_USER被使用时。</li>
+<li>当涉及的表之一是mysql数据库中的日志表时 。</li>
+<li>使用该LOAD_FILE()功能时。</li>
+<li>当一个语句引用一个或多个系统变量时。</li>
+</ul>
+</li>
+</ul>
+<p>mixed模式官网链接-&gt;<a target="_blank" rel="noopener" href="https://dev.mysql.com/doc/refman/8.0/en/binary-log-mixed.html">Mixed Binary Logging Format</a></p>
+<h3 id="2-2：不同日志格式的优缺点"><a href="#2-2：不同日志格式的优缺点" class="headerlink" title="2-2：不同日志格式的优缺点"></a>2-2：不同日志格式的优缺点</h3><h4 id="2-2-1：statement"><a href="#2-2-1：statement" class="headerlink" title="2-2-1：statement"></a>2-2-1：statement</h4><ul>
+<li>优点：在statement模式下首先就是解决了row模式的缺点，不需要记录每一行数据的变化减少了binlog日志量，节省了I/O以及存储资源，提高性能。因为它只需要记录执行的语句的细节以及执行语句的上下文信息。</li>
+<li>缺点：在statement模式下，由于它是记录的执行语句，所以为了让这些语句在从库也能正确执行，那么他还必须记录每条语句在执行的时候的一些相关信息，也就是上下文信息，以保证所有语句在从库被执行的结果和在主库执行时的结果相同。另外就是，由于mysql现在发展比较快，很多的新功能不断的加入，使mysql的复制遇到了不小的挑战，自然复制的时候涉及到越复杂的内容，bug也就越容易出现。在statement中，目前已经发现不少情况会造成Mysql的复制出现问题，主要是修改数据的时候使用了某些特定的函数或者功能的时候会出现，比如：sleep()函数在有些版本中就不能被正确复制，在存储过程中使用了last_insert_id()函数，可能会使主库和从库上得到不一致的id等等。</li>
+</ul>
+<h4 id="2-2-2：row"><a href="#2-2-2：row" class="headerlink" title="2-2-2：row"></a>2-2-2：row</h4><ul>
+<li>优点：在row 模式下，bin-log中可以不记录执行的sql语句的上下文相关的信息，仅仅只需要记录那一条被修改。所以row 模式下的日志内容会非常清楚的记录下每一行数据修改的细节。不会出现某些特定的情况下的存储过程，函数或触发器的调用和触发无法被正确复制的问题。</li>
+<li>缺点：row 模式下所有的执行的语句记录到日志中的时候，都将记录每一行涉及到的数据的修改，会产生大量的日志内容。</li>
+</ul>
+<h3 id="2-3：查看binlog"><a href="#2-3：查看binlog" class="headerlink" title="2-3：查看binlog"></a>2-3：查看binlog</h3><p>通过如下语句即可查看binlog是否开启</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查看日志是否开启</span></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">&#x27;log_bin%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111192717.png!img" alt="20211111192717"></p>
+<p>通过<code>show master status;</code>可以查看正在写入的日志，查询结果如下：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111192836.png!img" alt="20211111192836"></p>
+<p>之后通过mysqlbinlog工具即可查看日志：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111193018.png!img" alt="20211111193018"></p>
+<p>未解码的日志看起来像是乱码，实际上这是通过64位编码转换后的内容，使用mysqlbinlog对应的参数即可查看具体的sql内容：</p>
+<p>基于pos节点如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --base64-output=decode-rows -v --start-position=1267 --stop-position=1489 D:\MySQL\data\log.000001</span><br></pre></td></tr></table></figure>
+
+<p>基于时间节点如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqlbinlog --base64-output=decode-rows -v --start-datetime=<span class="string">&quot;2021-11-11 18:01:09&quot;</span> --stop-datetime=<span class="string">&quot;2021-11-11 18:01:11&quot;</span> D:\MySQL\data\log.000001</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li>–base64-ouput=decode-rows：代表解码</li>
+<li>-v：代表换行显示这些语句，如果没有<code>-v</code>依然看不到具体的语句</li>
+<li>–start-date 代表你要获取日志的开始时间</li>
+<li>–stop-date 代表你要获取日志的结束数据</li>
+</ul>
+<p>通过<code>show variables like &#39;binlog_format&#39;</code>语句可以查看当前日期类型，statement显示如下：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111193759.png!img" alt="20211111193759"></p>
+<p>执行insert语句的日志记录如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">test</span>(<span class="keyword">id</span>) <span class="keyword">VALUES</span>(<span class="number">1</span>),(<span class="number">2</span>),(<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-15/20211115182812.png!img" alt="20211115182812"></p>
+<ul>
+<li><code>SET TIMESTAMP=1350355892/*!*/;BEGIN</code>：开始事务的时间</li>
+<li><code>#at 1309</code>：事件的起点，是以1309字节开始。</li>
+<li><code>#211115 18:27:25</code>：事件发生事件。</li>
+<li><code>server id 1</code>：服务id。</li>
+<li><code>end_log_pos 1421</code>：事件的终点，是以1421字节结束。</li>
+<li><code>CRC32 8x8911e1f6</code>：主从复制事件校验。</li>
+<li><code>Query</code>：事件类型</li>
+<li><code>execTime 0</code>: 花费的时间。</li>
+<li><code>error_code=0</code>:错误码。</li>
+<li><code>Xid = 152</code>:表示事务被正确地提交了。</li>
+</ul>
+<p>执行update语句的日志如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> <span class="keyword">test</span> <span class="keyword">set</span> <span class="string">`value`</span> =<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-15/20211115182549.png!img" alt="20211115182549"></p>
+<p>执行delete语句的日志如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> <span class="keyword">test</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-15/20211115184501.png!img" alt="20211115184501"></p>
+<p>可以看到在statement模式下只会记录对应的sql语句，而不会记录影响到的每一行。</p>
+<p>通过<code>set global binlog_format=&#39;row&#39;;</code>可以将日志类型切换为row模式，之后执行同样的三条sql结果如下：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111194641.png!img" alt="20211111194641"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111194813.png!img" alt="20211111194813"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111194836.png!img" alt="20211111194836"></p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://image.shiming.online/blog/2021-11-11/20211111194852.png!img" alt="20211111194852"></p>
+<p>很明显的可以看出statement模式和row模式的区别，在row模式下会记录影响到的每一行，这样可以保证数据的完整性，但是也会造成日志冗余的问题。</p>
+<h2 id="3：redo-log"><a href="#3：redo-log" class="headerlink" title="3：redo log"></a>3：redo log</h2><p>当我们想要修改 DB 上某一行数据的时候，InnoDB 是把数据从磁盘读取到内存的缓冲池上进行修改。这个时候数据在内存中被修改，与磁盘中相比就存在了差异，我们称这种有差异的数据为脏页。<br>InnoDB 对脏页的处理不是每次生成脏页就将脏页刷新回磁盘，这样会产生海量的 IO 操作，严重影响 InnoDB 的处理性能。既然脏页与磁盘中的数据存在差异，那么如果在这期间 DB 出现故障就会造成数据的丢失。为了解决这个问题，redo log 就应运而生了。</p>
+<p>redo log 就是存储了数据被修改后的值。当我们提交一个事务时，InnoDB 会先去把要修改的数据写入日志，然后再去修改缓冲池里面的真正数据页。</p>
+<p>redo log通常是物理日志，记录的是数据页的物理修改，而不是某一行或某几行修改成怎样。</p>
+<h3 id="3-1：binlog-和-redo-log-比较"><a href="#3-1：binlog-和-redo-log-比较" class="headerlink" title="3-1：binlog 和 redo log 比较"></a>3-1：binlog 和 redo log 比较</h3><ul>
+<li>redo log 是属于 innoDB 层面，binlog 属于 MySQL Server 层面的，这样在数据库用别的存储引擎时可以达到一致性的要求。</li>
+<li>redo log 是物理日志，记录该数据页更新的内容；binlog 是逻辑日志，记录的是这个更新语句的原始逻辑。</li>
+<li>redo log 是循环写，日志空间大小固定；binlog 是追加写，是指一份写到一定大小的时候会更换下一个文件，不会覆盖。</li>
+<li>binlog 可以作为恢复数据使用，主从复制搭建，redo log 作为异常宕机或者介质故障后的数据恢复使用。</li>
+</ul>
+<h3 id="3-2：MySQL-如何保证-redo-log-和-binlog-的数据是一致的？"><a href="#3-2：MySQL-如何保证-redo-log-和-binlog-的数据是一致的？" class="headerlink" title="3-2：MySQL 如何保证 redo log 和 binlog 的数据是一致的？"></a>3-2：MySQL 如何保证 redo log 和 binlog 的数据是一致的？</h3><p>通过两阶段提交。</p>
+<p>两阶段提交：先在 redo log 提交并将其标记为 prepare 状态，修改后提交 binlog，再把 redo log 改为 commit 状态。保证了数据的一致性。</p>
+<h4 id="3-2-1：两阶段提交意义"><a href="#3-2-1：两阶段提交意义" class="headerlink" title="3-2-1：两阶段提交意义"></a>3-2-1：两阶段提交意义</h4><ol>
+<li>如果先写 redo log，后写 binlog，假如写入binlog 失败，但是redo log已经写入成功，事务已经完成。恢复后主库根据 redo log 重做，但是 binlog 不存在，复制到从库到出现主从不一致</li>
+<li>如果先写 binlog，后写 redolog，假如写入redo log 失败，但是binlog已经写入成功。恢复后从库根据主库的 binlog 回放数据，但是主库因为 redo log 不存在回滚事务。也会出现主从不一致。</li>
+</ol>
+<h4 id="3-2-2：两阶段提交效果"><a href="#3-2-2：两阶段提交效果" class="headerlink" title="3-2-2：两阶段提交效果"></a>3-2-2：两阶段提交效果</h4><ol>
+<li>如果数据库在记录此事务的 binlog 之前和过程中发生崩溃。数据库在恢复后认为此事务并没有成功提交，则会回滚此事务的操作。与此同时，因为在 binlog 中也没有此事务的记录，所以从库也不会有此事务的数据修改。</li>
+<li>如果数据库在记录此事务的 binlog 之后发生 crash。此时，即使是 redo log 中还没有记录此事务的 commit 标签，数据库在恢复后也会认为此事务提交成功（因为在上述两阶段过程中，binlog 写入成功就认为事务成功提交了）。它会扫描最后一个 binlog 文件，并提取其中的事务 ID（xid），InnoDB 会将那些状态为 Prepare 的事务（redo log 没有记录 commit 标签）的 xid 和 Binlog 中提取的 xid 做比较，如果在 Binlog 中存在，则提交该事务，否则回滚该事务。这也就是说，binlog 中记录的事务，在恢复时都会被认为是已提交事务，会在 redo log 中重新写入 commit 标志，并完成此事务的重做（主库中有此事务的数据修改）。与此同时，因为在 binlog 中已经有了此事务的记录，所有从库也会有此事务的数据修改。</li>
+</ol>
+<h3 id="3-3：如果整个数据库的数据都被删除了，那我可以用-redo-log-的记录来恢复吗？"><a href="#3-3：如果整个数据库的数据都被删除了，那我可以用-redo-log-的记录来恢复吗？" class="headerlink" title="3-3：如果整个数据库的数据都被删除了，那我可以用 redo log 的记录来恢复吗？"></a>3-3：如果整个数据库的数据都被删除了，那我可以用 redo log 的记录来恢复吗？</h3><p>不能，因为功能的不同，redo log 存储的是物理数据的变更，如果我们内存的数据已经刷到了磁盘，那 redo log 的数据就无效了。所以 redo log 不会存储着历史所有数据的变更，文件的内容会被覆盖。</p>
+<h2 id="4：undo-log"><a href="#4：undo-log" class="headerlink" title="4：undo log"></a>4：undo log</h2><p>undo log 有两个作用：回滚和多版本并发控制(MVCC)。</p>
+<ul>
+<li>回滚：事务的原子性–一个事务内的所有语句要么同时成功，要么同时失败。</li>
+<li>多版本并发控制（MVCC）：通过保存数据在某个时间点的快照来实现并发控制的。也就是说，不管事务执行多长时间，事务内部看到的数据是不受其它事务影响的，根据事务开始的时间不同，每个事务对同一张表，同一时刻看到的数据可能是不一样的。</li>
+</ul>
+<p>当执行 rollback 时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。有时候应用到多版本并发控制的时候，也是通过undo log来实现的：当读取的某一行被其他事务锁定时，它可以从undo log中分析出该行记录以前的数据是什么，从而提供该行版本信息，让用户实现非锁定一致性读取。</p>
+<p>undo log和redo log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，undo log中会记录一条对应的insert记录，反之亦然，当update一条记录时，它记录一条对应相反的update记录。</p>
+<h3 id="4-1：delete-update操作的内部机制"><a href="#4-1：delete-update操作的内部机制" class="headerlink" title="4-1：delete/update操作的内部机制"></a>4-1：delete/update操作的内部机制</h3><p>当事务提交的时候，innodb不会立即删除undo log，因为后续还可能会用到undo log，如隔离级别为repeatable read时，事务读取的都是开启事务时的最新提交行版本，只要该事务不结束，该行版本就不能删除，即undo log不能删除。</p>
+<p>但是在事务提交的时候，会将该事务对应的undo log放入到删除列表中，未来通过purge来删除。并且提交事务时，还会判断undo log分配的页是否可以重用，如果可以重用，则会分配给后面来的事务，避免为每个独立的事务分配独立的undo log页而浪费存储空间和性能。</p>
+<p>通过undo log记录delete和update操作的结果发现：(insert操作无需分析，就是插入行而已)</p>
+<ul>
+<li>delete操作实际上不会直接删除，而是将delete对象打上delete flag，标记为删除，最终的删除操作是purge线程完成的。</li>
+<li>update分为两种情况：update的列是否是主键列。<ul>
+<li>如果不是主键列，在undo log中直接反向记录是如何update的。即update是直接进行的。</li>
+<li>如果是主键列，update分两部执行：先删除该行，再插入一行目标行。</li>
+</ul>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">失铭</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://shiming.best/blog/566e96c3/">https://shiming.best/blog/566e96c3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://shiming.best" target="_blank">失铭的笔记</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://image.shiming.online/guidao/pic-88.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/blog/9a719b8c/"><img class="next-cover" data-lazy-src="https://image.shiming.online/guidao/pic-88.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">面试题-操作系统</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside_content" id="aside_content"><div class="card-widget card-info"><div class="card-content"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://image.shiming.online/background/info.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">失铭</div><div class="author-info__description">El Psy Congroo</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">118</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">60</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">32</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/XShiMing"><i class="fab fa-github"></i><span>Follow Me</span></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="card-content"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EF%BC%9AMySQL%E6%97%A5%E5%BF%97"><span class="toc-text">1：MySQL日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%EF%BC%9Abinlog"><span class="toc-text">2：binlog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%EF%BC%9Abinlog%E7%9A%84%E5%BD%95%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">2-1：binlog的录入格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%EF%BC%9A%E4%B8%8D%E5%90%8C%E6%97%A5%E5%BF%97%E6%A0%BC%E5%BC%8F%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-text">2-2：不同日志格式的优缺点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1%EF%BC%9Astatement"><span class="toc-text">2-2-1：statement</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2%EF%BC%9Arow"><span class="toc-text">2-2-2：row</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%EF%BC%9A%E6%9F%A5%E7%9C%8Bbinlog"><span class="toc-text">2-3：查看binlog</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%EF%BC%9Aredo-log"><span class="toc-text">3：redo log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%EF%BC%9Abinlog-%E5%92%8C-redo-log-%E6%AF%94%E8%BE%83"><span class="toc-text">3-1：binlog 和 redo log 比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2%EF%BC%9AMySQL-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81-redo-log-%E5%92%8C-binlog-%E7%9A%84%E6%95%B0%E6%8D%AE%E6%98%AF%E4%B8%80%E8%87%B4%E7%9A%84%EF%BC%9F"><span class="toc-text">3-2：MySQL 如何保证 redo log 和 binlog 的数据是一致的？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1%EF%BC%9A%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%E6%84%8F%E4%B9%89"><span class="toc-text">3-2-1：两阶段提交意义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2%EF%BC%9A%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4%E6%95%88%E6%9E%9C"><span class="toc-text">3-2-2：两阶段提交效果</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3%EF%BC%9A%E5%A6%82%E6%9E%9C%E6%95%B4%E4%B8%AA%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%95%B0%E6%8D%AE%E9%83%BD%E8%A2%AB%E5%88%A0%E9%99%A4%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E5%8F%AF%E4%BB%A5%E7%94%A8-redo-log-%E7%9A%84%E8%AE%B0%E5%BD%95%E6%9D%A5%E6%81%A2%E5%A4%8D%E5%90%97%EF%BC%9F"><span class="toc-text">3-3：如果整个数据库的数据都被删除了，那我可以用 redo log 的记录来恢复吗？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4%EF%BC%9Aundo-log"><span class="toc-text">4：undo log</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1%EF%BC%9Adelete-update%E6%93%8D%E4%BD%9C%E7%9A%84%E5%86%85%E9%83%A8%E6%9C%BA%E5%88%B6"><span class="toc-text">4-1：delete&#x2F;update操作的内部机制</span></a></li></ol></li></ol></div></div></div><div class="card-widget card-recent-post"><div class="card-content"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/566e96c3/" title="MySQL日志">MySQL日志</a><time datetime="2021-11-05T03:37:59.000Z" title="发表于 2021-11-05 11:37:59">2021-11-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/9a719b8c/" title="面试题-操作系统">面试题-操作系统</a><time datetime="2021-09-24T09:07:22.000Z" title="发表于 2021-09-24 17:07:22">2021-09-24</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/ec09f6b3/" title="面试题-Redis">面试题-Redis</a><time datetime="2021-04-28T09:04:16.000Z" title="发表于 2021-04-28 17:04:16">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/828907ec/" title="面试题-Spring">面试题-Spring</a><time datetime="2021-04-28T09:03:37.000Z" title="发表于 2021-04-28 17:03:37">2021-04-28</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/blog/63929c6f/" title="面试题-数据库">面试题-数据库</a><time datetime="2021-04-28T09:01:41.000Z" title="发表于 2021-04-28 17:01:41">2021-04-28</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 失铭</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="icp"><a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/"><img class="icp-icon" src="/img/icp.png" alt="ICP"/><span>渝ICP备2020010262号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.spacingElementById('content-inner')
+  else {
+    $.getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js', () => {
+      pangu.spacingElementById('content-inner')
+    })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguFn)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',()=> {preloader.endLoading()})</script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    let initData = {
+      el: '#vcomment',
+      appId: '8AI4XAeM1WByt61C1hTs3U7f-MdYXbMMI',
+      appKey: 'TxTEH6NbG1UeKnrlAFuRIcDH',
+      placeholder: '给我的文章加点评论吧~',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    }
+
+    if (true) { 
+      initData.requiredFields= ('nick'.split(','))
+    }
+    
+    if (false) {
+      const otherData = false
+      initData = Object.assign({}, initData, otherData)
+    }
+    
+    const valine = new Valine(initData)
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script></div></body></html>
